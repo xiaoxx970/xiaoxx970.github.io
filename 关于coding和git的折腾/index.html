@@ -120,7 +120,7 @@
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="通过ssh连接git需要配置公钥，先在本地生成公钥 1ssh-keygen -t rsa -C &quot;your_email@example.com&quot; 生成在目录~/.ssh下面，.ssh/id_rsa.pub就是公钥，绑定coding的时候在设置里点添加公钥，然后复制.pub文件里的内容过去，保存后可以测试： 1ssh -T git@git.coding.NET coding会提示绑定成功 12345">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-18T13:45:12.182Z">
+<meta property="og:updated_time" content="2018-10-19T04:21:35.496Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于coding和git的折腾">
 <meta name="twitter:description" content="通过ssh连接git需要配置公钥，先在本地生成公钥 1ssh-keygen -t rsa -C &quot;your_email@example.com&quot; 生成在目录~/.ssh下面，.ssh/id_rsa.pub就是公钥，绑定coding的时候在设置里点添加公钥，然后复制.pub文件里的内容过去，保存后可以测试： 1ssh -T git@git.coding.NET coding会提示绑定成功 12345">
@@ -343,12 +343,24 @@
                 
               
 
-              <time title="创建时间：2018-10-18 20:51:09 / 修改时间：21:45:12" itemprop="dateCreated datePublished" datetime="2018-10-18T20:51:09+08:00">2018-10-18</time>
+              <time title="创建时间：2018-10-18 20:51:09" itemprop="dateCreated datePublished" datetime="2018-10-18T20:51:09+08:00">2018-10-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-19 12:21:35" itemprop="dateModified" datetime="2018-10-19T12:21:35+08:00">2018-10-19</time>
               
             
           </span>
@@ -390,7 +402,8 @@
 <p>以及，如果你的项目的名称不是<code>你的用户名.coding.me</code>，虽然也可以开启静态页面，但是图片的路径会出错，导致所有图片显示不出来，要解决这个问题，绑定一个域名就好了。</p>
 <p>关于hexo的配置文件的deploy部分<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span></span><br><span class="line"><span class="attr">    coding:</span> <span class="string">git@git.coding.net:你的用户名/项目名.git,master</span></span><br></pre></td></tr></table></figure></p>
 <p><code>.git</code>后面<code>,master</code>要记得加<br>还有现在coding好像在改版，项目页面复制下来的git链接域名是<code>git.dev.tencent.com</code>，而根据我现在的实践操作发现如果我不把域名换成<code>git.coding.net</code>的话是没法部署成功的，失败原因是<code>Host key verification failed.</code></p>
-
+<p>如果没装过deployer要先装不然会deploy失败</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -423,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/orangepi折腾记录/" rel="next" title="基于armbian的Orange pi折腾记录(外接HDMI屏幕分辨率调节及屏幕旋转)">
-                <i class="fa fa-chevron-left"></i> 基于armbian的Orange pi折腾记录(外接HDMI屏幕分辨率调节及屏幕旋转)
+              <a href="/orangepi折腾记录/" rel="next" title="装了armbian的Orange pi折腾记录(外接HDMI屏幕分辨率调节及屏幕旋转)">
+                <i class="fa fa-chevron-left"></i> 装了armbian的Orange pi折腾记录(外接HDMI屏幕分辨率调节及屏幕旋转)
               </a>
             
           </div>
@@ -596,7 +609,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -604,7 +617,7 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.2</div>
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a></div>
 
 <span class="post-meta-divider">|</span>
 <div class="powered-by">
