@@ -120,15 +120,16 @@
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。   miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://mcyo.pw/miui-eu/screen1.jpg">
 <meta property="og:image" content="http://mcyo.pw/miui-eu/git-clone.jpg">
 <meta property="og:image" content="http://mcyo.pw/miui-eu/bat-run.jpg">
 <meta property="og:image" content="http://mcyo.pw/miui-eu/mipay-extract.jpg">
 <meta property="og:image" content="http://mcyo.pw/miui-eu/screen.png">
-<meta property="og:updated_time" content="2018-12-20T04:57:54.383Z">
+<meta property="og:updated_time" content="2018-12-20T05:06:04.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP">
 <meta name="twitter:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。   miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
-<meta name="twitter:image" content="http://mcyo.pw/miui-eu/git-clone.jpg">
+<meta name="twitter:image" content="http://mcyo.pw/miui-eu/screen1.jpg">
 
 
 
@@ -365,7 +366,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-20 12:57:54" itemprop="dateModified" datetime="2018-12-20T12:57:54+08:00">2018-12-20</time>
+                <time title="修改时间：2018-12-20 13:06:04" itemprop="dateModified" datetime="2018-12-20T13:06:04+08:00">2018-12-20</time>
               
             
           </span>
@@ -435,13 +436,14 @@
 </li>
 <li><p>不用开机，继续刷入twrp<br><a href="https://twrp.me/Devices/" target="_blank" rel="noopener">twrp官方下载</a></p>
 </li>
-<li><p>进入twrp，刷eu固件<br><a href="#last">格式化data分区</a><br>去下载miui欧洲版：<a href="https://xiaomi.eu/community/link-forums/roms-download.73/" target="_blank" rel="noopener">miui欧洲版发布页面</a><br>连接电脑，进入twrp后应该是能在电脑上看到手机，不能的话在设置里找开启MTP<br>从电脑把eu固件拖入手机存储，从twrp中选择固件刷机</p>
+<li><p>进入twrp，刷eu固件<br><a href="#last">格式化data分区</a>（如果你想开启全盘默认加密，请不要开机，直接看第五步）<br>去下载miui欧洲版：<a href="https://xiaomi.eu/community/link-forums/roms-download.73/" target="_blank" rel="noopener">miui欧洲版发布页面</a><br>连接电脑，进入twrp后应该是能在电脑上看到手机，不能的话在设置里找开启MTP<br>从电脑把eu固件拖入手机存储，从twrp中选择固件刷机</p>
 </li>
-<li><p>重启开机，进入系统<br>到这里已经完成miui欧洲版刷机了，选择语言，连WiFi，登账号<br>miui欧洲版阉割了很多比如小米钱包，里面的卡模拟的功能我用得到，包括公交卡什么的，所以装好后我又去折腾如何装回这个应用</p>
+<li><p>重启开机，进入系统<br>到这里已经完成miui欧洲版刷机了，选择语言，连WiFi，登账号<br><img src="screen1.jpg" alt="">开机后的桌面<br>miui欧洲版阉割了很多比如小米钱包，里面的卡模拟的功能我用得到，包括公交卡什么的，所以装好后我又去折腾如何装回这个应用</p>
 </li>
 <li><p>欧洲版固件安装MiPay和小米商店<br>很麻烦，不能直接通过APK安装，要从中国版固件的system.img里面提取软件包，还要通过Root权限把软件包写入System分区，这里有一个教程：<a href="https://www.yipkwong.com/2018/06/06/167/" target="_blank" rel="noopener">MIUI国际版mi pay解决方案</a>，里面叙述了详细经过<br>但是！<br>但是我没用这个方法，虽然尝试过但是卡在了挂载镜像那一步，后来我从另一个地方找到了方便的方法：<a href="https://github.com/linusyang92/mipay-extract" target="_blank" rel="noopener">Mi Pay Extractor</a>，是一个提取脚本，可以把上面那个教程里的步骤自动实现<br>直接<code>git clone</code>到本地以后把miui国内版卡刷包放在同一目录下<br><img src="git-clone.jpg" alt="目录截图">然后要在同一目录放入<strong>国内的</strong>miui<strong>卡刷包</strong>（和miui欧洲版卡刷包，如果你要开启<a href="#last">全盘加密</a>）<br>就可以运行<code>extract.bat</code>，如果出现下面这样的错误</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">extract.sh: line 2: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 3: <span class="built_in">cd</span>: $<span class="string">'.\r'</span>: No such file or directory</span><br><span class="line">extract.sh: line 4: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 6: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 18: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 19: syntax error near unexpected token `$<span class="string">'&#123;\r'</span><span class="string">'</span></span><br><span class="line"><span class="string">'</span>xtract.sh: line 19: `<span class="function"><span class="title">exists</span></span>() &#123;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-<p> 那就是因为<code>extract.sh</code>文件用的换行符不对，把原来的换行符<code>CRLF</code>改成<code>LF</code>后保存就可以正常运行了<br> Windows下双击<code>extract.bat</code>就可以开始提取，会要几分钟时间<br> <img src="bat-run.jpg" alt="bat-run">这样就说明提取成功了，在目录下会找到<code>mipay-MIxxx.zip</code>,这就是一个卡刷包，通过twrp可以直接刷入<br> 按照readme里的说明，还可以运行<code>cleaner-fix.sh</code>来生成修复日历和天气的刷机包，具体说就是让日历显示农历，天气app换回国内的。这个命令同时还会生成开启默认加密的刷机包。<br> 对于想在负一屏还能用微信支付宝扫码快捷键的，<code>extract.bat --appvault</code>可以生成这样的修复包，也就是替换成跟国内一样的信息助手<br> Finally，我们有了四个准备卡刷的包：（第二个force-fbe是<a href="#last">文末</a>提到的开启全盘加密）<br> <img src="mipay-extract.jpg" alt="目录截图2"><del>全扔进手机，一个一个刷就是了</del>  先别放到手机看我说完<br> 然而，问题没那么简单<br> 我遇到的是一个叫255的错误，简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的<code>CRLF</code>，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹<code>META-INF</code>一路点进去，最后看到了一个叫做<code>update-binary</code>的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了<code>CRLF</code>换行符导致错误的。用VScode打开转换后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。</p>
+<p> 那就是因为<code>extract.sh</code>文件用的换行符不对，把原来的换行符<code>CRLF</code>改成<code>LF</code>后保存就可以正常运行了<br> Windows下双击<code>extract.bat</code>就可以开始提取，会要几分钟时间<br> <img src="bat-run.jpg" alt="bat-run">这样就说明提取成功了，在目录下会找到<code>mipay-MIxxx.zip</code>,这就是一个卡刷包，通过twrp可以直接刷入<br> <a id="five"></a></p>
+<p> 按照readme里的说明，还可以运行<code>cleaner-fix.sh</code>来生成修复日历和天气的刷机包，具体说就是让日历显示农历，天气app换回国内的。这个命令同时还会生成开启默认加密的刷机包。<br> 对于想在负一屏还能用微信支付宝扫码快捷键的，<code>extract.bat --appvault</code>可以生成这样的修复包，也就是替换成跟国内一样的信息助手<br> Finally，我们有了四个准备卡刷的包：（第二个force-fbe是<a href="#last">文末</a>提到的开启全盘加密）<br> <img src="mipay-extract.jpg" alt="目录截图2"><del>全扔进手机，一个一个刷就是了</del>  先别放到手机看我说完<br> 然而，问题没那么简单<br> 我遇到的是一个叫255的错误，简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的<code>CRLF</code>，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹<code>META-INF</code>一路点进去，最后看到了一个叫做<code>update-binary</code>的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了<code>CRLF</code>换行符导致错误的。用VScode打开转换后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。</p>
 <blockquote>
 <p>在<a href="https://github.com/linusyang92/mipay-extract/releases" target="_blank" rel="noopener">release页面</a>有他提取好的卡刷包，虽然是Mix2的但是发现也适用于我的小米6，如果你是米6或mix2不想折腾也可以用作者提取好的</p>
 </blockquote>
