@@ -7,22 +7,22 @@ sudo sed -i 's#://archive.raspberrypi.org/debian#s://mirrors.tuna.tsinghua.edu.c
 sudo apt-get update
 sudo apt-get install samba -y
 sudo echo "
-    # 分享名称
-    [MyNAS]
-    # 说明信息
-    comment = NAS Storage
-    # 可以访问的用户
-    valid users = pi,root
-    # 共享文件的路径。
-    path = /media/Green-EXfat
-    # 可被其他人看到资源名称（非内容）
-    browseable = yes
-    # 可写
-    writable = yes
-    # 新建文件的权限为 664
-    create mask = 0664
-    # 新建目录的权限为 775
-    directory mask = 0775
+# 分享名称
+[MyNAS]
+# 说明信息
+comment = NAS Storage
+# 可以访问的用户
+valid users = pi,root
+# 共享文件的路径。
+path = /media/Green-EXfat
+# 可被其他人看到资源名称（非内容）
+browseable = yes
+# 可写
+writable = yes
+# 新建文件的权限为 664
+create mask = 0664
+# 新建目录的权限为 775
+directory mask = 0775
 "  >> /etc/samba/smb.conf
 testparm
 echo "samba服务配置完成，请设定密码："
