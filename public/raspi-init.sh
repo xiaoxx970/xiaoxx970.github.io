@@ -6,7 +6,7 @@ sudo sed -i 's#://raspbian.raspberrypi.org#s://mirrors.tuna.tsinghua.edu.cn/rasp
 sudo sed -i 's#://archive.raspberrypi.org/debian#s://mirrors.tuna.tsinghua.edu.cn/raspberrypi#g' /etc/apt/sources.list.d/raspi.list
 sudo apt-get update
 sudo apt-get install samba -y
-sudo echo "
+sudo tee -a /etc/samba/smb.conf <<-'EOF'
 # 分享名称
 [MyNAS]
 # 说明信息
@@ -23,7 +23,7 @@ writable = yes
 create mask = 0664
 # 新建目录的权限为 775
 directory mask = 0775
-"  >> /etc/samba/smb.conf
+EOF
 testparm
 echo "samba服务配置完成，请设定密码："
 sudo smbpasswd -a pi
