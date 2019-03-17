@@ -81,3 +81,8 @@ deploy:
   repo:
     coding: git@git.coding.net:xiaoxx97/xiaoxx97.coding.me.git,master
     github: git@github.com:xiaoxx970/xiaoxx970.github.io.git,master
+
+backup:
+    type: git
+    repository:
+       github: git@github.com:xiaoxx970/xiaoxx970.github.io.git,hexo
