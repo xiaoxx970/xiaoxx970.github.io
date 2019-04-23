@@ -124,7 +124,7 @@
 <meta property="og:image" content="http://mcyo.pw/miui-eu/git-clone.jpg">
 <meta property="og:image" content="http://mcyo.pw/miui-eu/bat-run.jpg">
 <meta property="og:image" content="http://mcyo.pw/miui-eu/mipay-extract.jpg">
-<meta property="og:updated_time" content="2019-03-18T05:36:21.936Z">
+<meta property="og:updated_time" content="2019-04-23T14:40:03.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密">
 <meta name="twitter:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净  我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。  miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
@@ -365,7 +365,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-18 13:36:21" itemprop="dateModified" datetime="2019-03-18T13:36:21+08:00">2019-03-18</time>
+                <time title="修改时间：2019-04-23 22:40:03" itemprop="dateModified" datetime="2019-04-23T22:40:03+08:00">2019-04-23</time>
               
             
           </span>
@@ -470,7 +470,10 @@
 </blockquote>
 <p>我从另一个地方找到了方便的方法：<a href="https://github.com/linusyang92/mipay-extract" target="_blank" rel="noopener">Mi Pay Extractor</a>，是一个提取脚本，可以自动提取出卡刷包中的MiPay软件和日历、天气等。</p>
 <ul>
-<li>直接git clone到本地   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/linusyang92/mipay-extract.git</span><br></pre></td></tr></table></figure>
+<li><p><del>直接git clone到本地</del>下载zip包</p>
+<p> windows用户不要git clone到本地，去直接下载zip文件来避免等下会出现的换行符问题：<a href="https://github.com/linusyang92/mipay-extract/archive/master.zip" target="_blank" rel="noopener">repo的下载链接</a></p>
+<p> linux用户无妨</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/linusyang92/mipay-extract.git</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><img src="git-clone.jpg" alt="目录截图"></p>
@@ -494,6 +497,21 @@
 </li>
 </ol>
 <p>最后，终于写完了这个教程，自我感觉是很详细了，希望可以帮到跟我一样在折腾miui的人。我刷这个系统的初衷是国内版变得越来越难用，最主要的表现是经常熄屏自己莫名震动，还经常自己亮屏，打开了看也没有什么通知，后来上网一搜发现我不是一个人，这是小米系统本身的问题，那些震动是真的有通知不过之前被我从通知栏禁止了，可能禁止的层面不对，等通知到达了震动了系统才把通知删掉，这不是折磨人么。我就找能不能刷类似CM的原版安卓，然后就在知乎上看到了miui欧洲版，感觉对安卓的底层不会改太多，就折腾用欧洲版来了。现在用了两个星期，确实好用，字体不好看还换了个字体，外观上和国内版差别也不大。就是每次升级系统不是很方便就是了，之后会想办法用持续集成完成自动的提取。</p>
+<blockquote>
+<p>2019-4-23更新：总结一下用miui-eu时更新系统步骤</p>
+</blockquote>
+<ol>
+<li><p>下载eu包：<code>https://netix.dl.sourceforge.net/project/xiaomi-eu-multilang-miui-roms/xiaomi.eu/MIUI-WEEKLY-RELEASES/9.4.11/xiaomi.eu_multi_MI6_9.4.11_v10-8.0.zip</code></p>
+</li>
+<li><p>下载国内相同版本包：<code>http://bigota.d.miui.com/9.4.11/miui_MI6_9.4.11_692ddc81ce_8.0.zip</code></p>
+</li>
+<li><p>在<code>mipay-extract</code>文件夹中执行以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./cleaner-fix.bat</span><br><span class="line">./extract.bat --appvault</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成的4个包加上下载下来的eu包拷贝进手机，重启进入twrp选择刷机包刷机</p>
+<p>可以批量选择刷机包，顺序是eu包在最前面，其他的在后面刷。</p>
+</li>
+</ol>
 
       
     </div>

@@ -63,10 +63,14 @@ date: 2018-12-18 16:03:00
     > 要从中国版固件的system.img里面提取软件包，还要通过Root权限把软件包写入System分区，这里有一个教程：[MIUI国际版mi pay解决方案](https://www.yipkwong.com/2018/06/06/167/)，里面叙述了详细经过，但是我没用这个方法，虽然尝试过但是卡在了挂载镜像那一步。
 
    我从另一个地方找到了方便的方法：[Mi Pay Extractor](https://github.com/linusyang92/mipay-extract)，是一个提取脚本，可以自动提取出卡刷包中的MiPay软件和日历、天气等。
-   - 直接git clone到本地
-        ```bash
-        https://github.com/linusyang92/mipay-extract.git
-        ```
+   - ~~直接git clone到本地~~下载zip包
+   
+      windows用户不要git clone到本地，去直接下载zip文件来避免等下会出现的换行符问题：[repo的下载链接](https://github.com/linusyang92/mipay-extract/archive/master.zip)
+
+      linux用户无妨
+      ```bash
+      https://github.com/linusyang92/mipay-extract.git
+      ```
    ![目录截图](git-clone.jpg)
    - 下载国内的miui最新卡刷包，放入同一目录
    - miui欧洲版卡刷包，也放在同一目录
@@ -100,3 +104,20 @@ date: 2018-12-18 16:03:00
    然后就可以安装了，一切都非常完美，可以一键装应用和更新
 
 最后，终于写完了这个教程，自我感觉是很详细了，希望可以帮到跟我一样在折腾miui的人。我刷这个系统的初衷是国内版变得越来越难用，最主要的表现是经常熄屏自己莫名震动，还经常自己亮屏，打开了看也没有什么通知，后来上网一搜发现我不是一个人，这是小米系统本身的问题，那些震动是真的有通知不过之前被我从通知栏禁止了，可能禁止的层面不对，等通知到达了震动了系统才把通知删掉，这不是折磨人么。我就找能不能刷类似CM的原版安卓，然后就在知乎上看到了miui欧洲版，感觉对安卓的底层不会改太多，就折腾用欧洲版来了。现在用了两个星期，确实好用，字体不好看还换了个字体，外观上和国内版差别也不大。就是每次升级系统不是很方便就是了，之后会想办法用持续集成完成自动的提取。
+
+
+> 2019-4-23更新：总结一下用miui-eu时更新系统步骤
+
+   1. 下载eu包：`https://netix.dl.sourceforge.net/project/xiaomi-eu-multilang-miui-roms/xiaomi.eu/MIUI-WEEKLY-RELEASES/9.4.11/xiaomi.eu_multi_MI6_9.4.11_v10-8.0.zip`
+
+   2. 下载国内相同版本包：`http://bigota.d.miui.com/9.4.11/miui_MI6_9.4.11_692ddc81ce_8.0.zip`
+
+   3. 在`mipay-extract`文件夹中执行以下命令
+      ```
+      ./cleaner-fix.bat
+      ./extract.bat --appvault
+      ```
+
+   4. 生成的4个包加上下载下来的eu包拷贝进手机，重启进入twrp选择刷机包刷机
+
+      可以批量选择刷机包，顺序是eu包在最前面，其他的在后面刷。
