@@ -79,10 +79,11 @@ theme: next
 deploy:
   type: git
   repo:
-    github: git@github.com:xiaoxx970/xiaoxx970.github.io.git,master
-    coding: git@git.coding.net:xiaoxx97/xiaoxx97.coding.me.git,master
+    github: https://github.com/xiaoxx970/xiaoxx970.github.io.git
+    coding: git@git.coding.net:xiaoxx97/xiaoxx97.coding.me.git
+  branch: master
 
-backup:
-    type: git
-    repository:
-       github: git@github.com:xiaoxx970/xiaoxx970.github.io.git,hexo
+#backup:
+#    type: git
+#    repository:
+#       github: git@github.com:xiaoxx970/xiaoxx970.github.io.git,hexo
