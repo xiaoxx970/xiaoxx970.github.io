@@ -112,14 +112,19 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="hackintosh_of_yoga710">
+  <meta name="description" content="I’ve been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there’s a lot of problem like brightness, bluetooth, app store,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]">
 <meta property="og:url" content="http://mcyo.pw/hackintosh-of-yoga710/index.html">
 <meta property="og:site_name" content="XiaoXX的博客">
+<meta property="og:description" content="I’ve been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there’s a lot of problem like brightness, bluetooth, app store,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-16T05:29:56.565Z">
+<meta property="og:image" content="http://mcyo.pw/hackintosh-of-yoga710/error1.jpg">
+<meta property="og:updated_time" content="2019-03-18T06:07:27.756Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hackintosh_of_yoga710">
+<meta name="twitter:title" content="MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]">
+<meta name="twitter:description" content="I’ve been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there’s a lot of problem like brightness, bluetooth, app store,">
+<meta name="twitter:image" content="http://mcyo.pw/hackintosh-of-yoga710/error1.jpg">
 
 
 
@@ -136,7 +141,7 @@
   };
 </script>
 
-  <title>hackintosh_of_yoga710 | XiaoXX的博客</title>
+  <title>MacOS Mojave Hackintosh for Lenovo Yoga710 [clover] | XiaoXX的博客</title>
   
 
 
@@ -314,7 +319,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">hackintosh_of_yoga710
+          <h2 class="post-title" itemprop="name headline">MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]
               
             
           </h2>
@@ -356,7 +361,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-16 13:29:56" itemprop="dateModified" datetime="2019-03-16T13:29:56+08:00">2019-03-16</time>
+                <time title="修改时间：2019-03-18 14:07:27" itemprop="dateModified" datetime="2019-03-18T14:07:27+08:00">2019-03-18</time>
               
             
           </span>
@@ -379,7 +384,7 @@
 
           
           
-             <span id="/hackintosh-of-yoga710/" class="leancloud_visitors" data-flag-title="hackintosh_of_yoga710">
+             <span id="/hackintosh-of-yoga710/" class="leancloud_visitors" data-flag-title="MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -410,7 +415,26 @@
       
 
       
-        
+        <p>I’ve been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there’s a lot of problem like brightness, bluetooth, app store, etc. It’s all work now.<br><a id="more"></a><br>The most tricky part is to drive DW1820(What? I bought it for hackintosh!), I do found kext driver for my card from RehabMan, but seems not work at all. Every time I boot up I see this<img src="error1.jpg" alt><br>Maybe something wrong with Bluetooth since it’s connected via USB. But I fixed it by just delete <code>BrcmPatchRAM2.kext</code> and <code>BrcmFirmwareData.kext</code>, and add the address of bluetooth’s USB port to <code>FakePCIID.kext</code>, it workd fine then. no  need of other kext driver.</p>
+<p>Here’s my hardware:</p>
+<blockquote>
+<p>Processor: Intel Core i5-7200U<br>Graphics: Intel HD Graphics 620, NVDIA Geforce 940MX<br>Memory: 4096 MB, 2133 MHz, DDR4, 1/1 slots occupied, Single-Channel<br>Display: 14 inch 16:9, 1920 x 1080 pixel 157 PPI, Multitouch<br>Mainboard: Intel Kaby Lake-U Premium PCH</p>
+</blockquote>
+<p>What works well:</p>
+<blockquote>
+<p>Graphics, Brightness(and save brightness)<br>Keyboard &amp; Trackpad<br>Audio<br>Battery<br>Airprot<br>Bluetooth<br>HDMI output with audio<br>Headphone jack include microphone</p>
+</blockquote>
+<p>What is not working:</p>
+<blockquote>
+<p>NVDIA Geforce 940MX<br>Touch screen<br>Sleep function(just about work, it wake immediately after sleep)<br>SD card reader</p>
+</blockquote>
+<p>Something you need attention:</p>
+<blockquote>
+<p>brightness can be adjust at setting, you can add a key map yourself.<br>You can enable HIDPI <a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">https://github.com/xzhih/one-key-hidpi</a></p>
+</blockquote>
+<p>I’m jus put the clover file of myself, hope there’s help for you. As for installing detals, it’s alot outside.</p>
+<p>Download link: <a href="CLOVER.zip">clover file of yoga 710</a></p>
+
       
     </div>
 
@@ -437,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/miui-eu/" rel="next" title="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP">
-                <i class="fa fa-chevron-left"></i> 小米6刷入miui欧洲版以及安装小米钱包、应用商店APP
+              <a href="/miui-eu/" rel="next" title="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密">
+                <i class="fa fa-chevron-left"></i> 小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密
               </a>
             
           </div>
