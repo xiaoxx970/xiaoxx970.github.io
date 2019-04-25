@@ -10,6 +10,7 @@ branches:
     - hexo
 install:
   - npm install hexo-cli -g
+  - git clone https://github.com/zjZSTU/hexo-theme-next.git themes/next
 script:
   - hexo generate
 deploy:
