@@ -12,6 +12,7 @@ install:
   - npm install hexo-cli -g
   - git clone https://github.com/zjZSTU/hexo-theme-next.git themes/next
   - mv themes/_config.yml themes/next/
+  - mv themes/custom.styl themes/next/source/css/_custom/
 script:
   - hexo generate
 deploy:
