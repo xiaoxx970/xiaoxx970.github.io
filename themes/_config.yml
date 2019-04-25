@@ -178,7 +178,6 @@ site_state: true
 social:
   Skypixel: https://www.skypixel.com/users/ljp9878
   GitHub: https://github.com/xiaoxx970 || github
-  Email: me@xiaoxx.cc || envelope
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
@@ -186,8 +185,8 @@ social:
   #FB Page: https://www.facebook.com/yourname || facebook
   #VK Group: https://vk.com/yourname || vk
   #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
-  #YouTube: https://youtube.com/yourname || youtube
-  #Instagram: https://instagram.com/yourname || instagram
+  YouTube: https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA || youtube
+  Instagram: https://www.instagram.com/xiaoxx97/ || instagram
   #Skype: skype:yourname?call|chat || skype
 
 social_icons:
@@ -216,7 +215,7 @@ avatar:
   # in theme directory(source/images): /images/avatar.gif
   # in site  directory(source/uploads): /uploads/avatar.gif
   # You can also use other linking images.
-  url: uploads/avatar.png #/images/avatar.gif
+  url: uploads/avatar.jpg #/images/avatar.gif
   # If true, the avatar would be dispalyed in circle.
   rounded: false
   # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
@@ -546,7 +545,7 @@ valine:
   avatar: mm # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
-  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
   comment_count: true # if false, comment count will only be displayed in post page, not in home page
 
 # Support for LiveRe comments system.
@@ -574,11 +573,11 @@ gitment:
 # Reference: https://asdfv1929.github.io/2018/01/20/gitalk/, https://liujunzhou.top/2018/8/10/gitalk-error/
 gitalk:
   enable: false
-  github_id: zjZSTU # Github repo owner
+  github_id: xiaoxx970 # Github repo owner
   repo: guestbook # Repository name to store issues.
   client_id: 8f22595c6dd29c94467d # Github Application Client ID
   client_secret: e66bd90ebb9aa66c562c753dec6c90ceecbd51f2  # Github Application Client Secret
-  admin_user: zjZSTU # GitHub repo owner and collaborators, only these guys can initialize github issues
+  admin_user: xiaoxx970 # GitHub repo owner and collaborators, only these guys can initialize github issues
   distraction_free_mode: true # Facebook-like distraction free mode
 
 # Baidu Share
@@ -634,7 +633,7 @@ google_site_verification: Qr_3yqLtyErDFKHW7mE8PJz4qDUX-bf_fMLpSRckQe4
 
 # Baidu Webmaster tools verification setting
 # See: https://ziyuan.baidu.com/site
-baidu_site_verification: zOwIvKMV7f
+#baidu_site_verification: zOwIvKMV7f
 
 # CNZZ count
 #cnzz_siteid:
@@ -675,8 +674,8 @@ vkontakte_api:
 # Star rating support to each article.
 # To get your ID visit https://widgetpack.com
 rating:
-  enable: false
-  id:     14502
+  enable: true
+  id:     18202
   color:  fc6423
 # ---------------------------------------------------------------
 
