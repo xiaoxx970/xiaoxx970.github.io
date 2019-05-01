@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+- stable
+# 指定缓存模块，可选。缓存可加快编译速度。
+cache:
+  directories:
+    - node_modules
+branches: 
+  only: # 指定分支提交时才会运行travis ci
+    - hexo
+install:
+  - npm install hexo-cli -g
+  - git clone https://github.com/theme-next/hexo-theme-next.git themes/next
+  - mv themes/_config.yml themes/next/
+  - mv themes/custom.styl themes/next/source/css/_custom/
+script:
+  - hexo generate
+deploy:
+  local-dir: ./public
+  target_branch: master
+  fqdn: xiaoxx.cc
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: hexo

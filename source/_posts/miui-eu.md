@@ -107,15 +107,17 @@ date: 2018-12-18 16:03:00
 
 
 > 2019-4-23更新：总结一下用miui-eu时更新系统步骤
-   1. 下载eu包：`https://netix.dl.sourceforge.net/project/xiaomi-eu-multilang-miui-roms/xiaomi.eu/MIUI-WEEKLY-RELEASES/9.4.11/xiaomi.eu_multi_MI6_9.4.11_v10-8.0.zip`
-   2. 下载国内相同版本包：`http://bigota.d.miui.com/9.4.11/miui_MI6_9.4.11_692ddc81ce_8.0.zip`
-   3. 在`mipay-extract`文件夹中执行以下命令
 
+   1. 下载eu包：`https://netix.dl.sourceforge.net/project/xiaomi-eu-multilang-miui-roms/xiaomi.eu/MIUI-WEEKLY-RELEASES/9.4.11/xiaomi.eu_multi_MI6_9.4.11_v10-8.0.zip`
+
+   2. 下载国内相同版本包：`http://bigota.d.miui.com/9.4.11/miui_MI6_9.4.11_692ddc81ce_8.0.zip`
+
+   3. 在`mipay-extract`文件夹中执行以下命令
       ```
-      ./extract.bat
       ./cleaner-fix.bat
       ./extract.bat --appvault
       ```
+
    4. 生成的4个包加上下载下来的eu包拷贝进手机，重启进入twrp选择刷机包刷机
 
       可以批量选择刷机包，顺序是eu包在最前面，其他的在后面刷。
