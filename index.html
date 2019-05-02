@@ -37,8 +37,6 @@
 
 
 
-  <meta name="google-site-verification" content="Qr_3yqLtyErDFKHW7mE8PJz4qDUX-bf_fMLpSRckQe4">
-
 
 
 
@@ -62,9 +60,7 @@
 
 
 
-  
-
-<link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
 <link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
 
@@ -98,18 +94,18 @@
     root: '/',
     scheme: 'Pisces',
     version: '6.4.2',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"搜索文章","hits_empty":"我们没有找到任何搜索结果: ${query}","hits_stats":"找到约${hits}条结果（用时${time}ms）"}
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
@@ -259,46 +255,11 @@
 
       
       
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
-        </li>
-      
     </ul>
   
 
   
 
-  
-    <div class="site-search">
-      
-  
-  <div class="algolia-popup popup search-popup">
-    <div class="algolia-search">
-      <div class="algolia-search-input-icon">
-        <i class="fa fa-search"></i>
-      </div>
-      <div class="algolia-search-input" id="algolia-search-input"></div>
-    </div>
-
-    <div class="algolia-results">
-      <div id="algolia-stats"></div>
-      <div id="algolia-hits"></div>
-      <div id="algolia-pagination" class="algolia-pagination"></div>
-    </div>
-
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-  </div>
-
-
-
-
-    </div>
   
 </nav>
 
@@ -461,7 +422,7 @@
           <p>I’ve been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there’s a lot of problem like brightness, bluetooth, app store, etc. It’s all work now.<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/hackintosh-of-yoga710/" rel="contents">
+            <a class="btn" href="/hackintosh-of-yoga710/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -644,7 +605,7 @@
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/miui-eu/" rel="contents">
+            <a class="btn" href="/miui-eu/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -824,7 +785,7 @@
 <p>安装过程来介绍一下<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/frp-for-mc/" rel="contents">
+            <a class="btn" href="/frp-for-mc/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1001,7 +962,7 @@
           <p>阿里云学生机10块一个月挺便宜了，就是内存2G对于一个Minecraft服务器来说有点小<br>而我还有个谷歌云服务器在台湾，配置不错内存也够，问题就是网络延迟太大<br>把Minecraft服务器运行在那里实际玩下来发现延迟不能忍受<br>从我的电脑Ping台湾服务器有250ms，Ping阿里云20ms，阿里云Ping台湾服务器，50ms<br>用小学老师教我的加法一算发现，50+20小于250啊<br>于是就有了标题这个想法<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/nginx建立TCP代理/" rel="contents">
+            <a class="btn" href="/nginx建立TCP代理/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1180,7 +1141,7 @@
 <p>生成在目录<code>~/.ssh</code>下面，<code>.ssh/id_rsa.pub</code>就是公钥，绑定coding的时候在设置里点添加公钥，然后复制<code>.pub</code>文件里的内容过去，
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/关于coding和git的折腾/" rel="contents">
+            <a class="btn" href="/关于coding和git的折腾/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1361,7 +1322,7 @@
 <p>  把parm部分的0改成4就是打开HDMI输出，第二个数字10代表输出分辨率为1080p60，换成5则代表720p60。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/orangepi折腾记录/" rel="contents">
+            <a class="btn" href="/orangepi折腾记录/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1540,7 +1501,7 @@
 <li>浮躁的根源：不懂“有些阶段就是无法跨越”这个道理。告诉自己：我有不足，我需要时间，我没办法一蹴而就。<br>“我要”的欲望可以用”我有“的东西来满足，即便“我有“的暂时不够，我也能借助已经拥有的努力和勤奋（亦或投机），只要假以时日，定能如愿以偿。一旦得偿所愿，不仅”我有“的更多，”我要“的也更容易获得，如此形成良性循环。<br>摆脱生活死循环：给我什么我就用好什么，积累到一定程度再去换能换的东西。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/把时间当作朋友_笔记/" rel="contents">
+            <a class="btn" href="/把时间当作朋友_笔记/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1717,7 +1678,7 @@
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近拿到了一个树莓派3B，想要做成NAS以及下载机，我这个人平时喜欢看美剧，每次下载都要先开电脑打开浏览器找资源迅雷下载，有时候用手机找到资源了还是得开电脑，毕竟手机不适合用来下BT，于是有了这个想法，一开始还装了<a href="https://ownyourbits.com/nextcloudpi/" target="_blank" rel="noopener">Nextcloud的树莓派版</a>(需要的童鞋可以进去看（需翻墙）)（2018-12-20更新：现在看官网把这个部分已经做的很完善了，占用可能也不高了），网盘下载前端倒是什么都有了，就是觉着太臃肿，web服务器用的居然还是apache，占用可想而知，到后来每次链接ssh都要接近半分钟，运行一个python脚本更是要到一分钟，那就是几行的脚本啊。后来想nextcloud其实没什么用，我只要能下载和共享文件就可以了。<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/raspberrypi-how/" rel="contents">
+            <a class="btn" href="/raspberrypi-how/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1851,16 +1812,6 @@
                   
                 </span>
               
-                <span class="links-of-author-item">
-                  <a href="https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" target="_blank" title="YouTube" rel="external nofollow"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.instagram.com/xiaoxx970/" target="_blank" title="Instagram" rel="external nofollow"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-                  
-                </span>
-              
             </div>
           
 
@@ -1880,13 +1831,6 @@
 
       
 
-      
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
       
 
     </div>
@@ -1945,6 +1889,11 @@
     </footer>
 
     
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
 
     
 	
@@ -1976,13 +1925,14 @@
 
 
 
+
+
+
+
+
+
   
-
-
-
-
-
-
+  
 
 
 
@@ -2012,7 +1962,12 @@
 
   
   
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
   
 
 
@@ -2089,19 +2044,6 @@
 
 
 
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/src/algolia-search.js?v=6.4.2"></script>
-
-
 
   
 
@@ -2163,75 +2105,6 @@
   
 
   
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
-
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
-
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
-
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function (i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap')
-      $(e).after($wrap)
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
-        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
-          return $(e).text()
-        }).toArray().join('\n')
-        var ta = document.createElement('textarea')
-        document.body.appendChild(ta)
-        ta.style.position = 'absolute'
-        ta.style.top = '0px'
-        ta.style.left = '0px'
-        ta.value = code
-        ta.select()
-        ta.focus()
-        var result = document.execCommand('copy')
-        document.body.removeChild(ta)
-        
-          if(result)$(this).text('复制成功')
-          else $(this).text('复制失败')
-        
-        $(this).blur()
-      })).on('mouseleave', function (e) {
-        var $b = $(this).find('.copy-btn')
-        setTimeout(function () {
-          $b.text('复制')
-        }, 300)
-      }).append(e)
-    })
-  </script>
-
 
 </body>
 </html>
