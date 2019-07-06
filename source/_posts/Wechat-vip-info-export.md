@@ -10,6 +10,7 @@ GitHub页面：[wechat_vip_info_export](https://github.com/xiaoxx970/wechat_vip_
 
 想了几种思路：Python？手动导出？javascript？
 会员两百多个，手动也不是不可以，但是作为程序员，能让电脑自己动我就绝不动。
+<!--more-->
 至于为什么没用Python，主要是公众号后台的登录认证有点复杂，又是输密码又是扫码，还认浏览器，对python相当不友好。
 
 于是面对着这个页面，想了很久的我想到用Javascript。
