@@ -79,7 +79,7 @@ theme: next
 deploy:
   type: git
   repo:
-    github: https://github.com/xiaoxx970/xiaoxx970.github.io.git
+    #github: https://github.com/xiaoxx970/xiaoxx970.github.io.git
     coding: git@git.coding.net:xiaoxx97/xiaoxx97.coding.me.git
   branch: master
 
