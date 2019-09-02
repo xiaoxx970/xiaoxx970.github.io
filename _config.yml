@@ -4,7 +4,7 @@
 
 # Site
 title: XiaoXX的博客
-subtitle:
+subtitle: 
 description:
 author: Xiaoxx
 language: zh-CN
@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://mcyo.pw
+url: https://xiaoxx.cc
 root: /
 permalink: :title/
 permalink_defaults:
