@@ -1,5 +1,5 @@
 ---
-title: hexo new后自动打开你喜爱的编辑器编辑器
+title: hexo new后自动打开你喜爱的编辑器
 date: 2019-09-02 15:16:44
 tags: hexo_tricks
 ---
