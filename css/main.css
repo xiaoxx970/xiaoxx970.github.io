@@ -1790,7 +1790,7 @@ article:last-child .post-eof {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #cc01d1;
+  background: #93de79;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2875,4 +2875,7 @@ body {
 .sidebar-nav .sidebar-nav-active {
   color: #fc6423;
   border-bottom-color: #fc6423;
+}
+.content-wrap .sidebar-inner .header-inner {
+  background: rgba(255,255,255,0.522);
 }

@@ -66,7 +66,7 @@
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+`打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。  这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-02T10:15:29.160Z">
+<meta property="og:updated_time" content="2019-09-02T12:13:14.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo new后自动打开你喜爱的编辑器">
 <meta name="twitter:description" content="作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+`打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。  这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。">
@@ -271,7 +271,7 @@
                 
               
 
-              <time title="创建时间：2019-09-02 15:16:44 / 修改时间：18:15:29" itemprop="dateCreated datePublished" datetime="2019-09-02T15:16:44+08:00">2019-09-02</time>
+              <time title="创建时间：2019-09-02 15:16:44 / 修改时间：20:13:14" itemprop="dateCreated datePublished" datetime="2019-09-02T15:16:44+08:00">2019-09-02</time>
             </span>
           
             
@@ -569,17 +569,68 @@
   <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
 <script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
 <script src="/js/schemes/pisces.js?v=7.4.0"></script>
 <script src="/js/next-boot.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -610,6 +661,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -642,5 +694,6 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
 }, window.Valine);
 </script>
 
+    </div>
 </body>
 </html>
