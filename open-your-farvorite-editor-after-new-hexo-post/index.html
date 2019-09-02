@@ -58,18 +58,18 @@
   };
 </script>
 
-  <meta name="description" content="作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+`打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。 那这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。">
+  <meta name="description" content="作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+`打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。  这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。">
 <meta name="keywords" content="hexo_tricks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo new后自动打开你喜爱的编辑器">
 <meta property="og:url" content="https://xiaoxx.cc/open-your-farvorite-editor-after-new-hexo-post/index.html">
 <meta property="og:site_name" content="XiaoXX的博客">
-<meta property="og:description" content="作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+`打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。 那这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。">
+<meta property="og:description" content="作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+`打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。  这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-02T07:49:34.692Z">
+<meta property="og:updated_time" content="2019-09-02T10:15:29.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo new后自动打开你喜爱的编辑器">
-<meta name="twitter:description" content="作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+`打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。 那这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。">
+<meta name="twitter:description" content="作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后Ctrl+`打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。  这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。">
   <link rel="canonical" href="https://xiaoxx.cc/open-your-farvorite-editor-after-new-hexo-post/">
 
 
@@ -271,7 +271,7 @@
                 
               
 
-              <time title="创建时间：2019-09-02 15:16:44 / 修改时间：15:49:34" itemprop="dateCreated datePublished" datetime="2019-09-02T15:16:44+08:00">2019-09-02</time>
+              <time title="创建时间：2019-09-02 15:16:44 / 修改时间：18:15:29" itemprop="dateCreated datePublished" datetime="2019-09-02T15:16:44+08:00">2019-09-02</time>
             </span>
           
             
@@ -312,10 +312,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后<code>Ctrl+`</code>打开终端先pull一下，再开始hexo new post something，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。</p>
-<p>那这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。</p>
+        <blockquote>
+<p>作为一个用hexo写博客的bloger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后<code>Ctrl+`</code>打开终端先pull一下，再开始<code>hexo new post something</code>，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。</p>
+</blockquote>
+<p>这篇post就是解决众多繁杂步骤中的一环：找md文件然后打开的过程。</p>
 <a id="more"></a>
-<p>很简单，要做的就是写个脚本让NodeJS知道我什么时候新建了post，然后脚本帮我打开刚新建好的post.md，最主要的是，可以用自己喜爱的编辑器，比如说我用的是<a href="https://typora.io/" target="_blank" rel="noopener">Typora</a>。</p>
+<p>很简单，要做的就是写个脚本让<code>NodeJS</code>知道我什么时候新建了post，然后脚本帮我打开刚新建好的post.md，最主要的是，可以用自己喜爱的编辑器，比如说我用的是<a href="https://typora.io/" target="_blank" rel="noopener">Typora</a>。</p>
 <ol>
 <li><p>在你的hexo目录下新建一个文件夹名叫<code>scripts</code>（你的hexo目录就是你执行hexo命令的目录）</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir scripts</span><br><span class="line"><span class="built_in">cd</span> scripts</span><br></pre></td></tr></table></figure>
@@ -325,7 +327,7 @@
 <p>这几句话的大概意思就是，在检测到执行<code>hexo new</code>命令后，触发这个脚本，然后脚本执行<code>C:\Program Files\Typora\Typora.exe [文件路径]</code>这个命令，<code>spawn()</code>里就是要执行的命令和参数，有斜杠的话需要用转义符。</p>
 <p>这里我用的是Typora编辑器，你也可以让它用VScode来打开：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> spawn = <span class="built_in">require</span>(<span class="string">'hexo-util/lib/spawn'</span>);</span><br><span class="line"></span><br><span class="line">hexo.on(<span class="string">'new'</span>, (data) =&gt; &#123;</span><br><span class="line">  spawn(<span class="string">'code'</span>,<span class="string">'-r'</span>,[data.path]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这是针对在code里已经把hexo目录作为工作区打开的情况，<code>-r</code>让code不打开新窗口，而是作为标签页打开。</p>
+<p>这是针对在VScode里已经打开hexo目录工作区的情况，<code>-r</code>让code不打开新窗口，而是作为标签页打开。</p>
 </li>
 </ol>
 <p>这样就可以了，以后每次<code>hexo new post</code>，都会在新建后帮你打开编辑器，虽然只是少了一小环，但是让你写博客更有动力了不是。</p>
