@@ -64,7 +64,7 @@
 <meta name="keywords" content="云服务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速）">
-<meta property="og:url" content="http://mcyo.pw/frp-for-mc/index.html">
+<meta property="og:url" content="https://xiaoxx.cc/frp-for-mc/index.html">
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="前情提要：之前用Nginx反向代理的功能来加速Minecraft，真的是太不稳定！了！经常出现玩着玩着掉线了，去看Minecraft服务器没有任何毛病，看用来加速的阿里云服务器，也没有任何异常，但是直连Minecraft服务器是可以的，所以问题绝壁出在加速服务器上重启Nginx，连不上，重启服务器，还是连不上，最后过了几分钟，自己连上了。很任性有没有，如此的情况出了几次实在是忍受不了了，于是在想">
 <meta property="og:locale" content="zh-CN">
@@ -72,7 +72,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速）">
 <meta name="twitter:description" content="前情提要：之前用Nginx反向代理的功能来加速Minecraft，真的是太不稳定！了！经常出现玩着玩着掉线了，去看Minecraft服务器没有任何毛病，看用来加速的阿里云服务器，也没有任何异常，但是直连Minecraft服务器是可以的，所以问题绝壁出在加速服务器上重启Nginx，连不上，重启服务器，还是连不上，最后过了几分钟，自己连上了。很任性有没有，如此的情况出了几次实在是忍受不了了，于是在想">
-  <link rel="canonical" href="http://mcyo.pw/frp-for-mc/">
+  <link rel="canonical" href="https://xiaoxx.cc/frp-for-mc/">
 
 
 <script id="page-configurations">
@@ -259,7 +259,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://mcyo.pw/frp-for-mc/">
+    <link itemprop="mainEntityOfPage" href="https://xiaoxx.cc/frp-for-mc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaoxx">
@@ -615,17 +615,68 @@
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
 <script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
 <script src="/js/schemes/pisces.js?v=7.4.0"></script>
 <script src="/js/next-boot.js?v=7.4.0"></script><script src="/js/bookmark.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -639,7 +690,7 @@
 
 
 
-  <script>
+  <script pjax>
   if (CONFIG.page.isPost) {
     wpac_init = window.wpac_init || [];
     wpac_init.push({
@@ -676,6 +727,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -708,5 +760,6 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
 }, window.Valine);
 </script>
 
+    </div>
 </body>
 </html>
