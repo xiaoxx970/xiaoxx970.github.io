@@ -1,8 +1,16 @@
 ---
-title: 使用caddy实现v2ray流量https伪装
+title: 使用caddy实现v2ray流量伪装
 date: 2019-10-09 16:45:23
-tags:
+tags: 
+  - systemctl
+  - note
 ---
+> [Caddy](https://dengxiaolong.com/caddy/zh/)：一个方便配置的 web server
+
+本质上要做的事情是让caddy做反向代理服务器转发v2ray流量，caddy的好处是自己申请证书实现https，这样伪装成的tls流量更不容易被发现
+
+<!--more-->
+
 # 安装
 
 ## Get caddy
@@ -21,35 +29,48 @@ sudo bash <(curl -L -s https://install.direct/go.sh)
 
 ## 注册caddy服务
 
-这里我使用的是官方提供的脚本 [caddy.service](https://github.com/mholt/caddy/blob/master/dist/init/linux-systemd/caddy.service)，其他系统也可以在[这里](https://github.com/mholt/caddy/tree/master/dist/init)找到相应的脚本。
-
-把这个文件下载到 `/etc/systemd/system/` 。
+让caddy拥有非root用户打开端口的权限
 
 ```sh
-sudo curl -s https://raw.githubusercontent.com/mholt/caddy/master/dist/init/linux-systemd/caddy.service -o /etc/systemd/system/caddy.service
+sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 ```
 
-创建所需目录，我图方便没有修改脚本直接使用默认值了，如果有特殊需求，可以自己更改目录。
+创建用户和所需目录并且只赋予必要的权限
 
 ```sh
-sudo mkdir /etc/caddy
-sudo chown -R root:www-data /etc/caddy
-sudo touch /etc/caddy/Caddyfile
+sudo groupadd -g 33 www-data
+sudo useradd \
+  -g www-data --no-user-group \
+  --home-dir /var/www --no-create-home \
+  --shell /usr/sbin/nologin \
+  --system --uid 33 www-data
 
 sudo mkdir /etc/ssl/caddy
-sudo chown -R www-data:root /etc/ssl/caddy
+sudo chown -R root:www-data /etc/ssl/caddy
 sudo chmod 0770 /etc/ssl/caddy
+
+sudo mkdir /etc/caddy
+sudo chown -R root:root /etc/caddy
+sudo touch /etc/caddy/Caddyfile
+sudo chown root:root /etc/caddy/Caddyfile
+sudo chmod 644 /etc/caddy/Caddyfile
 
 sudo mkdir /var/www
 sudo chown www-data:www-data /var/www
+sudo chmod 555 /var/www
 ```
 
-上面创建了三个目录，`/etc/caddy` 用了存放 Caddy 的配置文件，`/etc/ssl/caddy` 存放证书，`/var/www` 是默认的网站目录。
+上面创建了三个目录，`/etc/caddy/Caddyfile` 是 Caddy 的配置文件，`/etc/ssl/caddy` 存放证书，`/var/www` 是默认的网站目录。
 
-接着，重新加载 `systemd daemon`，让配置生效。
+把官方提供的脚本 [caddy.service](https://github.com/mholt/caddy/blob/master/dist/init/linux-systemd/caddy.service)下载到 `/etc/systemd/system/` 并重新加载 `systemd daemon`，让配置生效。
 
 ```sh
+wget https://raw.githubusercontent.com/caddyserver/caddy/master/dist/init/linux-systemd/caddy.service
+sudo cp caddy.service /etc/systemd/system/
+sudo chown root:root /etc/systemd/system/caddy.service
+sudo chmod 644 /etc/systemd/system/caddy.service
 sudo systemctl daemon-reload
+sudo systemctl start caddy.service
 ```
 
 让 Caddy 开机自启。
@@ -62,11 +83,12 @@ sudo systemctl enable caddy.service
 
 ## 配置Caddyfile
 
-修改`/etc/caddy/Caddyfile`文件内容如下，用来配置反向代理：
+修改`/etc/caddy/Caddyfile`文件内容如下，用来配置反向代理，`mydomain.me`替换为你的域名：
 
-```json
+```conf
 mydomain.me
 {
+  root /var/www/mydomain.me
   log /var/log/caddy.log
   proxy /ray localhost:10000 {
     websocket
@@ -76,6 +98,8 @@ mydomain.me
 ```
 
 ## 配置v2ray conf
+
+修改`/etc/v2ray/config.json`文件内容：
 
 ```json
 {
@@ -109,3 +133,56 @@ mydomain.me
 }
 ```
 
+# 完事
+
+## 客户端配置
+
+```json
+{
+  "inbounds": [
+    {
+      "port": 1080,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "settings": {
+        "auth": "noauth",
+        "udp": false
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "mydomain.me",
+            "port": 443,
+            "users": [
+              {
+                "id": "b831381d-6324-4d53-ad4f-8cda48b30811",
+                "alterId": 64
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "wsSettings": {
+          "path": "/ray"
+        }
+      }
+    }
+  ]
+}
+```
+
+> 参考：<br/>
+> https://github.com/caddyserver/caddy/tree/master/dist/init/linux-systemd
+> https://guide.v2fly.org/advanced/wss_and_web.html

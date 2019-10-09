@@ -1,7 +1,7 @@
 ---
 title: Coding绑定ssh并部署hexo
 date: 2018-10-18 20:51:09
-tags: 云服务器
+tags: note
 ---
 通过ssh连接git需要配置公钥，先在本地生成公钥
 
