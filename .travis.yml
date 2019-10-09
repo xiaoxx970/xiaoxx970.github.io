@@ -5,7 +5,6 @@ node_js:
 cache:
   directories:
     - node_modules
-    - themes
 branches: 
   only: # 指定分支提交时才会运行travis ci
     - hexo
