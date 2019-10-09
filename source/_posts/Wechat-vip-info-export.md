@@ -14,13 +14,13 @@ GitHub页面：[wechat_vip_info_export](https://github.com/xiaoxx970/wechat_vip_
 至于为什么没用Python，主要是公众号后台的登录认证有点复杂，又是输密码又是扫码，还认浏览器，对python相当不友好。
 
 于是面对着这个页面，想了很久的我想到用Javascript。
-![](会员详情页面.png)
+![](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/会员详情页面.png)
 
 不是有`document.getElementsByClassName`嘛，我只要找到放信息的标签的class就好了。
 ```js
 var info = document.getElementsByClassName("msg_pre_view")[0].innerText
 ```
-![](console1.png)
+![](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/console1.png)
 这样得到的就是以回车为分隔的会员信息，很好的第一步。
 
 下一句就是把它转换成数组：
@@ -33,7 +33,7 @@ var info_array = info.split("\n")
 info_array[1] = info_array[1].replace(" ","")
 ```
 现在info_array就长这个样子
-![](info_array.png)
+![](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/info_array.png)
 
 如你所见，表头和内容需要分离，现在在同一行。
 ```js
@@ -56,7 +56,7 @@ info_es.push(card_no,card_point)
 在后面就把会员号和积分添加进刚才数组的末尾。
 
 现在，info_es就长这个样子
-![](info_es.png)
+![](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/info_es.png)
 那为了保存我现在得到的数据，我试过用cookie，但是有空间限制，并存不下我两百多个会员的信息，所以后来是使用了localstorage，更健壮也比cookie大很多，而且存取只要两句话：
 
 ```js
@@ -70,7 +70,7 @@ localStorage.getItem("csv");//取
 ```js
 var csv = info_es.join(",")
 ```
-![csv](csv.png)
+![csv](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/csv.png)
 所谓csv格式就是，逗号分隔数据，以`\n`换行符来分隔行，这里是一行的数据，所以还没看到`\n`。
 
 接下来就是，把csv变量存进localStorage里

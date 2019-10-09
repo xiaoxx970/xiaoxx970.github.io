@@ -70,7 +70,7 @@ date: 2018-12-18 16:03:00
 4. 从手机上点刷机，选择刷机包，完成，开机。
 
 到这里已经完成miui欧洲版刷机了，选择语言，连WiFi，登账号
-![](screen1.jpg)这是开机后的桌面
+![](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen1.jpg)这是开机后的桌面
 miui欧洲版阉割了很多比如小米钱包，里面的卡模拟的功能我用得到，包括公交卡什么的，所以接下来折腾如何装回这个应用
 
 # 提取Mipay安装包以及本土化修复包
@@ -85,10 +85,10 @@ miui欧洲版阉割了很多比如小米钱包，里面的卡模拟的功能我�
    ```bash
    git clone https://github.com/linusyang92/mipay-extract.git
    ```
-![目录截图](git-clone.jpg)
-2. 下载国内的miui最新卡刷包，放入同一目录
-3. miui欧洲版卡刷包，也放在同一目录
-4. 运行`extract.bat`，如果出现下面这样的错误：
+![目录截图](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/git-clone.jpg)
+1. 下载国内的miui最新卡刷包，放入同一目录
+2. miui欧洲版卡刷包，也放在同一目录
+3. 运行`extract.bat`，如果出现下面这样的错误：
 ```bash
 extract.sh: line 2: $'\r': command not found
 extract.sh: line 3: cd: $'.\r': No such file or directory
@@ -101,17 +101,17 @@ extract.sh: line 19: syntax error near unexpected token `$'{\r''
 ```
    那就是因为`extract.sh`文件用的换行符不对，把原来的换行符`CRLF`改成`LF`后保存就可以正常运行了
    Windows下双击`extract.bat`就可以开始提取，会要几分钟时间。
-   ![bat-run](bat-run.jpg)这样就说明提取成功，现在目录下会有`mipay-MIxxx.zip`,这就是一个卡刷包，通过twrp可以直接刷入
+   ![bat-run](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/bat-run.jpg)这样就说明提取成功，现在目录下会有`mipay-MIxxx.zip`,这就是一个卡刷包，通过twrp可以直接刷入
    <a id="five"/>
 5. 运行`cleaner-fix.bat`
 生成修复日历和天气的刷机包，具体说就是让日历显示农历，天气app换回国内的。这个命令同时还会生成开启默认加密的刷机包。
 6. 对于想在负一屏还能用微信支付宝扫码快捷键的，以及查快递，`extract.bat --appvault`可以生成这样的修复包，也就是替换成跟国内一样的信息助手
 
 Finally，我们有了四个准备卡刷的包：
-![目录截图2](mipay-extract.jpg)全扔进手机，一个一个刷就是了
-然而，你可能遇到跟我一样的错误：一个叫255的错误，简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的`CRLF`，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹`META-INF`一路点进去，最后看到了一个叫做`update-binary`的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了`CRLF`换行符导致错误的。用VScode打开转换成`LF`后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。
-> 在[release页面](https://github.com/linusyang92/mipay-extract/releases)有他提取好的卡刷包，虽然是Mix2的但是发现也适用于我的小米6，如果你是米6或mix2不想折腾也可以用作者提取好的
+![目录截图2](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/mipay-extract.jpg)全扔进手机，一个一个刷就是了
 
+然而，你可能遇到跟我一样的错误：一个叫255的错误，简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的`CRLF`，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹`META-INF`一路点进去，最后看到了一个叫做`update-binary`的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了`CRLF`换行符导致错误的。用VScode打开转换成`LF`后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。
+![](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen.png)
 下面是安装小米应用商店，装了就可以用它来更新小米钱包，而不用每次想更新都去下载线刷包。
 下载地址：https://xiaomi-market.cn.uptodown.com/android
 不知道为什么这个网站是被墙了的，开全局去下
