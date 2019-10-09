@@ -9,15 +9,15 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.8.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
-<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
 
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
@@ -29,7 +29,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    version: '7.4.0',
+    version: '7.4.1',
     exturl: false,
     sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":true,"show_result":true,"style":"flat"},
@@ -66,7 +66,7 @@
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净  我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。  miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-04T03:07:15.313Z">
+<meta property="og:updated_time" content="2019-10-09T06:02:56.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密">
 <meta name="twitter:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净  我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。  miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
@@ -120,7 +120,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
     <div class="headband"></div>
 
@@ -138,11 +138,11 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 </div>
 
@@ -158,7 +158,7 @@
       
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
       
@@ -169,7 +169,7 @@
       
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
       
@@ -180,7 +180,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
       
@@ -191,13 +191,13 @@
       
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
         <a href="javascript:;" class="popup-trigger">
         
-          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+          <i class="fa fa-search fa-fw"></i>搜索</a>
       </li>
     
   </ul>
@@ -210,7 +210,9 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
@@ -237,18 +239,17 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-      <article itemscope itemtype="http://schema.org/Article">
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block post">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://xiaoxx.cc/miui-eu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xiaoxx">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -282,7 +283,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-04 11:07:15" itemprop="dateModified" datetime="2019-09-04T11:07:15+08:00">2019-09-04</time>
+                <time title="修改时间：2019-10-09 14:02:56" itemprop="dateModified" datetime="2019-10-09T14:02:56+08:00">2019-10-09</time>
               </span>
             
           
@@ -370,7 +371,7 @@
 </li>
 <li>从手机上点刷机，选择刷机包，完成，开机。</li>
 </ol>
-<p>到这里已经完成miui欧洲版刷机了，选择语言，连WiFi，登账号<br><img alt data-src="screen1.jpg">这是开机后的桌面<br>miui欧洲版阉割了很多比如小米钱包，里面的卡模拟的功能我用得到，包括公交卡什么的，所以接下来折腾如何装回这个应用</p>
+<p>到这里已经完成miui欧洲版刷机了，选择语言，连WiFi，登账号<br><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen1.jpg">这是开机后的桌面<br>miui欧洲版阉割了很多比如小米钱包，里面的卡模拟的功能我用得到，包括公交卡什么的，所以接下来折腾如何装回这个应用</p>
 <h1 id="提取Mipay安装包以及本土化修复包"><a href="#提取Mipay安装包以及本土化修复包" class="headerlink" title="提取Mipay安装包以及本土化修复包"></a>提取Mipay安装包以及本土化修复包</h1><blockquote>
 <p>要从中国版固件的system.img里面提取软件包，还要通过Root权限把软件包写入System分区，这里有一个教程：<a href="https://www.yipkwong.com/2018/06/06/167/" target="_blank" rel="noopener">MIUI国际版mi pay解决方案</a>，里面叙述了详细经过，但是我没用这个方法，虽然尝试过但是卡在了挂载镜像那一步。</p>
 </blockquote>
@@ -382,22 +383,19 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/linusyang92/mipay-extract.git</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p><img alt="目录截图" data-src="git-clone.jpg"></p>
-<ol start="2">
+<p><img alt="目录截图" data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/git-clone.jpg"></p>
+<ol>
 <li>下载国内的miui最新卡刷包，放入同一目录</li>
 <li>miui欧洲版卡刷包，也放在同一目录</li>
 <li><p>运行<code>extract.bat</code>，如果出现下面这样的错误：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">extract.sh: line 2: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 3: <span class="built_in">cd</span>: $<span class="string">'.\r'</span>: No such file or directory</span><br><span class="line">extract.sh: line 4: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 6: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 18: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 19: syntax error near unexpected token `$<span class="string">'&#123;\r'</span><span class="string">'</span></span><br><span class="line"><span class="string">'</span>xtract.sh: line 19: `<span class="function"><span class="title">exists</span></span>() &#123;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-<p>那就是因为<code>extract.sh</code>文件用的换行符不对，把原来的换行符<code>CRLF</code>改成<code>LF</code>后保存就可以正常运行了<br>Windows下双击<code>extract.bat</code>就可以开始提取，会要几分钟时间。<br><img alt="bat-run" data-src="bat-run.jpg">这样就说明提取成功，现在目录下会有<code>mipay-MIxxx.zip</code>,这就是一个卡刷包，通过twrp可以直接刷入<br><a id="five"></a></p>
+<p>那就是因为<code>extract.sh</code>文件用的换行符不对，把原来的换行符<code>CRLF</code>改成<code>LF</code>后保存就可以正常运行了<br>Windows下双击<code>extract.bat</code>就可以开始提取，会要几分钟时间。<br><img alt="bat-run" data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/bat-run.jpg">这样就说明提取成功，现在目录下会有<code>mipay-MIxxx.zip</code>,这就是一个卡刷包，通过twrp可以直接刷入<br><a id="five"></a></p>
 </li>
 <li>运行<code>cleaner-fix.bat</code><br>生成修复日历和天气的刷机包，具体说就是让日历显示农历，天气app换回国内的。这个命令同时还会生成开启默认加密的刷机包。</li>
 <li>对于想在负一屏还能用微信支付宝扫码快捷键的，以及查快递，<code>extract.bat --appvault</code>可以生成这样的修复包，也就是替换成跟国内一样的信息助手</li>
 </ol>
-<p>Finally，我们有了四个准备卡刷的包：<br><img alt="目录截图2" data-src="mipay-extract.jpg">全扔进手机，一个一个刷就是了<br>然而，你可能遇到跟我一样的错误：一个叫255的错误，简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的<code>CRLF</code>，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹<code>META-INF</code>一路点进去，最后看到了一个叫做<code>update-binary</code>的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了<code>CRLF</code>换行符导致错误的。用VScode打开转换成<code>LF</code>后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。</p>
-<blockquote>
-<p>在<a href="https://github.com/linusyang92/mipay-extract/releases" target="_blank" rel="noopener">release页面</a>有他提取好的卡刷包，虽然是Mix2的但是发现也适用于我的小米6，如果你是米6或mix2不想折腾也可以用作者提取好的</p>
-</blockquote>
-<p>下面是安装小米应用商店，装了就可以用它来更新小米钱包，而不用每次想更新都去下载线刷包。<br>下载地址：<a href="https://xiaomi-market.cn.uptodown.com/android" target="_blank" rel="noopener">https://xiaomi-market.cn.uptodown.com/android</a><br>不知道为什么这个网站是被墙了的，开全局去下<br>然后就可以安装了，一切都非常完美，可以一键装应用和更新</p>
+<p>Finally，我们有了四个准备卡刷的包：<br><img alt="目录截图2" data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/mipay-extract.jpg">全扔进手机，一个一个刷就是了</p>
+<p>然而，你可能遇到跟我一样的错误：一个叫255的错误，简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的<code>CRLF</code>，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹<code>META-INF</code>一路点进去，最后看到了一个叫做<code>update-binary</code>的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了<code>CRLF</code>换行符导致错误的。用VScode打开转换成<code>LF</code>后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。<br><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen.png"><br>下面是安装小米应用商店，装了就可以用它来更新小米钱包，而不用每次想更新都去下载线刷包。<br>下载地址：<a href="https://xiaomi-market.cn.uptodown.com/android" target="_blank" rel="noopener">https://xiaomi-market.cn.uptodown.com/android</a><br>不知道为什么这个网站是被墙了的，开全局去下<br>然后就可以安装了，一切都非常完美，可以一键装应用和更新</p>
 <p>最后，终于写完了这个教程，自我感觉是很详细了，希望可以帮到跟我一样在折腾miui的人。我刷这个系统的初衷是国内版变得越来越难用，最主要的表现是经常熄屏自己莫名震动，还经常自己亮屏，打开了看也没有什么通知，后来上网一搜发现我不是一个人，这是小米系统本身的问题，那些震动是真的有通知不过之前被我从通知栏禁止了，可能禁止的层面不对，等通知到达了震动了系统才把通知删掉，这不是折磨人么。我就找能不能刷类似CM的原版安卓，然后就在知乎上看到了miui欧洲版，感觉对安卓的底层不会改太多，就折腾用欧洲版来了。现在用了两个星期，确实好用，字体不好看还换了个字体，外观上和国内版差别也不大。就是每次升级系统不是很方便就是了，之后会想办法用持续集成完成自动的提取。</p>
 <blockquote>
 <p>2019-4-23更新：总结一下用miui-eu时更新系统步骤</p>
@@ -477,11 +475,10 @@
         
       </footer>
     
-  </div>
-  
-  
-  
   </article>
+  
+  
+  
 
   </div>
 
@@ -495,12 +492,10 @@
         </div>
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
   <aside class="sidebar">
@@ -529,11 +524,14 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Xiaoxx">
+    <img class="site-author-image" itemprop="image"
+      src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg"
+      alt="Xiaoxx">
   <p class="site-author-name" itemprop="name">Xiaoxx</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-  <nav class="site-state motion-element">
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
@@ -557,6 +555,7 @@
       </div>
     
   </nav>
+</div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
       
@@ -629,9 +628,9 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Xiaoxx</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.1</div>
 
         
 
@@ -652,22 +651,20 @@
   </div>
 
   
-
-
     
   
-  <script color="0,0,255" opacity="0.5" zindex="-1" count="199" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
-  <script size="300" alpha="0.6" zindex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='199' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
   <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
-<script src="/js/schemes/pisces.js?v=7.4.0"></script>
-<script src="/js/next-boot.js?v=7.4.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
   <script>
 var pjax = new Pjax({
   selectors: [
@@ -739,7 +736,7 @@ window.addEventListener('pjax:success', () => {
 
 
 
-  <script src="/js/local-search.js?v=7.4.0"></script>
+  <script src="/js/local-search.js?v=7.4.1"></script>
 
 
 
@@ -781,7 +778,9 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     pageSize: '10' || 10,
     visitor: true,
     lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
+    path: location.pathname,
+    recordIP: ,
+    serverURLs: ''
   });
 }, window.Valine);
 </script>
