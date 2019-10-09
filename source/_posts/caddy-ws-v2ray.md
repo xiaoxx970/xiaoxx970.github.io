@@ -186,3 +186,15 @@ mydomain.me
 > 参考：<br/>
 > https://github.com/caddyserver/caddy/tree/master/dist/init/linux-systemd
 > https://guide.v2fly.org/advanced/wss_and_web.html
+
+> Note:另一种伪装的方式
+> ```json
+> "transport": {
+>   "quicSettings": {
+>     "security": "none",
+>     "key": "",
+>     "header": {
+>     "type": "wechat-video"
+>   }
+> }
+> ```
