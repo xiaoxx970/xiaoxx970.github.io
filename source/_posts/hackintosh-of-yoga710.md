@@ -5,7 +5,8 @@ tags:
 ---
 I've been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there's a lot of problem like brightness, bluetooth, app store, etc. It's all work now.
 <!--more-->
-The most tricky part is to drive DW1820(What? I bought it for hackintosh!), I do found kext driver for my card from RehabMan, but seems not work at all. Every time I boot up I see this![](error1.jpg)
+The most tricky part is to drive DW1820(What? I bought it for hackintosh!), I do found kext driver for my card from RehabMan, but seems not work at all. Every time I boot up I see this![](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/hackintosh-of-yoga710/error1.jpg)
+
 Maybe something wrong with Bluetooth since it's connected via USB. But I fixed it by just delete `BrcmPatchRAM2.kext` and `BrcmFirmwareData.kext`, and add the address of bluetooth's USB port to `FakePCIID.kext`, it workd fine then. no  need of other kext driver.
 
 Here's my hardware:
