@@ -89,6 +89,7 @@ sudo systemctl enable caddy.service
 mydomain.me
 {
   root /var/www/mydomain.me
+  tls 你的邮箱
   log /var/log/caddy.log
   proxy /ray localhost:10000 {
     websocket

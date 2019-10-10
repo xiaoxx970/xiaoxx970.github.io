@@ -653,8 +653,8 @@ changyan:
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  gTFj1qYlpOzqO2qWDTAJ1VGU-gzGzoHsz
-  appkey: jOIytwTxNYHn3bhu78uoNCqM
+  appid:  6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI
+  appkey: lvgmHxyoXsxCtP0b1u7vD0EY
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: 来呀~放纵啊 (o゜▽゜)o☆ # comment box placeholder
@@ -664,7 +664,7 @@ valine:
   language: zh-cn # language, available values: en, zh-cn
   visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
   comment_count: true # if false, comment count will only be displayed in post page, not in home page
-  serverURLs: api.lean.mcyo.pw
+  serverURLs: #api.lean.mcyo.pw
 
 # LiveRe comments system
 # You can get your uid from https://livere.com/insight/myCode (General web site)
