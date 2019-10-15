@@ -66,7 +66,7 @@
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净  我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。  miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T16:34:21.939Z">
+<meta property="og:updated_time" content="2019-10-15T06:43:12.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密">
 <meta name="twitter:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净  我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。  miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
@@ -108,7 +108,6 @@
   .use-motion .post-body,
   .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -206,10 +205,7 @@
     
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger">
-        
-          <i class="fa fa-search fa-fw"></i>
-        
-        搜索
+          <i class="fa fa-search fa-fw"></i>搜索
         </a>
       </li>
     
@@ -299,7 +295,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-12 00:34:21" itemprop="dateModified" datetime="2019-10-12T00:34:21+08:00">2019-10-12</time>
+                <time title="修改时间：2019-10-15 14:43:12" itemprop="dateModified" datetime="2019-10-15T14:43:12+08:00">2019-10-15</time>
               </span>
             
           
@@ -712,9 +708,6 @@ var pjax = new Pjax({
 
 window.addEventListener('pjax:success', () => {
   document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
-    if (element.type !== 'text/javascript') {
-      return;
-    }
     var code = element.text || element.textContent || element.innerHTML || '';
     var parent = element.parentNode;
     parent.removeChild(element);
@@ -724,6 +717,9 @@ window.addEventListener('pjax:success', () => {
     }
     if (element.className) {
       script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
     }
     if (element.src) {
       script.src = element.src;
@@ -807,7 +803,7 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     notify: false,
     appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
     appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
-    placeholder: '来呀~放纵啊 (o゜▽゜)o☆',
+    placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
     avatar: 'mm',
     meta: guest,
     pageSize: '10' || 10,

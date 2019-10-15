@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="普通大学生喜欢航拍，还喜欢钢琴，学一个技能最重要的其实不是坚持而是兴趣啊">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T16:34:21.943Z">
+<meta property="og:updated_time" content="2019-10-15T06:43:12.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于卢俊鹏">
 <meta name="twitter:description" content="普通大学生喜欢航拍，还喜欢钢琴，学一个技能最重要的其实不是坚持而是兴趣啊">
@@ -110,7 +110,6 @@
   .use-motion .post-body,
   .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -208,10 +207,7 @@
     
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger">
-        
-          <i class="fa fa-search fa-fw"></i>
-        
-        搜索
+          <i class="fa fa-search fa-fw"></i>搜索
         </a>
       </li>
     
@@ -512,9 +508,6 @@ var pjax = new Pjax({
 
 window.addEventListener('pjax:success', () => {
   document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
-    if (element.type !== 'text/javascript') {
-      return;
-    }
     var code = element.text || element.textContent || element.innerHTML || '';
     var parent = element.parentNode;
     parent.removeChild(element);
@@ -524,6 +517,9 @@ window.addEventListener('pjax:success', () => {
     }
     if (element.className) {
       script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
     }
     if (element.src) {
       script.src = element.src;
@@ -607,7 +603,7 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     notify: false,
     appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
     appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
-    placeholder: '来呀~放纵啊 (o゜▽゜)o☆',
+    placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
     avatar: 'mm',
     meta: guest,
     pageSize: '10' || 10,

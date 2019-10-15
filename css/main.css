@@ -329,15 +329,14 @@ td {
   display: inline-block;
   height: 2px;
   left: 0;
-  margin-top: 3px;
   position: relative;
   top: 0;
   transition: all 0.4s;
   vertical-align: top;
   width: 100%;
 }
-.toggle .toggle-line:first-child {
-  margin-top: 0;
+.toggle .toggle-line:not(:first-child) {
+  margin-top: 3px;
 }
 .toggle.toggle-arrow .toggle-line-first {
   top: 2px;
@@ -987,12 +986,6 @@ pre .javascript .function {
 .brand:hover {
   color: #fff;
 }
-.logo {
-  display: inline-block;
-  line-height: 36px;
-  margin-right: 5px;
-  vertical-align: top;
-}
 .site-title {
   display: inline-block;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -1009,7 +1002,6 @@ pre .javascript .function {
 .use-motion .brand {
   opacity: 0;
 }
-.use-motion .logo,
 .use-motion .site-title,
 .use-motion .site-subtitle,
 .use-motion .custom-logo-image {
@@ -1188,7 +1180,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffdeaa;
+  background: #e28841;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1388,11 +1380,10 @@ pre .javascript .function {
   white-space: nowrap;
 }
 .site-state-item {
-  border-left: 1px solid #eee;
   padding: 0 15px;
 }
-.site-state-item:first-child {
-  border-left: none;
+.site-state-item:not(:first-child) {
+  border-left: 1px solid #eee;
 }
 .site-state-item a {
   border-bottom: none;
@@ -1878,10 +1869,6 @@ pre .javascript .function {
 .post-gallery-row {
   display: table-row;
 }
-.fancybox-close,
-.fancybox-close:hover {
-  border: 0;
-}
 .posts-expand .post-header {
   font-size: 1.125em;
 }
@@ -2027,6 +2014,8 @@ pre .javascript .function {
 .post-tags a {
   display: inline-block;
   font-size: 0.8125em;
+}
+.post-tags a:not(:last-child) {
   margin-right: 10px;
 }
 .post-widgets {
