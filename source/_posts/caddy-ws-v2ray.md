@@ -35,6 +35,12 @@ sudo bash <(curl -L -s https://install.direct/go.sh)
 sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 ```
 
+如果出现`setcap: command not found`那就安装一下`libcap2-bin`：
+
+```sh
+sudo apt install libcap2-bin
+```
+
 创建用户和所需目录并且只赋予必要的权限
 
 ```sh
@@ -48,6 +54,10 @@ sudo useradd \
 sudo mkdir /etc/ssl/caddy
 sudo chown -R root:www-data /etc/ssl/caddy
 sudo chmod 0770 /etc/ssl/caddy
+
+sudo touch /var/log/caddy.log
+sudo chown root:www-data /var/log/caddy.log
+sudo chmod 0770 /var/log/caddy.log
 
 sudo mkdir /etc/caddy
 sudo chown -R root:root /etc/caddy
@@ -96,6 +106,11 @@ mydomain.me
     header_upstream -Origin
   }
 }
+```
+重启caddy服务器
+
+```sh
+sudo systemctl restart caddy
 ```
 
 ## 配置v2ray conf
