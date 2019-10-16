@@ -95,7 +95,19 @@ sudo systemctl enable caddy.service
 
 修改`/etc/caddy/Caddyfile`文件内容如下，用来配置反向代理，`mydomain.me`替换为你的域名：
 
-```conf
+<style>
+  #articleDetail{
+    height:auto;
+    width:100%;
+    font-family:'Courier New';
+    font-size:18px;
+    padding: 4px 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+</style>
+
+<textarea rows=10 id="articleDetail">
 mydomain.me
 {
   root /var/www/mydomain.me
@@ -106,7 +118,8 @@ mydomain.me
     header_upstream -Origin
   }
 }
-```
+</textarea>
+
 重启caddy服务器
 
 ```sh
@@ -117,7 +130,7 @@ sudo systemctl restart caddy
 
 修改`/etc/v2ray/config.json`文件内容：
 
-```json
+<textarea rows=30 id="articleDetail">
 {
   "inbounds": [
     {
@@ -147,13 +160,13 @@ sudo systemctl restart caddy
     }
   ]
 }
-```
+</textarea>
 
 # 完事
 
 ## 客户端配置
 
-```json
+<textarea rows=44 id="articleDetail">
 {
   "inbounds": [
     {
@@ -197,11 +210,11 @@ sudo systemctl restart caddy
     }
   ]
 }
-```
+</textarea>
 
-> 参考：<br/>
-> https://github.com/caddyserver/caddy/tree/master/dist/init/linux-systemd
-> https://guide.v2fly.org/advanced/wss_and_web.html
+> 参考：
+ https://github.com/caddyserver/caddy/tree/master/dist/init/linux-systemd
+ https://guide.v2fly.org/advanced/wss_and_web.html
 
 > Note:另一种伪装的方式
  ```json
@@ -214,3 +227,15 @@ sudo systemctl restart caddy
    }
  }
  ```
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="/uploads/autosize.js"></script>
+
+<script>
+$(function(){
+  for (var i=0;i<3;i++){
+    document.querySelectorAll('textarea')[i].textContent = 
+     document.querySelectorAll('textarea')[i].textContent.replace(/<br>/g,'\n');
+  }
+});
+autosize(document.querySelectorAll('textarea'));
+</script>
