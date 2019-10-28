@@ -107,7 +107,7 @@ sudo systemctl enable caddy.service
   }
 </style>
 
-<textarea rows=10 id="articleDetail">
+<textarea rows=10 id="articleDetail" spellcheck="false">
 mydomain.me
 {
   root /var/www/mydomain.me
@@ -130,7 +130,7 @@ sudo systemctl restart caddy
 
 修改`/etc/v2ray/config.json`文件内容：
 
-<textarea rows=30 id="articleDetail">
+<textarea rows=30 id="articleDetail" spellcheck="false">
 {
   "inbounds": [
     {
@@ -166,7 +166,7 @@ sudo systemctl restart caddy
 
 ## 客户端配置
 
-<textarea rows=44 id="articleDetail">
+<textarea rows=44 id="articleDetail" spellcheck="false">
 {
   "inbounds": [
     {
