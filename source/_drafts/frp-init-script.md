@@ -6,43 +6,47 @@ tags:
 
 ```sh
 FRP_VER=0.29.0
-echo "开始安装frp"
+echo "开始安装frps"
 wget https://github.com/fatedier/frp/releases/download/v${FRP_VER}/frp_${FRP_VER}_linux_amd64.tar.gz
-tar -xvf frp_{$FRP_VER}_linux_amd64.tar.gz && \
+tar -xvf frp\_$FRP_VER\_linux_amd64.tar.gz && \
 rm -f frp_{$FRP_VER}_linux_amd64.tar.gz
 sudo mkdir /etc/frp/ /usr/local/bin/frp/
-sudo mv frp_${FRP_VER}_linux_amd64/frpc /usr/local/bin/frp/
-sudo tee /etc/frp/frpc.ini <<-'EOF'
+sudo mv frp_${FRP_VER}_linux_amd64/frps /usr/local/bin/frp/
+sudo tee /etc/frp/frps.ini <<-'EOF'
 [common]
-server_addr = ali.mcyo.pw
+server_addr = hub.xiaoxx.cc
 server_port = 7000
-[ssh_njupt]
-type = tcp
-local_ip = 127.0.0.1
-local_port = 22
-remote_port = 6422
-[web-lab]
-type = http
-local_ip = 127.0.0.1
-local_port = 8888
-custom_domains = lab.mcyo.pw
+bind_udp_port = 7001
+kcp_bind_port = 7000
+dashboard_port = 7500
+subdomain_host = hub.xiaoxx.cc
+vhost_http_port = 8080
 EOF
-sudo tee /etc/systemd/system/frpc.service <<-'EOF'
+sudo tee /etc/systemd/system/frps.service <<-'EOF'
 [Unit]
-Description=frpc daemon
+Description=frps daemon
 After=syslog.target  network.target
 Wants=network.target
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/frp/frpc -c /etc/frp/frpc.ini
+TimeoutStartSec=30
+ExecStart=/usr/local/bin/frp/frps -c /etc/frp/frps.ini
 Restart= always
 RestartSec=1min
-ExecStop=/usr/bin/killall frpc
+ExecStop=/usr/bin/killall frps
 [Install]
 WantedBy=multi-user.target
 EOF
 sudo systemctl daemon-reload
-sudo systemctl enable frpc
-sudo systemctl start frpc
+sudo systemctl enable frps
+sudo systemctl start frps
+systemctl status frps
 ```
 
+# frpc.ini
+```
+[web]
+type = http
+local_port = 80
+subdomain = test
+```
