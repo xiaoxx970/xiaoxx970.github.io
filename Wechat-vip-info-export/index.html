@@ -9,7 +9,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
-  <link rel="alternate" href="/atom.xml" title="XiaoXX的博客" type="application/atom+xml">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
 
@@ -23,6 +22,7 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    hostname: new URL('https://xiaoxx.cc').hostname,
     root: '/',
     scheme: 'Pisces',
     version: '7.5.0',
@@ -44,13 +44,7 @@
     },
     localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    translation: {
-      copy_button: '复制',
-      copy_success: '复制成功',
-      copy_failure: '复制失败'
-    },
-    sidebarPadding: 40
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
 
@@ -340,21 +334,18 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-                <a href="/hackintosh-of-yoga710/" rel="next" title="MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]">
-                  <i class="fa fa-chevron-left"></i> MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]
-                </a>
-            </div>
 
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-                <a href="/open-your-farvorite-editor-after-new-hexo-post/" rel="prev" title="hexo new后自动打开你喜爱的编辑器">
-                  hexo new后自动打开你喜爱的编辑器 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/hackintosh-of-yoga710/" rel="prev" title="MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]">
+      <i class="fa fa-chevron-left"></i> MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/open-your-farvorite-editor-after-new-hexo-post/" rel="next" title="hexo new后自动打开你喜爱的编辑器">
+      hexo new后自动打开你喜爱的编辑器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
       </footer>
     
   </article>
@@ -397,8 +388,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="site-author-image" itemprop="image" alt="Xiaoxx"
-    src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+    <img class="site-author-image" itemprop="image" alt="Xiaoxx"
+      src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
   <p class="site-author-name" itemprop="name">Xiaoxx</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -419,23 +410,18 @@
       </div>
   </nav>
 </div>
-  <div class="feed-link motion-element">
-    <a href="/atom.xml" rel="alternate">
-      <i class="fa fa-rss"></i>RSS
-    </a>
-  </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://www.skypixel.com/users/ljp9878" title="Skypixel &rarr; https://www.skypixel.com/users/ljp9878" rel="noopener" target="_blank"><i class="fa fa-fw fa-plane"></i>Skypixel</a>
+        <a href="https://www.skypixel.com/users/ljp9878" title="Skypixel → https://www.skypixel.com/users/ljp9878" rel="noopener" target="_blank"><i class="fa fa-fw fa-plane"></i>Skypixel</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://github.com/xiaoxx970" title="GitHub &rarr; https://github.com/xiaoxx970" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/xiaoxx970" title="GitHub → https://github.com/xiaoxx970" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" title="YouTube &rarr; https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+        <a href="https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" title="YouTube → https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://instagram.com/xiaoxx970" title="Instagram &rarr; https://instagram.com/xiaoxx970" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+        <a href="https://instagram.com/xiaoxx970" title="Instagram → https://instagram.com/xiaoxx970" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
       </span>
   </div>
 
@@ -475,10 +461,6 @@
   </div>
 
         
-
-
-
-
 
 
 
