@@ -95,30 +95,28 @@ sudo systemctl enable caddy.service
 
 修改`/etc/caddy/Caddyfile`文件内容如下，用来配置反向代理，`mydomain.me`替换为你的域名：
 
+（点`克隆`可以编辑配置文件后再复制）
+
 <style>
-  #articleDetail{
-    height:auto;
-    width:100%;
-    font-family:'Courier New';
-    font-size:18px;
-    padding: 4px 6px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
+textarea.code-edit {
+  height: auto;
+  white-space: pre;
+  overflow-wrap: normal;
+  font-family: 'Courier New';
+  font-size: 18px;
+	color: #fff;
+	background: #2D2D2D;
+	border: #333;
+}
+#code-edit {
+	display: block;
+	width: 100%;
+	padding: 10px;
+}
 </style>
 
-<textarea rows=10 id="articleDetail" spellcheck="false">
-mydomain.me
-{
-  root /var/www/mydomain.me
-  tls 你的邮箱
-  log /var/log/caddy.log
-  proxy /ray localhost:10000 {
-    websocket
-    header_upstream -Origin
-  }
-}
-</textarea>
+<div id="gist-5de34d1fbce5a-736bf89abb69b530409ee508083bcd77a4cf6505" class="gist-container"></div>
+<script src="https://paste.to/cn/embedjs/5de34d1fbce5a" async></script>
 
 重启caddy服务器
 
@@ -130,87 +128,15 @@ sudo systemctl restart caddy
 
 修改`/etc/v2ray/config.json`文件内容：
 
-<textarea rows=30 id="articleDetail" spellcheck="false">
-{
-  "inbounds": [
-    {
-      "port": 10000,
-      "listen":"127.0.0.1",//只监听 127.0.0.1，避免除本机外的机器探测到开放了 10000 端口
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",
-            "alterId": 64
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-        "path": "/ray"
-        }
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "protocol": "freedom",
-      "settings": {}
-    }
-  ]
-}
-</textarea>
+<div id="gist-5de35ac9c897b-934042a880b59b9038b6023dc4e0906717a5a02e" class="gist-container"></div>
+<script src="https://paste.to/cn/embedjs/5de35ac9c897b" async></script>
 
 # 完事
 
 ## 客户端配置
 
-<textarea rows=44 id="articleDetail" spellcheck="false">
-{
-  "inbounds": [
-    {
-      "port": 1080,
-      "listen": "127.0.0.1",
-      "protocol": "socks",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      },
-      "settings": {
-        "auth": "noauth",
-        "udp": false
-      }
-    }
-  ],
-  "outbounds": [
-    {
-      "protocol": "vmess",
-      "settings": {
-        "vnext": [
-          {
-            "address": "mydomain.me",
-            "port": 443,
-            "users": [
-              {
-                "id": "b831381d-6324-4d53-ad4f-8cda48b30811",
-                "alterId": 64
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "wsSettings": {
-          "path": "/ray"
-        }
-      }
-    }
-  ]
-}
-</textarea>
+<div id="gist-5de35b2f78656-03c8ce11475ef8048597ce2619d7aeec8982ea6b" class="gist-container"></div>
+<script src="https://paste.to/cn/embedjs/5de35b2f78656" async></script>
 
 > 参考：
  https://github.com/caddyserver/caddy/tree/master/dist/init/linux-systemd
@@ -227,15 +153,21 @@ sudo systemctl restart caddy
    }
  }
  ```
-<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-<script src="/uploads/autosize.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script> -->
+<!-- <script src="/uploads/autosize.js"></script> -->
 
 <script>
-$(function(){
-  for (var i=0;i<3;i++){
-    document.querySelectorAll('textarea')[i].textContent = 
-     document.querySelectorAll('textarea')[i].textContent.replace(/<br>/g,'\n');
-  }
-});
-autosize(document.querySelectorAll('textarea'));
+// $(function(){
+//   for (var i=0;i<3;i++){
+//     document.querySelectorAll('textarea')[i].textContent = 
+//      document.querySelectorAll('textarea')[i].textContent.replace(/<br>/g,'\n');
+//   }
+// });
+
+// $(function(){
+//     var temp=  $("#code-edit").text().replace(/<br>/g,'\n');
+//     $("#code-edit").html(temp);
+// });
+
+// autosize(document.querySelectorAll('textarea.code-edit'));
 </script>
