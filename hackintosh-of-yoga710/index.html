@@ -25,7 +25,7 @@
     hostname: new URL('https://xiaoxx.cc').hostname,
     root: '/',
     scheme: 'Pisces',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
     sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":true,"show_result":true,"style":"flat"},
@@ -52,7 +52,7 @@
 <meta name="keywords" content="note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]">
-<meta property="og:url" content="https://xiaoxx.cc/hackintosh-of-yoga710/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;xiaoxx.cc&#x2F;hackintosh-of-yoga710&#x2F;index.html">
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="I’ve been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there was a lot of problem like brightness, bluetooth, app store">
 <meta property="og:locale" content="zh-CN">
@@ -273,7 +273,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>I’ve been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there was a lot of problem like brightness, bluetooth, app store, etc. It’s all work now.<br><a id="more"></a><br>The most tricky part is to drive DW1820(What? I bought it for hackintosh!), I do found kext driver for my card from RehabMan, but seems not work at all. Every time I boot up I see this<br><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/hackintosh-of-yoga710/error1.jpg"></p>
+        <p>I’ve been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there was a lot of problem like brightness, bluetooth, app store, etc. It’s all work now.</p>
+<a id="more"></a>
+<p>The most tricky part is to drive DW1820(What? I bought it for hackintosh!), I do found kext driver for my card from RehabMan, but seems not work at all. Every time I boot up I see this<br><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/hackintosh-of-yoga710/error1.jpg"></p>
 <p>Maybe something wrong with Bluetooth since it’s connected via inner USB. But I fixed it by just delete <code>BrcmPatchRAM2.kext</code> and <code>BrcmFirmwareData.kext</code>, and add the address of bluetooth’s USB port to <code>FakePCIID.kext</code>, it workd fine then. no  need of other kext driver.</p>
 <p>Here’s my hardware:</p>
 <blockquote>
@@ -447,7 +449,7 @@
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
   </div>
 
         

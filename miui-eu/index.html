@@ -25,7 +25,7 @@
     hostname: new URL('https://xiaoxx.cc').hostname,
     root: '/',
     scheme: 'Pisces',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
     sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":true,"show_result":true,"style":"flat"},
@@ -52,7 +52,7 @@
 <meta name="keywords" content="MIUI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密">
-<meta property="og:url" content="https://xiaoxx.cc/miui-eu/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;xiaoxx.cc&#x2F;miui-eu&#x2F;index.html">
 <meta property="og:site_name" content="XiaoXX的博客">
 <meta property="og:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净  我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。  miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
 <meta property="og:locale" content="zh-CN">
@@ -281,6 +281,7 @@
 <p>miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。</p>
 </blockquote>
 <a id="more"></a>
+
 <hr>
 <blockquote>
 <p> 2019-08-18 更新：</p>
@@ -291,8 +292,7 @@
 <p>首先要说的是，要折腾，先备份。<br>如果你用了谷歌验证器，可以象我一样换成Authy，通过手机登录，不用担心换手机找不回来<br>微信可以通过Windows端备份聊天记录<br>相册短信便签什么的就交给小米云，差不多就这些</p>
 <p>其次要说的是，等下用到的所有提取出来的刷机包，在每一次更新系统后都会失效，你可以选择再次刷入。<br>特别地，关于支付安全，eu固件默认关闭了全盘强制加密（FBE）功能，这跟国内固件不一样，最直接的影响就是进入恢复模式不用解密，数据暴露在捡到你手机的人面前，所以我是选择刷入了开启加密的补丁包，同样的每一次更新系统就必须在更新后重新刷入<code>force-fbe</code>包，否则无法开机。</p>
 <p>下面从第一步，你还是个国内miui系统开始</p>
-<h1 id="解锁bootloader"><a href="#解锁bootloader" class="headerlink" title="解锁bootloader"></a>解锁bootloader</h1><pre><code>http://www.miui.com/unlock/index.html
-</code></pre><h1 id="刷入国际版ROM"><a href="#刷入国际版ROM" class="headerlink" title="刷入国际版ROM"></a><del>刷入国际版ROM</del></h1><p>（根据评论，可以直接刷欧洲版，只要刷完欧洲版，清理一下缓存就行了，所以这步可跳过）</p>
+<h1 id="解锁bootloader"><a href="#解锁bootloader" class="headerlink" title="解锁bootloader"></a>解锁bootloader</h1><pre><code>http://www.miui.com/unlock/index.html</code></pre><h1 id="刷入国际版ROM"><a href="#刷入国际版ROM" class="headerlink" title="刷入国际版ROM"></a><del>刷入国际版ROM</del></h1><p>（根据评论，可以直接刷欧洲版，只要刷完欧洲版，清理一下缓存就行了，所以这步可跳过）</p>
 <p>你没有看错，欧洲版和国内版系统分区不一样（我猜的），直接卡刷欧洲版我试过没法开机（可能还是因为FBE的缘故？），反正为了保证成功就先刷国际版ROM，顺便把系统和数据也清了</p>
 <ul>
 <li>去下载线刷包：<a href="http://en.miui.com/download.html" target="_blank" rel="noopener">线刷包地址</a></li>
@@ -306,10 +306,8 @@
 <ol>
 <li><a href="https://twrp.me/Devices/" target="_blank" rel="noopener">twrp官方下载</a><br>选择你的机型对应下载下来</li>
 <li>打开adb终端<br>adb终端的位置在<code>\MiFlash2018-5-28-0\Source\ThirdParty\Google\Android</code>里面，进入到<code>Android</code>文件夹，鼠标在空白的地方按住Shift以后右键，选择在此处打开cmd/power shell窗口，就可以使用adb了。</li>
-<li><p>终端输入命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash recovery twrp.img</span><br><span class="line">fastboot boot twrp.img</span><br></pre></td></tr></table></figure>
-<p><code>twrp.img</code>是替换成你的twrp包的路径和名称。</p>
-<blockquote>
+<li>终端输入命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">fastboot flash recovery twrp.img</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fastboot boot twrp.img</span></pre></td></tr></table></figure>
+<code>twrp.img</code>是替换成你的twrp包的路径和名称。<blockquote>
 <p>第二条命令执行完后手机就会自己重启到twrp界面，可以设置成中文。</p>
 </blockquote>
 </li>
@@ -332,19 +330,21 @@
 <li><p><del>直接git clone到本地</del>下载zip包</p>
 <p>windows用户不要git clone到本地，去直接下载zip文件来避免等下会出现的换行符问题：<a href="https://github.com/linusyang92/mipay-extract/archive/master.zip" target="_blank" rel="noopener">repo的下载链接</a></p>
 <p>linux用户无妨</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/linusyang92/mipay-extract.git</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/linusyang92/mipay-extract.git</span></pre></td></tr></table></figure>
 <p><img alt="目录截图" data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/git-clone.jpg"></p>
-<ol>
-<li>下载国内的miui最新卡刷包，放入同一目录</li>
-<li>miui欧洲版卡刷包，也放在同一目录</li>
-<li><p>运行<code>extract.bat</code>，如果出现下面这样的错误：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">extract.sh: line 2: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 3: <span class="built_in">cd</span>: $<span class="string">'.\r'</span>: No such file or directory</span><br><span class="line">extract.sh: line 4: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 6: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 18: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 19: syntax error near unexpected token `$<span class="string">'&#123;\r'</span><span class="string">'</span></span><br><span class="line"><span class="string">'</span>xtract.sh: line 19: `<span class="function"><span class="title">exists</span></span>() &#123;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
-<p>那就是因为<code>extract.sh</code>文件用的换行符不对，把原来的换行符<code>CRLF</code>改成<code>LF</code>后保存就可以正常运行了<br>Windows下双击<code>extract.bat</code>就可以开始提取，会要几分钟时间。<br><img alt="bat-run" data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/bat-run.jpg">这样就说明提取成功，现在目录下会有<code>mipay-MIxxx.zip</code>,这就是一个卡刷包，通过twrp可以直接刷入<br><a id="five"></a></p>
 </li>
-<li>运行<code>cleaner-fix.bat</code><br>生成修复日历和天气的刷机包，具体说就是让日历显示农历，天气app换回国内的。这个命令同时还会生成开启默认加密的刷机包。</li>
-<li>对于想在负一屏还能用微信支付宝扫码快捷键的，以及查快递，<code>extract.bat --appvault</code>可以生成这样的修复包，也就是替换成跟国内一样的信息助手</li>
+<li><p>下载国内的miui最新卡刷包，放入同一目录</p>
+</li>
+<li><p>miui欧洲版卡刷包，也放在同一目录</p>
+</li>
+<li><p>运行<code>extract.bat</code>，如果出现下面这样的错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">extract.sh: line 2: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">extract.sh: line 3: <span class="built_in">cd</span>: $<span class="string">'.\r'</span>: No such file or directory</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">extract.sh: line 4: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">extract.sh: line 6: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">extract.sh: line 18: $<span class="string">'\r'</span>: <span class="built_in">command</span> not found</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">extract.sh: line 19: syntax error near unexpected token `$<span class="string">'&#123;\r'</span><span class="string">'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="string">'</span>xtract.sh: line 19: `<span class="function"><span class="title">exists</span></span>() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">请按任意键继续. . .</span></pre></td></tr></table></figure>
+<p>那就是因为<code>extract.sh</code>文件用的换行符不对，把原来的换行符<code>CRLF</code>改成<code>LF</code>后保存就可以正常运行了<br>Windows下双击<code>extract.bat</code>就可以开始提取，会要几分钟时间。<br><img alt="bat-run" data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/bat-run.jpg">这样就说明提取成功，现在目录下会有<code>mipay-MIxxx.zip</code>,这就是一个卡刷包，通过twrp可以直接刷入</p>
+<a id="five"></a></li>
+<li><p>运行<code>cleaner-fix.bat</code><br>生成修复日历和天气的刷机包，具体说就是让日历显示农历，天气app换回国内的。这个命令同时还会生成开启默认加密的刷机包。</p>
+</li>
+<li><p>对于想在负一屏还能用微信支付宝扫码快捷键的，以及查快递，<code>extract.bat --appvault</code>可以生成这样的修复包，也就是替换成跟国内一样的信息助手</p>
+</li>
 </ol>
 <p>Finally，我们有了四个准备卡刷的包：<br><img alt="目录截图2" data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/mipay-extract.jpg">全扔进手机，一个一个刷就是了</p>
 <p>然而，你可能遇到跟我一样的错误：一个叫255的错误，简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的<code>CRLF</code>，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹<code>META-INF</code>一路点进去，最后看到了一个叫做<code>update-binary</code>的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了<code>CRLF</code>换行符导致错误的。用VScode打开转换成<code>LF</code>后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。<br><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen.png"><br>下面是安装小米应用商店，装了就可以用它来更新小米钱包，而不用每次想更新都去下载线刷包。<br>下载地址：<a href="https://xiaomi-market.cn.uptodown.com/android" target="_blank" rel="noopener">https://xiaomi-market.cn.uptodown.com/android</a><br>不知道为什么这个网站是被墙了的，开全局去下<br>然后就可以安装了，一切都非常完美，可以一键装应用和更新</p>
@@ -358,7 +358,7 @@
 <li><p>下载国内相同版本包：<a href="http://www.miui.com/download.html" target="_blank" rel="noopener">http://www.miui.com/download.html</a></p>
 </li>
 <li><p>在<code>mipay-extract</code>文件夹中执行以下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./cleaner-fix.bat</span><br><span class="line">./extract.bat --appvault</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">.&#x2F;cleaner-fix.bat</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">.&#x2F;extract.bat --appvault</span></pre></td></tr></table></figure>
 </li>
 <li><p>生成的4个包加上下载下来的eu包拷贝进手机，重启进入twrp选择刷机包刷机</p>
 <p>可以批量选择刷机包，顺序是eu包在最前面，其他的在后面刷。</p>
@@ -522,7 +522,7 @@
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
   </div>
 
         

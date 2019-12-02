@@ -25,7 +25,7 @@
     hostname: new URL('https://xiaoxx.cc').hostname,
     root: '/',
     scheme: 'Pisces',
-    version: '7.5.0',
+    version: '7.6.0',
     exturl: false,
     sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":true,"show_result":true,"style":"flat"},
@@ -48,18 +48,18 @@
   };
 </script>
 
-  <meta name="description" content="通过ssh连接git需要配置公钥，先在本地生成公钥 1ssh-keygen -t rsa -C &quot;your_email@example.com&quot; 生成在目录~/.ssh下面，.ssh/id_rsa.pub就是公钥，绑定coding的时候在设置里点添加公钥，然后复制.pub文件里的内容过去，">
+  <meta name="description" content="通过ssh连接git需要配置公钥，先在本地生成公钥 1ssh-keygen -t rsa -C &quot;your_email@example.com&quot;  生成在目录~&#x2F;.ssh下面，.ssh&#x2F;id_rsa.pub就是公钥，绑定coding的时候在设置里点添加公钥，然后复制.pub文件里的内容过去，">
 <meta name="keywords" content="note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Coding绑定ssh并部署hexo">
-<meta property="og:url" content="https://xiaoxx.cc/关于coding和git的折腾/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;xiaoxx.cc&#x2F;关于coding和git的折腾&#x2F;index.html">
 <meta property="og:site_name" content="XiaoXX的博客">
-<meta property="og:description" content="通过ssh连接git需要配置公钥，先在本地生成公钥 1ssh-keygen -t rsa -C &quot;your_email@example.com&quot; 生成在目录~/.ssh下面，.ssh/id_rsa.pub就是公钥，绑定coding的时候在设置里点添加公钥，然后复制.pub文件里的内容过去，">
+<meta property="og:description" content="通过ssh连接git需要配置公钥，先在本地生成公钥 1ssh-keygen -t rsa -C &quot;your_email@example.com&quot;  生成在目录~&#x2F;.ssh下面，.ssh&#x2F;id_rsa.pub就是公钥，绑定coding的时候在设置里点添加公钥，然后复制.pub文件里的内容过去，">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-10-10T03:05:29.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Coding绑定ssh并部署hexo">
-<meta name="twitter:description" content="通过ssh连接git需要配置公钥，先在本地生成公钥 1ssh-keygen -t rsa -C &quot;your_email@example.com&quot; 生成在目录~/.ssh下面，.ssh/id_rsa.pub就是公钥，绑定coding的时候在设置里点添加公钥，然后复制.pub文件里的内容过去，">
+<meta name="twitter:description" content="通过ssh连接git需要配置公钥，先在本地生成公钥 1ssh-keygen -t rsa -C &quot;your_email@example.com&quot;  生成在目录~&#x2F;.ssh下面，.ssh&#x2F;id_rsa.pub就是公钥，绑定coding的时候在设置里点添加公钥，然后复制.pub文件里的内容过去，">
 
 <link rel="canonical" href="https://xiaoxx.cc/关于coding和git的折腾/">
 
@@ -274,16 +274,20 @@
 
       
         <p>通过ssh连接git需要配置公钥，先在本地生成公钥</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"your_email@example.com"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"your_email@example.com"</span></span></pre></td></tr></table></figure>
+
 <p>生成在目录<code>~/.ssh</code>下面，<code>.ssh/id_rsa.pub</code>就是公钥，绑定coding的时候在设置里点添加公钥，然后复制<code>.pub</code>文件里的内容过去，<a id="more"></a>保存后还需要认证一下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@git.coding.NET</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh -T git@git.coding.NET</span></pre></td></tr></table></figure>
+
 <p>按照提示输<code>yes</code><br>coding会提示绑定成功</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS D:\Onedrive\文档\hexo&gt; ssh -T git@git.coding.NET</span><br><span class="line">The authenticity of host <span class="string">'git.coding.net (118.25.***.124)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is SHA256:jok3FH7q5LJ6qvE7iPNehBgXRw51ErE77S0Dn+Vg/Ik.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)? yes</span></span><br><span class="line"><span class="string">Warning: Permanently added '</span>git.coding.net,<span class="number">118.25</span>.***.<span class="number">124</span><span class="string">' (RSA) to the list of known hosts.</span></span><br><span class="line"><span class="string">Coding 提示: Hello xiaoxx97, You'</span>ve connected to Coding.net via SSH. This is a personal key.</span><br><span class="line">xiaoxx97，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个个人公钥</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">PS D:\Onedrive\文档\hexo&gt; ssh -T git@git.coding.NET</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">The authenticity of host <span class="string">'git.coding.net (118.25.***.124)'</span> can<span class="string">'t be established.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="string">RSA key fingerprint is SHA256:jok3FH7q5LJ6qvE7iPNehBgXRw51ErE77S0Dn+Vg/Ik.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)? yes</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="string">Warning: Permanently added '</span>git.coding.net,<span class="number">118.25</span>.***.<span class="number">124</span><span class="string">' (RSA) to the list of known hosts.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="string">Coding 提示: Hello xiaoxx97, You'</span>ve connected to Coding.net via SSH. This is a personal key.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">xiaoxx97，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个个人公钥</span></pre></td></tr></table></figure>
+
 <p>以及，如果你的项目的名称不是<code>你的用户名.coding.me</code>，虽然也可以开启静态页面，但是图片的路径会出错，导致所有图片显示不出来，要解决这个问题，绑定一个域名就好了。</p>
-<p>关于hexo的配置文件的deploy部分<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span></span><br><span class="line"><span class="attr">    coding:</span> <span class="string">git@git.coding.net:你的用户名/项目名.git,master</span></span><br></pre></td></tr></table></figure></p>
+<p>关于hexo的配置文件的deploy部分</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">repo:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">coding:</span> <span class="string">git@git.coding.net:你的用户名/项目名.git,master</span></span></pre></td></tr></table></figure>
 <p><code>.git</code>后面<code>,master</code>要记得加<br>还有现在coding好像在改版，项目页面复制下来的git链接域名是<code>git.dev.tencent.com</code>，而根据我现在的实践操作发现如果我不把域名换成<code>git.coding.net</code>的话是没法部署成功的，失败原因是<code>Host key verification failed.</code></p>
 <p>如果没装过deployer要先装不然会deploy失败</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span></pre></td></tr></table></figure>
     </div>
 
     
@@ -437,7 +441,7 @@
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
   </div>
 
         
