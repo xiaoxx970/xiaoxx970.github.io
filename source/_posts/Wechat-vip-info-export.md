@@ -155,6 +155,6 @@ function read_info(){
     }, false);
 ```
 
-最后，它需要一个运行的载体，那就是tampermonkey没错了，完整的脚本我还上传到了GreasyFork，在这里：[微信公众号会员信息导出]([https://greasyfork.org/en/scripts/387221-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BC%9A%E5%91%98%E4%BF%A1%E6%81%AF%E5%AF%BC%E5%87%BA-wechat-offical-account-vip-info-export](https://greasyfork.org/en/scripts/387221-微信公众号会员信息导出-wechat-offical-account-vip-info-export))
+最后，它需要一个运行的载体，那就是tampermonkey没错了，完整的脚本我还上传到了GreasyFork，在这里：[微信公众号会员信息导出](https://greasyfork.org/zh-CN/scripts/387221-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BC%9A%E5%91%98%E4%BF%A1%E6%81%AF%E5%AF%BC%E5%87%BA-wechat-offical-account-vip-info-export)
 
 需要的尽管拿去用吧。

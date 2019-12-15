@@ -1,9 +1,11 @@
 ---
-title: 如何导出微信公众号的会员信息
+title: 如何导出微信公众号卡券的会员信息
 date: 2019-12-15 18:51:46
 tags:
   - 手把手教程
 ---
+
+这是一个手把手教程
 
 推荐使用谷歌浏览器[Chrome](https://www.google.cn/intl/zh-CN/chrome/)安装插件[Tampermonkey](https://www.tampermonkey.net/?ext=dhdg&locale=zh)使用，其他浏览器没测试过
 
@@ -169,4 +171,4 @@ tags:
 
 > 实现过程：https://xiaoxx.cc/Wechat-vip-info-export/
 
-> 要是你有觉得可以改进的地方，欢迎来创建Pull request。
+> 要是你有觉得可以改进的地方，欢迎来[GitHub页面](https://github.com/xiaoxx970/wechat_vip_info_export)提交Pull request。
