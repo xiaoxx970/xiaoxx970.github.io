@@ -35,6 +35,7 @@
     mediumzoom: false,
     lazyload: true,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -49,7 +50,7 @@
 </script>
 
   <meta name="description" content="前情提要：之前用Nginx反向代理的功能来加速Minecraft，真的是太不稳定！了！经常出现玩着玩着掉线了，去看Minecraft服务器没有任何毛病，看用来加速的阿里云服务器，也没有任何异常，但是直连Minecraft服务器是可以的，所以问题绝壁出在加速服务器上重启Nginx，连不上，重启服务器，还是连不上，最后过了几分钟，自己连上了。很任性有没有，如此的情况出了几次实在是忍受不了了，于是在想">
-<meta name="keywords" content="systemctl,云服务">
+<meta name="keywords" content="云服务,systemctl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速）">
 <meta property="og:url" content="https:&#x2F;&#x2F;xiaoxx.cc&#x2F;frp-for-mc&#x2F;index.html">
@@ -69,9 +70,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 <script>
@@ -294,7 +293,7 @@
 <li><p>设置文件权限，启动 frp 并设置开机启动</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod 754 /usr/lib/systemd/system/frpc.service</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> frpc</span></pre></td></tr></table></figure>
 
-<p>  好了frp客户端的操作先到这里，等下装好frp服务端并运行后再<a id="back" />回来这里，开启客户端：</p>
+<p>  好了frp客户端的操作先到这里，等下装好frp服务端并运行后再<a id="back">回来这里，开启客户端：</a></p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl start frpc</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">systemctl status frpc</span></pre></td></tr></table></figure>
 
 </li>
@@ -306,7 +305,7 @@
   就是这么简单，记得去防火墙允许7000端口</li>
 <li>加入系统服务  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">nano /usr/lib/systemd/system/frps.service</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 内容如下</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">[Unit]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Description=frps</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">After=network.target</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">[Service]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">TimeoutStartSec=30</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/<span class="built_in">local</span>/bin/frps -c /etc/frp/frps.ini</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">ExecStop=/bin/<span class="built_in">kill</span> <span class="variable">$MAINPID</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">[Install]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">WantedBy=multi-user.target</span></pre></td></tr></table></figure>
   保存退出，设置权限，开机启动  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod 754 /usr/lib/systemd/system/frps.service</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> frps</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">systemctl start frps</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">systemctl status frps</span></pre></td></tr></table></figure>
-  现在可以<a href="#back">回去</a>启动客户端了<br />
+  现在可以<a href="#back">回去</a>启动客户端了<br>
 
 </li>
 </ul>
@@ -333,7 +332,7 @@
     <a href="https://xiaoxx.cc/frp-for-mc/" title="Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速）">https://xiaoxx.cc/frp-for-mc/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -341,8 +340,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/systemctl/" rel="tag"># systemctl</a>
               <a href="/tags/云服务/" rel="tag"># 云服务</a>
+              <a href="/tags/systemctl/" rel="tag"># systemctl</a>
           </div>
 
         
@@ -371,7 +370,29 @@
 
           </div>
           
-    <div class="comments" id="comments"></div>
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -412,14 +433,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -483,7 +504,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -589,36 +609,37 @@ window.addEventListener('pjax:success', () => {
 
 
     <div id="pjax">
-
   
 
   
 
 
 <script>
-NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(item => {
-    return GUEST.includes(item);
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
-    appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
-    placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname,
-    recordIP: false,
-    serverURLs: ''
-  });
-}, window.Valine);
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
+      appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
+      placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
 </script>
 
     </div>

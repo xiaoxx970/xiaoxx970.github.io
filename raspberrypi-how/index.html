@@ -35,6 +35,7 @@
     mediumzoom: false,
     lazyload: true,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -69,9 +70,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 <script>
@@ -353,7 +352,7 @@
 <p>安装好lighttpd后默认已经开启网页服务，接下来放aria2前端</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo wget https://github.com/mayswind/AriaNg/releases/download/0.4.0/aria-ng-0.4.0.zip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sudo unzip aria-ng-0.4.0.zip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#顺便删除压缩包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">rm aria-ng-0.4.0.zip</span></pre></td></tr></table></figure>
 
-<p>现在用浏览器打开树莓派IP，你就可以看到一个漂亮的前端,以后就用它管理下载<br>至此，一个内网NAS已经搭建完成，轻量化，超小占用。<br>当然还没完，我们要做的是能从外网访问的下载器。<br></br></p>
+<p>现在用浏览器打开树莓派IP，你就可以看到一个漂亮的前端,以后就用它管理下载<br>至此，一个内网NAS已经搭建完成，轻量化，超小占用。<br>当然还没完，我们要做的是能从外网访问的下载器。<br><br></p>
 <h1 id="第三部分：内网穿透frp"><a href="#第三部分：内网穿透frp" class="headerlink" title="第三部分：内网穿透frp"></a><strong>第三部分：内网穿透frp</strong></h1><p>关于frp</p>
 <p>英文全称：fast reverse proxy<br>中文全称：快速反向代理<br>简称：frp<br>frp 是一个可用于内网穿透的高性能反向代理应用，支持 tcp, udp, http, https 协议.</p>
 <p>frp 的作用<br>利用处于内网或防火墙后的机器，对外网环境提供 http 或 https 服务。<br>对于 http, https 服务支持基于域名的虚拟主机，支持自定义域名绑定，使多个域名可以共用一个80端口。<br>利用处于内网或防火墙后的机器，对外网环境提供 tcp 和 udp 服务，例如在家里通过 ssh 访问处于公司内网环境内的主机。</p>
@@ -395,7 +394,7 @@
     <a href="https://xiaoxx.cc/raspberrypi-how/" title="树莓派：samba文件共享、frp内网穿透、lighttpd、aria2c下载器（AriaNg前端）安装教程">https://xiaoxx.cc/raspberrypi-how/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -430,7 +429,29 @@
 
           </div>
           
-    <div class="comments" id="comments"></div>
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -471,14 +492,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -542,7 +563,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -648,36 +668,37 @@ window.addEventListener('pjax:success', () => {
 
 
     <div id="pjax">
-
   
 
   
 
 
 <script>
-NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(item => {
-    return GUEST.includes(item);
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
-    appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
-    placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname,
-    recordIP: false,
-    serverURLs: ''
-  });
-}, window.Valine);
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
+      appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
+      placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
 </script>
 
     </div>

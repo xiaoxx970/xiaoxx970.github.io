@@ -35,6 +35,7 @@
     mediumzoom: false,
     lazyload: true,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -48,18 +49,18 @@
   };
 </script>
 
-  <meta name="description" content="GitHub页面：wechat_vip_info_export  交代背景：微信公众号认证快到期了，没有需求就不想再继续认证，一年300有点贵。但是顾客的会员卡是用微信的卡券功能办理的，就需要导出所有会员的信息并且导入到另一个会员管理系统里面。  查了几遍微信公众号开发者的文档，发现只可以用API得到关注列表，或者创建会员卡，就是不可以得到会员信息。看来是故意的不想让我轻易导出会员信息。 想了几种">
+  <meta name="description" content="使用教程：如何导出微信公众号的会员信息 本文讲实现过程  交代背景：微信公众号认证快到期了，没有需求就不想再继续认证，一年300有点贵。但是顾客的会员卡是用微信的卡券功能办理的，就需要导出所有会员的信息并且导入到另一个会员管理系统里面。  查了几遍微信公众号开发者的文档，发现只可以用API得到关注列表，或者创建会员卡，就是不可以得到会员信息。看来是故意的不想让我轻易导出会员信息。 想了几种思路：P">
 <meta name="keywords" content="Javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用JS脚本实现微信公众号后台会员卡信息导出">
 <meta property="og:url" content="https:&#x2F;&#x2F;xiaoxx.cc&#x2F;Wechat-vip-info-export&#x2F;index.html">
 <meta property="og:site_name" content="XiaoXX的博客">
-<meta property="og:description" content="GitHub页面：wechat_vip_info_export  交代背景：微信公众号认证快到期了，没有需求就不想再继续认证，一年300有点贵。但是顾客的会员卡是用微信的卡券功能办理的，就需要导出所有会员的信息并且导入到另一个会员管理系统里面。  查了几遍微信公众号开发者的文档，发现只可以用API得到关注列表，或者创建会员卡，就是不可以得到会员信息。看来是故意的不想让我轻易导出会员信息。 想了几种">
+<meta property="og:description" content="使用教程：如何导出微信公众号的会员信息 本文讲实现过程  交代背景：微信公众号认证快到期了，没有需求就不想再继续认证，一年300有点贵。但是顾客的会员卡是用微信的卡券功能办理的，就需要导出所有会员的信息并且导入到另一个会员管理系统里面。  查了几遍微信公众号开发者的文档，发现只可以用API得到关注列表，或者创建会员卡，就是不可以得到会员信息。看来是故意的不想让我轻易导出会员信息。 想了几种思路：P">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-10T03:05:29.065Z">
+<meta property="og:updated_time" content="2019-12-15T11:29:01.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用JS脚本实现微信公众号后台会员卡信息导出">
-<meta name="twitter:description" content="GitHub页面：wechat_vip_info_export  交代背景：微信公众号认证快到期了，没有需求就不想再继续认证，一年300有点贵。但是顾客的会员卡是用微信的卡券功能办理的，就需要导出所有会员的信息并且导入到另一个会员管理系统里面。  查了几遍微信公众号开发者的文档，发现只可以用API得到关注列表，或者创建会员卡，就是不可以得到会员信息。看来是故意的不想让我轻易导出会员信息。 想了几种">
+<meta name="twitter:description" content="使用教程：如何导出微信公众号的会员信息 本文讲实现过程  交代背景：微信公众号认证快到期了，没有需求就不想再继续认证，一年300有点贵。但是顾客的会员卡是用微信的卡券功能办理的，就需要导出所有会员的信息并且导入到另一个会员管理系统里面。  查了几遍微信公众号开发者的文档，发现只可以用API得到关注列表，或者创建会员卡，就是不可以得到会员信息。看来是故意的不想让我轻易导出会员信息。 想了几种思路：P">
 
 <link rel="canonical" href="https://xiaoxx.cc/Wechat-vip-info-export/">
 
@@ -69,9 +70,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 <script>
@@ -238,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-10 11:05:29" itemprop="dateModified" datetime="2019-10-10T11:05:29+08:00">2019-10-10</time>
+                <time title="修改时间：2019-12-15 19:29:01" itemprop="dateModified" datetime="2019-12-15T19:29:01+08:00">2019-12-15</time>
               </span>
 
           
@@ -273,48 +272,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>GitHub页面：<a href="https://github.com/xiaoxx970/wechat_vip_info_export" target="_blank" rel="noopener">wechat_vip_info_export</a></p>
+        <p>使用教程：<a href="https://xiaoxx.cc/wechat-vip-how-to/">如何导出微信公众号的会员信息</a></p>
+<p>本文讲实现过程</p>
 <blockquote>
 <p>交代背景：微信公众号认证快到期了，没有需求就不想再继续认证，一年300有点贵。但是顾客的会员卡是用微信的卡券功能办理的，就需要导出所有会员的信息并且导入到另一个会员管理系统里面。</p>
 </blockquote>
 <p>查了几遍微信公众号开发者的文档，发现只可以用API得到关注列表，或者创建会员卡，就是不可以得到会员信息。看来是故意的不想让我轻易导出会员信息。</p>
-<p>想了几种思路：Python？手动导出？javascript？<br>会员两百多个，手动也不是不可以，但是作为程序员，能让电脑自己动我就绝不动。</p>
-<a id="more"></a>
-<p>至于为什么没用Python，主要是公众号后台的登录认证有点复杂，又是输密码又是扫码，还认浏览器，对python相当不友好。</p>
-<p>于是面对着这个页面，想了很久的我想到用Javascript。<br><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/%E4%BC%9A%E5%91%98%E8%AF%A6%E6%83%85%E9%A1%B5%E9%9D%A2.png"></p>
-<p>不是有<code>document.getElementsByClassName</code>嘛，我只要找到放信息的标签的class就好了。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">0</span>].innerText</span></pre></td></tr></table></figure>
-<p><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/console1.png"><br>这样得到的就是以回车为分隔的会员信息，很好的第一步。</p>
-<p>下一句就是把它转换成数组：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info_array = info.split(<span class="string">"\n"</span>)</span></pre></td></tr></table></figure>
-
-<p>然后把会员名后面的方框去掉，因为那里是一只小笔，也被抓进来了：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">info_array[<span class="number">1</span>] = info_array[<span class="number">1</span>].replace(<span class="string">" "</span>,<span class="string">""</span>)</span></pre></td></tr></table></figure>
-<p>现在info_array就长这个样子<br><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/info_array.png"></p>
-<p>如你所见，表头和内容需要分离，现在在同一行。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info_es = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info_head = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    info_head[i]=info_array.splice(<span class="number">0</span>,<span class="number">1</span>)[<span class="number">0</span>];<span class="comment">//偶数行为head</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    info_es[i]=info_array.splice(<span class="number">0</span>,<span class="number">1</span>)[<span class="number">0</span>]; <span class="comment">//奇数行为内容</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>想了几种思路：Python？手动导出？javascript？<br>会员两百多个，手动也不是不可以，但是作为程序员，能让电脑自己动我就绝不动。<br><a id="more"></a><br>至于为什么没用Python，主要是公众号后台的登录认证有点复杂，又是输密码又是扫码，还认浏览器，对python相当不友好。</p>
+<p>于是面对着这个页面，想了很久的我想到用Javascript。<br><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/会员详情页面.png" alt></p>
+<p>不是有<code>document.getElementsByClassName</code>嘛，我只要找到放信息的标签的class就好了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">0</span>].innerText</span></pre></td></tr></table></figure></p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/console1.png" alt><br>这样得到的就是以回车为分隔的会员信息，很好的第一步。</p>
+<p>下一句就是把它转换成数组：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info_array = info.split(<span class="string">"\n"</span>)</span></pre></td></tr></table></figure></p>
+<p>然后把会员名后面的方框去掉，因为那里是一只小笔，也被抓进来了：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">info_array[<span class="number">1</span>] = info_array[<span class="number">1</span>].replace(<span class="string">" "</span>,<span class="string">""</span>)</span></pre></td></tr></table></figure></p>
+<p>现在info_array就长这个样子<br><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/info_array.png" alt></p>
+<p>如你所见，表头和内容需要分离，现在在同一行。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info_es = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info_head = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    info_head[i]=info_array.splice(<span class="number">0</span>,<span class="number">1</span>)[<span class="number">0</span>];<span class="comment">//偶数行为head</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    info_es[i]=info_array.splice(<span class="number">0</span>,<span class="number">1</span>)[<span class="number">0</span>]; <span class="comment">//奇数行为内容</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
 <p>这样<code>info_es</code>里存的才是我需要的信息。</p>
-<p>接下来还有会员号和积分，没有和上面的信息在同一个class里面，就另外获取一下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> card_no = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">1</span>].getElementsByTagName(<span class="string">"span"</span>)[<span class="number">1</span>].innerText</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> card_point = <span class="built_in">parseInt</span>(<span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">1</span>].getElementsByTagName(<span class="string">"span"</span>)[<span class="number">2</span>].innerText)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">info_head.push(<span class="string">"会员号"</span>,<span class="string">"积分"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">info_es.push(card_no,card_point)</span></pre></td></tr></table></figure>
+<p>接下来还有会员号和积分，没有和上面的信息在同一个class里面，就另外获取一下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> card_no = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">1</span>].getElementsByTagName(<span class="string">"span"</span>)[<span class="number">1</span>].innerText</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> card_point = <span class="built_in">parseInt</span>(<span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">1</span>].getElementsByTagName(<span class="string">"span"</span>)[<span class="number">2</span>].innerText)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">info_head.push(<span class="string">"会员号"</span>,<span class="string">"积分"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">info_es.push(card_no,card_point)</span></pre></td></tr></table></figure></p>
 <p>在后面就把会员号和积分添加进刚才数组的末尾。</p>
-<p>现在，info_es就长这个样子<br><img alt data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/info_es.png"><br>那为了保存我现在得到的数据，我试过用cookie，但是有空间限制，并存不下我两百多个会员的信息，所以后来是使用了localstorage，更健壮也比cookie大很多，而且存取只要两句话：</p>
+<p>现在，info_es就长这个样子<br><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/info_es.png" alt><br>那为了保存我现在得到的数据，我试过用cookie，但是有空间限制，并存不下我两百多个会员的信息，所以后来是使用了localstorage，更健壮也比cookie大很多，而且存取只要两句话：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">"csv"</span>,csv);<span class="comment">//存</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">localStorage.getItem(<span class="string">"csv"</span>);<span class="comment">//取</span></span></pre></td></tr></table></figure>
-
 <p>就喜欢这么简单的</p>
-<p>不过在存之前先把我们数组转换成csv的格式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> csv = info_es.join(<span class="string">","</span>)</span></pre></td></tr></table></figure>
-<p><img alt="csv" data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/csv.png"><br>所谓csv格式就是，逗号分隔数据，以<code>\n</code>换行符来分隔行，这里是一行的数据，所以还没看到<code>\n</code>。</p>
-<p>接下来就是，把csv变量存进localStorage里</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">"csv"</span>,csv);</span></pre></td></tr></table></figure>
-
+<p>不过在存之前先把我们数组转换成csv的格式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> csv = info_es.join(<span class="string">","</span>)</span></pre></td></tr></table></figure></p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/Wechat-vip-info-export/csv.png" alt="csv"><br>所谓csv格式就是，逗号分隔数据，以<code>\n</code>换行符来分隔行，这里是一行的数据，所以还没看到<code>\n</code>。</p>
+<p>接下来就是，把csv变量存进localStorage里<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">"csv"</span>,csv);</span></pre></td></tr></table></figure></p>
 <p>已经很完美了，但这还只是一行，我们的目标是星辰和大海。</p>
 <p>为了实现页内跳转，我用<code>window.location.href</code>这个值来定义当前的URL，这样就不必打开新窗口再关闭。</p>
 <p>下面讲讲主要思路：在会员列表页开始，计数器写1，点第一个会员的详情，把数据弄好存进localstorage，返回会员列表页，计数器加一，点第二个， 读取localstorage里的csv，把当前会员数据追加进csv，存csv，以此类推，计数器加到大于10的时候点下一页的按钮，然后计数器写1。</p>
 <p>还有一个问题就是列表页的js代码不能马上就运行，列表还没加载出来，会报错。要用<code>window.addEventListener(&#39;load&#39;, function() {}</code>来判断页面加载完成，完成后就执行{}里的语句。</p>
 <p>总的代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">read_info</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> info = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">0</span>].innerText</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> info_array = info.split(<span class="string">"\n"</span>)<span class="comment">//转换信息为数组</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        info_array[<span class="number">1</span>] = info_array[<span class="number">1</span>].replace(<span class="string">" "</span>,<span class="string">""</span>)<span class="comment">//删掉会员名后面小笔的图标</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> info_es = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> info_head = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            info_head[i]=info_array.splice(<span class="number">0</span>,<span class="number">1</span>)[<span class="number">0</span>];<span class="comment">//偶数行为head</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            info_es[i]=info_array.splice(<span class="number">0</span>,<span class="number">1</span>)[<span class="number">0</span>]; <span class="comment">//奇数行为内容</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> card_no = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">1</span>].getElementsByTagName(<span class="string">"span"</span>)[<span class="number">1</span>].innerText</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> card_point = <span class="built_in">parseInt</span>(<span class="built_in">document</span>.getElementsByClassName(<span class="string">"msg_pre_view"</span>)[<span class="number">1</span>].getElementsByTagName(<span class="string">"span"</span>)[<span class="number">2</span>].innerText)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        info_head.push(<span class="string">"会员号"</span>,<span class="string">"积分"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        info_es.push(card_no,card_point)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> csv = info_es.join(<span class="string">","</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> csv</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> step = <span class="built_in">parseInt</span>(getCookie(<span class="string">"step"</span>))<span class="comment">//这个就是计数器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(<span class="built_in">window</span>.location.search.has(<span class="string">"action=user_list"</span>))&#123;<span class="comment">//分支1：在会员列表页</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> (getCookie(<span class="string">"step"</span>)==<span class="string">""</span>)&#123;<span class="comment">//如果第一次运行脚本，计数器写1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">                setCookie(<span class="string">"step"</span>,<span class="string">"1"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">                step = <span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span>(step&gt;<span class="number">10</span>)&#123;<span class="comment">//计数器大于10的时候把自己写1，点下一页按钮</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">                step=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">                setCookie(<span class="string">"step"</span>,step)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">try</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">                    <span class="built_in">document</span>.getElementById(<span class="string">"js_next_page"</span>).click()<span class="comment">//去往下一页</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">catch</span>(err) &#123;<span class="comment">//如果没有下一页可以去了就提示完成，下载csv文件</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">                    alert(<span class="string">"导出完成，下载csv文件"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">                    <span class="keyword">var</span> csv = localStorage.getItem(<span class="string">"csv"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">                    csv = <span class="string">"会员,地区,姓名,手机,生日,状态,是否关注,标签,会员号,积分\n"</span>+csv</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">                    <span class="built_in">window</span>.open(<span class="string">"data:text/csv;charset=utf-8,"</span>+csv)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">                <span class="built_in">console</span>.log(<span class="string">"next page"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">return</span><span class="comment">//这个return必须要否则下一页的点击速度赶不上去详情页的速度</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">            <span class="built_in">console</span>.log(<span class="string">"step:"</span>+step)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">            setCookie(<span class="string">"back_url"</span>,<span class="built_in">window</span>.location.href)<span class="comment">//把列表页的URL存进cookie</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">            <span class="built_in">window</span>.location.href=<span class="built_in">document</span>.getElementsByClassName(<span class="string">"tbody"</span>)[<span class="number">0</span>].getElementsByTagName(<span class="string">"a"</span>)[step*<span class="number">2</span><span class="number">-1</span>].href<span class="comment">//去往详情页</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(<span class="built_in">window</span>.location.search.has(<span class="string">"action=user_detail"</span>))&#123;<span class="comment">//分支2：在会员详情页</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">            step++;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">            setCookie(<span class="string">"step"</span>,step)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">/*在这里做事情*/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">var</span> csv = localStorage.getItem(<span class="string">"csv"</span>)<span class="comment">//拿出存在localstorage里的csv变量</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> (csv == <span class="literal">null</span>)&#123;<span class="comment">//如果是第一次运行脚本，csv的值就是null</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">                csv = <span class="string">""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">                localStorage.setItem(<span class="string">"csv"</span>,csv)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">            csv = csv+<span class="string">"\n"</span>+read_info()<span class="comment">//用换行符分隔已有的数据和这次读来的数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">            localStorage.setItem(<span class="string">"csv"</span>,csv)<span class="comment">//用localstorage存储csv</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">            <span class="built_in">console</span>.log(<span class="string">"back"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">            <span class="built_in">window</span>.location.href=getCookie(<span class="string">"back_url"</span>)<span class="comment">//回到列表页，比用下面这行更有鲁棒性</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">//window.history.back();//后退</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">//return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">    &#125;, <span class="literal">false</span>);</span></pre></td></tr></table></figure>
-
-<p>最后，它需要一个运行的载体，那就是tampermonkey没错了，完整的脚本我还上传到了GreasyFork，在这里：<a href="[https://greasyfork.org/en/scripts/387221-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BC%9A%E5%91%98%E4%BF%A1%E6%81%AF%E5%AF%BC%E5%87%BA-wechat-offical-account-vip-info-export](https://greasyfork.org/en/scripts/387221-微信公众号会员信息导出-wechat-offical-account-vip-info-export)">微信公众号会员信息导出</a></p>
+<p>最后，它需要一个运行的载体，那就是tampermonkey没错了，完整的脚本我还上传到了GreasyFork，在这里：<a href="[https://greasyfork.org/en/scripts/387221-%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BC%9A%E5%91%98%E4%BF%A1%E6%81%AF%E5%AF%BC%E5%87%BA-wechat-offical-account-vip-info-export](https://greasyfork.org/en/scripts/387221-微信公众号会员信息导出-wechat-offical-account-vip-info-export">微信公众号会员信息导出</a>)</p>
 <p>需要的尽管拿去用吧。</p>
 
     </div>
@@ -334,7 +321,7 @@
     <a href="https://xiaoxx.cc/Wechat-vip-info-export/" title="用JS脚本实现微信公众号后台会员卡信息导出">https://xiaoxx.cc/Wechat-vip-info-export/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -371,7 +358,29 @@
 
           </div>
           
-    <div class="comments" id="comments"></div>
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -411,14 +420,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -482,7 +491,6 @@
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -588,36 +596,37 @@ window.addEventListener('pjax:success', () => {
 
 
     <div id="pjax">
-
   
 
   
 
 
 <script>
-NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(item => {
-    return GUEST.includes(item);
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
-    appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
-    placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname,
-    recordIP: false,
-    serverURLs: ''
-  });
-}, window.Valine);
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
+      appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
+      placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
 </script>
 
     </div>

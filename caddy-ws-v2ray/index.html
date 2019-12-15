@@ -35,6 +35,7 @@
     mediumzoom: false,
     lazyload: true,
     pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"nav":null},
     algolia: {
       appID: '',
       apiKey: '',
@@ -69,9 +70,7 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isPost: true
   };
 </script>
 <script>
@@ -374,7 +373,7 @@ textarea.code-edit {
     <a href="https://xiaoxx.cc/caddy-ws-v2ray/" title="使用caddy实现v2ray流量伪装">https://xiaoxx.cc/caddy-ws-v2ray/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
@@ -395,7 +394,10 @@ textarea.code-edit {
     <a href="/open-your-farvorite-editor-after-new-hexo-post/" rel="prev" title="hexo new后自动打开你喜爱的编辑器">
       <i class="fa fa-chevron-left"></i> hexo new后自动打开你喜爱的编辑器
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/wechat-vip-how-to/" rel="next" title="如何导出微信公众号的会员信息">
+      如何导出微信公众号的会员信息 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -409,7 +411,29 @@ textarea.code-edit {
 
           </div>
           
-    <div class="comments" id="comments"></div>
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
         </div>
           
@@ -450,14 +474,14 @@ textarea.code-edit {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -521,7 +545,6 @@ textarea.code-edit {
 
 
 
-        
       </div>
     </footer>
   </div>
@@ -627,36 +650,37 @@ window.addEventListener('pjax:success', () => {
 
 
     <div id="pjax">
-
   
 
   
 
 
 <script>
-NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(item => {
-    return GUEST.includes(item);
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
-    appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
-    placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: true,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname,
-    recordIP: false,
-    serverURLs: ''
-  });
-}, window.Valine);
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
+      appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
+      placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
 </script>
 
     </div>

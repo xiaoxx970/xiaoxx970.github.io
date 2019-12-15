@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://xiaoxx.cc').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="推荐使用谷歌浏览器Chrome安装插件Tampermonkey使用，其他浏览器没测试过 功能导出你能看到的会员的所有信息，看起来像这个样子    会员 地区 姓名 手机 生日 状态 是否关注 标签 会员号 积分     lucky 中国  江苏 苏州 张三 13700000000 1999-9-9 有效 否 无标签 9492-3564-9589 11   👧 毛里求斯 赵四 1380000000">
+<meta name="keywords" content="手把手教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何导出微信公众号的会员信息">
+<meta property="og:url" content="https:&#x2F;&#x2F;xiaoxx.cc&#x2F;wechat-vip-how-to&#x2F;index.html">
+<meta property="og:site_name" content="XiaoXX的博客">
+<meta property="og:description" content="推荐使用谷歌浏览器Chrome安装插件Tampermonkey使用，其他浏览器没测试过 功能导出你能看到的会员的所有信息，看起来像这个样子    会员 地区 姓名 手机 生日 状态 是否关注 标签 会员号 积分     lucky 中国  江苏 苏州 张三 13700000000 1999-9-9 有效 否 无标签 9492-3564-9589 11   👧 毛里求斯 赵四 1380000000">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-15T11:29:01.471Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何导出微信公众号的会员信息">
+<meta name="twitter:description" content="推荐使用谷歌浏览器Chrome安装插件Tampermonkey使用，其他浏览器没测试过 功能导出你能看到的会员的所有信息，看起来像这个样子    会员 地区 姓名 手机 生日 状态 是否关注 标签 会员号 积分     lucky 中国  江苏 苏州 张三 13700000000 1999-9-9 有效 否 无标签 9492-3564-9589 11   👧 毛里求斯 赵四 1380000000">
+
+<link rel="canonical" href="https://xiaoxx.cc/wechat-vip-how-to/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+<script>
+
+</script>
+  <title>如何导出微信公众号的会员信息 | XiaoXX的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XiaoXX的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaoxx.cc/wechat-vip-how-to/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+      <meta itemprop="name" content="Xiaoxx">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XiaoXX的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          如何导出微信公众号的会员信息
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-15 18:51:46 / 修改时间：19:29:01" itemprop="dateCreated datePublished" datetime="2019-12-15T18:51:46+08:00">2019-12-15</time>
+            </span>
+
+          
+            <span id="/wechat-vip-how-to/" class="post-meta-item leancloud_visitors" data-flag-title="如何导出微信公众号的会员信息" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/wechat-vip-how-to/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/wechat-vip-how-to/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>推荐使用谷歌浏览器<a href="https://www.google.cn/intl/zh-CN/chrome/" target="_blank" rel="noopener">Chrome</a>安装插件<a href="https://www.tampermonkey.net/?ext=dhdg&amp;locale=zh" target="_blank" rel="noopener">Tampermonkey</a>使用，其他浏览器没测试过</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>导出你能看到的会员的所有信息，看起来像这个样子</p>
+<table>
+<thead>
+<tr>
+<th>会员</th>
+<th>地区</th>
+<th>姓名</th>
+<th>手机</th>
+<th>生日</th>
+<th>状态</th>
+<th>是否关注</th>
+<th>标签</th>
+<th>会员号</th>
+<th>积分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lucky</td>
+<td>中国  江苏 苏州</td>
+<td>张三</td>
+<td>13700000000</td>
+<td>1999-9-9</td>
+<td>有效</td>
+<td>否</td>
+<td>无标签</td>
+<td>9492-3564-9589</td>
+<td>11</td>
+</tr>
+<tr>
+<td>👧</td>
+<td>毛里求斯</td>
+<td>赵四</td>
+<td>13800000000</td>
+<td>2000-10-10</td>
+<td>无效</td>
+<td>已关注</td>
+<td>无标签</td>
+<td>2391-8300-1593</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="如果你是资深玩家"><a href="#如果你是资深玩家" class="headerlink" title="如果你是资深玩家"></a>如果你是资深玩家</h3><p>用过油猴插件，那么直接<a href="https://github.com/xiaoxx970/wechat_vip_info_export/raw/master/Wechat_offical_account_VIP_info_export.user.js" target="_blank" rel="noopener">点这里打开安装页面</a>。</p>
+<p>在微信公众号的<code>卡劵功能-&gt;会员卡-&gt; 会员管理</code>界面就可以使用。</p>
+<h3 id="如果你没听说过Tampermonkey"><a href="#如果你没听说过Tampermonkey" class="headerlink" title="如果你没听说过Tampermonkey"></a>如果你没听说过Tampermonkey</h3><p>那么你需要：</p>
+<ol>
+<li><p>下载安装谷歌浏览器：<a href="https://www.google.cn/intl/zh-CN/chrome/" target="_blank" rel="noopener">https://www.google.cn/intl/zh-CN/chrome/</a></p>
+</li>
+<li><p>下载Tampermonkey插件</p>
+<p>去这个网站：<a href="https://www.crx4chrome.com/crx/755/" target="_blank" rel="noopener">https://www.crx4chrome.com/crx/755/</a></p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215145542390.png" alt></p>
+<p>点其中一个链接（除了google cdn 和 Chrome web store），下载插件</p>
+</li>
+<li><p>解压插件</p>
+<p>下载后你得到的是一个crx格式的文件，重命名文件修改后缀，把<code>.crx</code>改成<code>.zip</code></p>
+<p>| <img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215150212447.png" alt>| <strong>→</strong> |<img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215150325561.png" alt>|<br>| ———————————————————— | —- | —- |</p>
+<p>解压zip文件：点解压到”extension_xxx\”</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215150624537.png" alt></p>
+<p>记住这个文件夹的位置</p>
+</li>
+<li><p>安装插件</p>
+<p>打开Chrome浏览器，在地址栏输入<code>chrome://extensions/</code>，或者点浏览器菜单按钮 &gt; 更多工具 &gt; 扩展程序</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215151002595.png" alt></p>
+<p>进入扩展程序页面，打开右上角开发者模式开关，点左边的<code>加载已解压的扩展程序</code></p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215151145803.png" alt></p>
+<p>选择刚才解压出来的文件夹（不需要点进去，选中文件夹后就点<code>选择文件夹</code>）</p>
+<p>然后就可以安装好插件</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215151317653.png" alt></p>
+<p>看到这个就说明安装好了</p>
+</li>
+<li><p>安装我的脚本</p>
+<p>打开脚本页面：<a href="https://greasyfork.org/zh-CN/scripts/387221-微信公众号会员信息导出-wechat-offical-account-vip-info-export" target="_blank" rel="noopener">微信公众号会员信息导出</a></p>
+<p>点<code>安装此脚本</code></p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215151923867.png" alt></p>
+<p>然后在这个页面点安装，点一下就可以安装好</p>
+</li>
+<li><p>开始做事情</p>
+<p>打开微信公众号的<code>卡劵功能-&gt;会员卡-&gt; 会员管理</code>界面</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215152613213.png" alt>只要一进入会员管理页面，浏览器就会开始自动跳转，收集信息。然后就等着吧。</p>
+<p>平均一个会员需要4秒导出，如果九百个会员的话需要一个小时。</p>
+</li>
+<li><p>下载导出的csv文件</p>
+<p>如果脚本执行完最后一页的最后一个用户，就会出现提示说导出完成，可以开始下载</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/md-img/image-20191215153051694.png" alt></p>
+<p>下载下来的<code>vip.csv</code>文件可以通过Excel打开，完事。</p>
+</li>
+</ol>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><p>打开调试工具后可以在console看到当前正在导出本页的第几个会员信息。</p>
+</li>
+<li><p>你始终可以通过浏览器右上角tampermonkey按钮终止脚本运行</p>
+</li>
+<li><p>任何时候你都可以把当前已经导出的会员先下载下来</p>
+<p>停止脚本后在console输入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDownloadUrl</span>(<span class="params">csvData</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> _utf = <span class="string">"\uFEFF"</span>; <span class="comment">// 为了使Excel以utf-8的编码模式，同时也是解决中文乱码的问题</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.Blob &amp;&amp; <span class="built_in">window</span>.URL &amp;&amp; <span class="built_in">window</span>.URL.createObjectURL) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> csvData = <span class="keyword">new</span> Blob([_utf + csvData], &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            type: <span class="string">'text/csv'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> URL.createObjectURL(csvData);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SaveAs</span>(<span class="params">fileName, csvData</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> Sys = &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> ua = navigator.userAgent.toLowerCase();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> s;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    (s = ua.match(<span class="regexp">/chrome\/([\d.]+)/</span>)) ? Sys.chrome = s[<span class="number">1</span>]:<span class="number">0</span>;	<span class="comment">//这里直接指定了chrome</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> bw = Sys;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> alink = <span class="built_in">document</span>.createElement(<span class="string">"a"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    alink.id = <span class="string">"linkDwnldLink"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    alink.href = getDownloadUrl(csvData);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">document</span>.body.appendChild(alink);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> linkDom = <span class="built_in">document</span>.getElementById(<span class="string">'linkDwnldLink'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    linkDom.setAttribute(<span class="string">'download'</span>, fileName);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    linkDom.click();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">document</span>.body.removeChild(linkDom);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> csv = localStorage.getItem(<span class="string">"csv"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">csv = <span class="string">"会员,地区,姓名,手机,生日,状态,是否关注,标签,会员号,积分\n"</span>+csv</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">SaveAs(<span class="string">"vip.csv"</span>, csv)</span></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>终止后要想从头开始导入（或者从某一页），需要先清除cookie和localstorage数据，在console输入：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clearCookie</span>(<span class="params">c_name</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> expiredays = <span class="number">-1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> exdate = <span class="keyword">new</span> <span class="built_in">Date</span>()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    exdate.setDate(exdate.getDate() + expiredays)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">document</span>.cookie = c_name + <span class="string">"="</span> + ((expiredays == <span class="literal">null</span>) ? <span class="string">""</span> : <span class="string">";expires="</span> + exdate.toGMTString())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">localStorage.removeItem(<span class="string">"csv"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">clearCookie(<span class="string">"step"</span>)</span></pre></td></tr></table></figure>
+</li>
+<li><p>在会员页面打开插件后不会马上开始运行脚本，要刷新一下才可以</p>
+</li>
+</ul>
+<p>现在还有的问题：</p>
+<ul>
+<li><p>有时候会停下来不继续点下一个页面，这时候看一下console里的提示信息</p>
+<ul>
+<li><p>如果写的<code>next page</code>，那只要手动点一下下一页就可以了</p>
+</li>
+<li><p>如果写的<code>step:</code>后面跟一个数字，那数字是几就手动点一下当前页面的第几个会员信息</p>
+</li>
+<li><p>如果停在某个会员信息页，那可以手动返回上一页试试</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>Note:仅仅是为我自己做的脚本，如果没达到你的要求，欢迎找我有尝定制。（比如你还需要导出会员卡使用次数、激活时间、使用记录等）</p>
+<p>QQ：987896425</p>
+</blockquote>
+<blockquote>
+<p>实现过程：<a href="https://xiaoxx.cc/Wechat-vip-info-export/">https://xiaoxx.cc/Wechat-vip-info-export/</a></p>
+</blockquote>
+<blockquote>
+<p>要是你有觉得可以改进的地方，欢迎来创建Pull request。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Xiaoxx
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaoxx.cc/wechat-vip-how-to/" title="如何导出微信公众号的会员信息">https://xiaoxx.cc/wechat-vip-how-to/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/手把手教程/" rel="tag"># 手把手教程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/caddy-ws-v2ray/" rel="prev" title="使用caddy实现v2ray流量伪装">
+      <i class="fa fa-chevron-left"></i> 使用caddy实现v2ray流量伪装
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能"><span class="nav-number">1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">2.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如果你是资深玩家"><span class="nav-number">2.1.</span> <span class="nav-text">如果你是资深玩家</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果你没听说过Tampermonkey"><span class="nav-number">2.2.</span> <span class="nav-text">如果你没听说过Tampermonkey</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiaoxx"
+      src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xiaoxx</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://www.skypixel.com/users/ljp9878" title="Skypixel → https://www.skypixel.com/users/ljp9878" rel="noopener" target="_blank"><i class="fa fa-fw fa-plane"></i>Skypixel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaoxx970" title="GitHub → https://github.com/xiaoxx970" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" title="YouTube → https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoxx970" title="Instagram → https://instagram.com/xiaoxx970" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaoxx</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='199' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js"></script>
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
+      appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
+      placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
