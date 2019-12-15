@@ -3,7 +3,7 @@ tags:
   - MIUI
 date: 2018-12-18 16:03:00
 ---
-> [miui.eu](miui.eu)，一个真正没有广告的系统，比国际版还要纯净
+> [miui.eu](https://xiaomi.eu/community/forums/miui-rom-releases.103/)，一个真正没有广告的系统，比国际版还要纯净
 
 我一开始照着知乎[这个教程](https://www.zhihu.com/question/50231539)刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了[这个](https://xiaomi.eu/community/threads/bootloop-problem-while-flashing-eu-stable.46593/)答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。
 

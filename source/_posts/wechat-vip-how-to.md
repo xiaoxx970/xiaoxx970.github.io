@@ -169,6 +169,6 @@ tags:
 >
 > QQ：987896425
 
-> 实现过程：https://xiaoxx.cc/Wechat-vip-info-export/
+> 实现过程：[用JS脚本...](/Wechat-vip-info-export)
 
 > 要是你有觉得可以改进的地方，欢迎来[GitHub页面](https://github.com/xiaoxx970/wechat_vip_info_export)提交Pull request。
