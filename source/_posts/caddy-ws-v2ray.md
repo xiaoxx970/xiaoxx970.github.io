@@ -1,11 +1,12 @@
----
 title: 使用caddy实现v2ray流量伪装
-date: 2019-10-09 16:45:23
-tags: 
+tags:
   - systemctl
   - note
+date: 2019-10-09 16:45:23
 ---
-> [Caddy](https://dengxiaolong.com/caddy/zh/)：一个方便配置的 web server
+{% note info no-icon %}
+[Caddy](https://dengxiaolong.com/caddy/zh/)：一个方便配置的 web server
+{% endnote %}
 
 本质上要做的事情是让caddy做反向代理服务器转发v2ray流量，caddy的好处是自己申请证书实现https，这样伪装成的tls流量更不容易被发现
 
@@ -204,7 +205,8 @@ sudo systemctl restart caddy
  https://github.com/caddyserver/caddy/tree/master/dist/init/linux-systemd
  https://guide.v2fly.org/advanced/wss_and_web.html
 
-> Note:另一种伪装的方式
+{% note default %}
+#### Note:另一种伪装的方式
  ```json
  "transport": {
    "quicSettings": {
@@ -215,3 +217,4 @@ sudo systemctl restart caddy
    }
  }
  ```
+{% endnote %}

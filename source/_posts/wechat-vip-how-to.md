@@ -5,7 +5,9 @@ tags:
   - 手把手教程
 ---
 
+{% note info no-icon %}
 这是一个手把手教程
+{% endnote %}
 
 推荐使用谷歌浏览器[Chrome](https://www.google.cn/intl/zh-CN/chrome/)安装插件[Tampermonkey](https://www.tampermonkey.net/?ext=dhdg&locale=zh)使用，其他浏览器没测试过
 
