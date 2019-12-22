@@ -3,7 +3,7 @@
 .site-meta, .headband{
     background: #3090e4;
     }
-.sidebar-nav .sidebar-nav-active, .post-toc .nav .active-current > a{
+.sidebar-nav .sidebar-nav-active, .post-toc .nav .active > a{
     color: #428bca;
     border-bottom-color: #3090e44d;
     }
@@ -16,6 +16,9 @@
 tbody tr:nth-of-type(odd) {
     background: #f9f9f99e;
 }
+.highlight figcaption a {
+    margin-right: 25px;
+}
 .back-to-top {
     right: 30px;
     left: auto;
@@ -23,6 +26,9 @@ tbody tr:nth-of-type(odd) {
 @media (max-width: 991px){
     .footer-inner {
         padding-right: 0;
+    }
+    .highlight figcaption a {
+        margin-right: 0;
     }
     .back-to-top {
         right: 20px;
