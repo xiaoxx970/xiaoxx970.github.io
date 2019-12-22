@@ -9,6 +9,7 @@ branches:
   only: # 指定分支提交时才会运行travis ci
     - hexo
 install:
+  - rm -rf node_modules
   - npm install hexo-cli -g
   - git clone https://github.com/theme-next/hexo-theme-next.git themes/next
 script:
