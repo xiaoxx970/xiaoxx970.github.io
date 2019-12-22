@@ -11,10 +11,6 @@ branches:
 install:
   - npm install hexo-cli -g
   - git clone https://github.com/theme-next/hexo-theme-next.git themes/next
-  - mv themes/_config.yml themes/next/
-  - git clone https://github.com/theme-next/theme-next-fancybox3 themes/next/source/lib/fancybox
-  - git clone https://github.com/theme-next/theme-next-jquery-lazyload themes/next/source/lib/jquery_lazyload
-  - git clone https://github.com/theme-next/theme-next-canvas-nest themes/next/source/lib/canvas-nest
 script:
   - hexo generate
 deploy:

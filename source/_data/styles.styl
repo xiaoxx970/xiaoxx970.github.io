@@ -1,17 +1,31 @@
 // Custom styles.
 
 .site-meta, .headband{
-    background: #87daff;
+    background: #3090e4;
     }
-.sidebar-nav .sidebar-nav-active{
-    color: #fc6423;
-    border-bottom-color: #fc6423;
+.sidebar-nav .sidebar-nav-active, .post-toc .nav .active-current > a{
+    color: #428bca;
+    border-bottom-color: #3090e44d;
     }
+.menu-item-active a, .menu .menu-item a:hover, .menu .menu-item span.exturl:hover {
+    background: #3090e44d;
+}
 .content-wrap, .sidebar-inner, .header-inner{
     background: #ffffff85;
     }
+tbody tr:nth-of-type(odd) {
+    background: #f9f9f99e;
+}
+.back-to-top {
+    right: 30px;
+    left: auto;
+}
 @media (max-width: 991px){
     .footer-inner {
         padding-right: 0;
+    }
+    .back-to-top {
+        right: 20px;
+        left: auto;
     }
 }

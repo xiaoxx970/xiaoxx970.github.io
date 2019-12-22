@@ -1,0 +1,234 @@
+custom_file_path:
+  head: source/_data/head.swig
+  style: source/_data/styles.styl
+
+footer:
+  # Specify the date when the site was setup. If not defined, current year will be used.
+  #since: 2015
+
+  # Icon between year and copyright info.
+  icon:
+    # Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/
+    # `heart` is recommended with animation in red (#ff0000).
+    name: heartbeat
+    # If you want to animate the icon, set it to true.
+    animated: true
+    # Change the color of icon, using Hex Code.
+    color: "#ff0000"
+
+creative_commons:
+  post: true
+
+menu:
+  home: / || home
+  tags: /tags/ || tags
+  #categories: /categories/ || th
+  archives: /archives/ || archive
+  about: /about/ || user
+
+scheme: Pisces
+
+social:
+  Skypixel: https://www.skypixel.com/users/ljp9878 || plane
+  GitHub: https://github.com/xiaoxx970 || github
+  YouTube: https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA || youtube
+  Instagram: https://instagram.com/xiaoxx970 || instagram
+
+sidebar:
+  # Sidebar Position.
+  position: right
+  display: post
+  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
+  offset: 12
+  # Enable sidebar on narrow view (only for Muse | Mist).
+  onmobile: true
+
+social_icons:
+  transition: true
+
+avatar:
+  # Replace the default image and set the url here.
+  url: https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg
+
+mobile_layout_economy: true
+
+# Hide sticky headers and color the menu bar on Safari (iOS / macOS).
+safari_rainbow: true
+
+# Optimize the display of scrollbars on webkit based browsers.
+custom_scrollbar: true
+
+codeblock:
+  # Code Highlight theme
+  # Available values: normal | night | night eighties | night blue | night bright
+  # See: https://github.com/chriskempson/tomorrow-theme
+  highlight_theme: normal
+  # Add copy button on codeblock
+  copy_button:
+    enable: true
+    # Show text copy result.
+    show_result: true
+    # Available values: default | flat | mac
+    style: flat
+
+back2top:
+  enable: true
+  # Back to top in sidebar.
+  sidebar: false
+  # Scroll percent label in b2t button.
+  scrollpercent: true
+
+# Reading progress bar
+reading_progress:
+  enable: true
+  # Available values: top | bottom
+  position: bottom
+  color: "#37c6c0"
+  height: 2px
+
+# Bookmark Support
+bookmark:
+  enable: true
+  # Customize the color of the bookmark.
+  color: "#3090e44d"
+  # If auto, save the reading progress when closing the page or clicking the bookmark-icon.
+  # If manual, only save it by clicking the bookmark-icon.
+  save: auto
+
+# ---------------------------------------------------------------
+# Font Settings
+# See: https://theme-next.org/docs/theme-settings/#Fonts-Customization
+# ---------------------------------------------------------------
+# Find fonts on Google Fonts (https://www.google.com/fonts)
+# All fonts set here will have the following styles:
+#   light | light italic | normal | normal italic | bold | bold italic
+# Be aware that setting too much fonts will cause site running slowly
+# ---------------------------------------------------------------
+# To avoid space between header and sidebar in scheme Pisces / Gemini, Web Safe fonts are recommended for `global` (and `title`):
+# Arial | Tahoma | Helvetica | Times New Roman | Courier New | Verdana | Georgia | Palatino | Garamond | Comic Sans MS | Trebuchet MS
+# ---------------------------------------------------------------
+
+font:
+  # Use custom fonts families or not.
+  # Depended options: `external` and `family`.
+  enable: true
+
+  # Uri of fonts host, e.g. //fonts.googleapis.com (Default).
+  host:
+
+  # Font options:
+  # `external: true` will load this font family from `host` above.
+  # `family: Times New Roman`. Without any quotes.
+  # `size: x.x`. Use `em` as unit. Default: 1 (16px)
+
+  # Global font settings used for all elements inside <body>.
+  global:
+    external: true
+    family: Monda
+    size: 1.125
+
+  # Font settings for site title (.site-title).
+  title:
+    external: true
+    family: ZCOOL KuaiLe
+    size:
+
+  # Font settings for headlines (<h1> to <h6>).
+  headings:
+    external: true
+    family: 
+    size:
+
+  # Font settings for posts (.post-body).
+  posts:
+    external: true
+    family: Noto Serif SC
+
+  # Font settings for <code> and code blocks.
+  codes:
+    external: true
+    family: Lato #PT Mono
+
+disable_baidu_transformation: true
+
+pjax: true
+
+# FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
+# For more information: https://fancyapps.com/fancybox
+fancybox: true
+
+# Vanilla JavaScript plugin for lazyloading images.
+# For more information: https://github.com/ApoorvSaxena/lozad.js
+lazyload: true
+
+# Valine
+# You can get your appid and appkey from https://leancloud.cn
+# For more information: https://valine.js.org, https://github.com/xCss/Valine
+valine:
+  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
+  appid:  6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI
+  appkey: lvgmHxyoXsxCtP0b1u7vD0EY
+  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+  verify: false # Verification code
+  placeholder: 来呀~放纵啊 (o゜▽゜)o☆ # comment box placeholder
+  avatar: mm # gravatar style
+  guest_info: nick,mail,link # custom comment header
+  pageSize: 10 # pagination size
+  language: zh-cn # language, available values: en, zh-cn
+  visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  comment_count: true # if false, comment count will only be displayed in post page, not in home page
+  recordIP: false # Whether to record the commenter IP
+  serverURLs: #api.lean.mcyo.pw
+
+baidu_analytics: b19b43c7b7d7ffaedd9e4fbb7307498f
+
+local_search:
+  enable: true
+
+# ---------------------------------------------------------------
+# Tags Settings
+# See: https://theme-next.org/docs/tag-plugins/
+# ---------------------------------------------------------------
+
+# Note tag (bs-callout)
+note:
+  # Note tag style values:
+  #  - simple    bs-callout old alert style. Default.
+  #  - modern    bs-callout new (v2-v3) alert style.
+  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
+  #  - disabled  disable all CSS styles import of note tag.
+  style: morden
+  icons: true
+  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
+  # Offset also applied to label tag variables. This option can work with disabled note tag.
+  light_bg_offset: 0
+
+canvas_nest:
+  enable: true
+  onmobile: false # Display on mobile or not
+  color: "0,0,0" # RGB values, use `,` to separate
+  opacity: 0.5 # The opacity of line: 0~1
+  zIndex: -1 # z-index property of the background
+  count: 90 # The number of lines
+
+# Canvas-ribbon
+# Dependencies: https://github.com/theme-next/theme-next-canvas-ribbon
+# For more information: https://github.com/zproo/canvas-ribbon
+canvas_ribbon:
+  enable: true
+  size: 200 # The width of the ribbon
+  alpha: 0.6 # The transparency of the ribbon
+  zIndex: -1 # The display level of the ribbon
+
+#CDNs
+vendors:
+  anime: //cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js
+  fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
+  pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
+  jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
+  fancybox: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
+  fancybox_css: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
+  valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js
+  canvas_nest: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js
+  canvas_nest_nomobile: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js
+  canvas_ribbon: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js
