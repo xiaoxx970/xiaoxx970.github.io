@@ -170,7 +170,7 @@ valine:
   appkey: lvgmHxyoXsxCtP0b1u7vD0EY
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder: 来呀~放纵啊 (o゜▽゜)o☆ # comment box placeholder
+  placeholder: 来呀~放纵啊 (o゜▽゜)o☆～～ [留下邮箱可以收到通知哦] # comment box placeholder
   avatar: mm # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
