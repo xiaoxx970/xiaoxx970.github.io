@@ -18,36 +18,10 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://xiaoxx.cc').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"right","display":"post","offset":12,"onmobile":true,"padding":18},
-    copycode: {"enable":true,"show_result":true,"style":"flat"},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
-    bookmark: {"enable":true,"color":"#3090e44d","save":"auto"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: true,
-    pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xiaoxx.cc","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"right","display":"post","offset":12,"onmobile":true,"padding":18},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#3090e44d","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"path":"search.xml","motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
   <meta name="description" content="阿里云学生机10块一个月挺便宜了，就是内存2G对于一个Minecraft服务器来说有点小而我还有个谷歌云服务器在台湾，配置不错内存也够，问题就是网络延迟太大把Minecraft服务器运行在那里实际玩下来发现延迟不能忍受从我的电脑Ping台湾服务器有250ms，Ping阿里云20ms，阿里云Ping台湾服务器，50ms用小学老师教我的加法一算发现，50+20小于250啊于是就有了标题这个想法">
 <meta property="og:type" content="article">
@@ -57,7 +31,7 @@
 <meta property="og:description" content="阿里云学生机10块一个月挺便宜了，就是内存2G对于一个Minecraft服务器来说有点小而我还有个谷歌云服务器在台湾，配置不错内存也够，问题就是网络延迟太大把Minecraft服务器运行在那里实际玩下来发现延迟不能忍受从我的电脑Ping台湾服务器有250ms，Ping阿里云20ms，阿里云Ping台湾服务器，50ms用小学老师教我的加法一算发现，50+20小于250啊于是就有了标题这个想法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-10-21T08:25:01.000Z">
-<meta property="article:modified_time" content="2019-12-22T14:52:19.594Z">
+<meta property="article:modified_time" content="2020-02-06T03:01:12.495Z">
 <meta property="article:author" content="Xiaoxx">
 <meta property="article:tag" content="云服务器">
 <meta name="twitter:card" content="summary">
@@ -182,9 +156,9 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
-           type="text" id="search-input">
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
@@ -251,7 +225,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-22 22:52:19" itemprop="dateModified" datetime="2019-12-22T22:52:19+08:00">2019-12-22</time>
+                <time title="修改时间：2020-02-06 11:01:12" itemprop="dateModified" datetime="2020-02-06T11:01:12+08:00">2020-02-06</time>
               </span>
 
           
@@ -270,7 +244,7 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/#comments" itemprop="discussionUrl">
+    <a title="valine" href="/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/#valine-comments" itemprop="discussionUrl">
       <span class="post-comments-count valine-comment-count" data-xid="/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/" itemprop="commentCount"></span>
     </a>
   </span>
@@ -464,7 +438,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
@@ -473,7 +447,7 @@
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>
 
         
@@ -550,7 +524,7 @@ window.addEventListener('pjax:success', () => {
       script.async = false;
     }
     if (element.getAttribute('pjax') !== null) {
-      element.setAttribute('pjax', '');
+      script.setAttribute('pjax', '');
     }
     if (code !== '') {
       script.appendChild(document.createTextNode(code));
@@ -562,6 +536,7 @@ window.addEventListener('pjax:success', () => {
   if (CONFIG.motion.enable) {
     NexT.motion.integrator
       .init()
+      .add(NexT.motion.middleWares.subMenu)
       .add(NexT.motion.middleWares.postList)
       .bootstrap();
   }
@@ -612,7 +587,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       notify: false,
       appId: '6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI',
       appKey: 'lvgmHxyoXsxCtP0b1u7vD0EY',
-      placeholder: "来呀~放纵啊 (o゜▽゜)o☆",
+      placeholder: "来呀~放纵啊 (o゜▽゜)o☆～～ [留下邮箱可以收到通知哦]",
       avatar: 'mm',
       meta: guest,
       pageSize: '10' || 10,
