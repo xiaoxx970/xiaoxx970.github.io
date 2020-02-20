@@ -995,7 +995,6 @@ pre .javascript .function {
 }
 .header-inner {
   margin: 0 auto;
-  position: relative;
   width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
@@ -1008,12 +1007,17 @@ pre .javascript .function {
     width: 73%;
   }
 }
+.site-brand-container {
+  display: flex;
+  flex-shrink: 0;
+  padding: 0 10px;
+}
 .headband {
   background: #222;
   height: 3px;
 }
 .site-meta {
-  margin: 0;
+  flex-grow: 1;
   text-align: center;
 }
 @media (max-width: 767px) {
@@ -1044,7 +1048,7 @@ pre .javascript .function {
 .site-subtitle {
   color: #ddd;
   font-size: 0.8125em;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 .use-motion .brand {
   opacity: 0;
@@ -1058,24 +1062,30 @@ pre .javascript .function {
 }
 .site-nav-toggle {
   display: none;
-  left: 10px;
-  position: absolute;
 }
 @media (max-width: 767px) {
   .site-nav-toggle {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 .site-nav-toggle .toggle {
-  background: transparent;
-  border: 0;
-  margin-top: 2px;
   padding: 10px;
   width: 22px;
 }
 .site-nav-toggle .toggle .toggle-line {
   background: #555;
   border-radius: 1px;
+}
+.site-nav-right {
+  display: none;
+  width: 42px;
+}
+@media (max-width: 767px) {
+  .site-nav-right {
+    display: block;
+  }
 }
 .site-nav {
   display: block;
@@ -1238,7 +1248,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff6cf4;
+  background: #b5535e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2554,17 +2564,16 @@ ul.breadcrumb li + li:last-child {
   }
 }
 .site-brand-container {
-  position: relative;
-}
-.site-meta {
   background: #222;
-  color: #fff;
-  padding: 20px 0;
 }
 @media (max-width: 991px) {
-  .site-meta {
+  .site-brand-container {
     box-shadow: 0 0 16px rgba(0,0,0,0.5);
   }
+}
+.site-meta {
+  color: #fff;
+  padding: 20px 0;
 }
 .brand {
   background: none;
@@ -2574,7 +2583,6 @@ ul.breadcrumb li + li:last-child {
   color: #fff;
 }
 .site-subtitle {
-  font-weight: initial;
   margin: 10px 10px 0;
 }
 .custom-logo-image {
@@ -2585,18 +2593,20 @@ ul.breadcrumb li + li:last-child {
     display: none;
   }
 }
-.site-nav-toggle {
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
 @media (min-width: 768px) and (max-width: 991px) {
   .site-nav-toggle {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 .site-nav-toggle .toggle .toggle-line {
   background: #fff;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .site-nav-right {
+    display: block;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .site-nav {
