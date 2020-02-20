@@ -98,6 +98,7 @@ sudo systemctl enable caddy.service
 （点右上链接后可以编辑配置文件后再复制）
 
 ```caddyfile /etc/caddy/Caddyfile https://paste.to/en/clone/5de34d1fbce5a Caddyfile
+mydomain.me
 {
   root /var/www/mydomain.me
   tls 你的邮箱
