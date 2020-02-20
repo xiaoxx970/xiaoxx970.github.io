@@ -2,6 +2,15 @@ custom_file_path:
   head: source/_data/head.swig
   style: source/_data/styles.styl
 
+favicon:
+  small: /images/favicon/favicon-16x16.png
+  medium: /images/favicon/favicon-32x32.png
+  apple_touch_icon: /images/favicon/apple-touch-icon-next.png
+  safari_pinned_tab: /images/favicon/safari-pinned-tab.svg
+  android_manifest: /images/favicon/site.webmanifest
+  ms_browserconfig: /images/favicon/browserconfig.xml
+
+
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
   #since: 2015
@@ -52,11 +61,11 @@ avatar:
 
 mobile_layout_economy: true
 
+# Android Chrome header panel color ($brand-bg / $headband-bg => $black-deep).
+android_chrome_color: "#03a9f4"
+
 # Hide sticky headers and color the menu bar on Safari (iOS / macOS).
 safari_rainbow: true
-
-# Optimize the display of scrollbars on webkit based browsers.
-custom_scrollbar: true
 
 codeblock:
   # Code Highlight theme
@@ -203,6 +212,13 @@ note:
   # Offset also applied to label tag variables. This option can work with disabled note tag.
   light_bg_offset: 0
 
+pace:
+  enable: true
+  # Themes list:
+  # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple
+  # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal
+  theme: Center Simple
+
 canvas_nest:
   enable: true
   onmobile: false # Display on mobile or not
@@ -232,3 +248,5 @@ vendors:
   canvas_nest: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js
   canvas_nest_nomobile: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js
   canvas_ribbon: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js
+  pace: //cdn.jsdelivr.net/npm/pace-js@1/pace.min.js
+  pace_css: //cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css
