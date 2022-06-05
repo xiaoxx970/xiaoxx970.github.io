@@ -8,7 +8,7 @@ tags:
 
 
 
-我们都知道使用 Octo4a APP 可以让 Android 手机安装 Octoprint，从而使用手机就可以控制你的 3D 打印机。但是要想在手机上操作打印机或者查看打印状态，还是只能通过打开 Octoprint 的管理网页来实现，虽然安装了 Custom UI 后可以优化在手机上的显示排版，但是始终还是需要滚动来看到更多信息，如果 Octodash 也能运行在手机上的话，那就能好看和方便很多。如今我做到了，所以我和大家分享一下我的步骤，希望能够帮到你。
+我们都知道使用 [Octo4a](https://github.com/feelfreelinux/octo4a) APP 可以让 Android 手机安装 [Octoprint](https://octoprint.org/)（如果不知道的话去看看 [[YouTube]How to run OctoPrint on your phone!](https://www.youtube.com/watch?v=74xdib_-X38&ab_channel=ThomasSanladerer)），从而使用手机就可以控制你的 3D 打印机。但是要想在手机上操作打印机或者查看打印状态，还是只能通过打开 Octoprint 的管理网页来实现，虽然安装了 Custom UI 后可以优化在手机上的显示排版，但是始终还是需要滚动来看到更多信息，如果 [Octodash](https://unchartedbull.github.io/OctoDash/index.html) 也能运行在手机上的话，那就能好看和方便很多。如今我做到了，所以我和大家分享一下我的步骤，希望能够帮到你。
 
 ![IMG_3031](use-octodash-on-your-android-phone/IMG_3031.jpeg)
 
@@ -17,7 +17,7 @@ tags:
 ## 思路
 
 1. 你需要一个已经安装且配置完成的 Octoprint 在你的 Android 手机上
-2. 在手机上安装 Termux
+2. 在手机上安装 [Termux](https://termux.com/)
 3. 在 Termux 中安装 Debain 系统的 chroot 版本
 4. 在 Debain 系统中安装 Octodash
 5. 在手机上安装 Xserver XSDL

@@ -13,13 +13,13 @@ favicon:
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
-  #since: 2015
+  since: 2018
 
   # Icon between year and copyright info.
   icon:
     # Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/
     # `heart` is recommended with animation in red (#ff0000).
-    name: heartbeat
+    name: fa fa-heartbeat
     # If you want to animate the icon, set it to true.
     animated: true
     # Change the color of icon, using Hex Code.
@@ -29,19 +29,19 @@ creative_commons:
   post: true
 
 menu:
-  home: / || home
-  tags: /tags/ || tags
+  home: / || fa fa-home
+  tags: /tags/ || fa fa-tags
   #categories: /categories/ || th
-  archives: /archives/ || archive
-  about: /about/ || user
+  archives: /archives/ || fa fa-archive
+  about: /about/ || fa fa-user
 
 scheme: Pisces
 
 social:
-  Skypixel: https://www.skypixel.com/users/ljp9878 || plane
-  GitHub: https://github.com/xiaoxx970 || github
-  YouTube: https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA || youtube
-  Instagram: https://instagram.com/xiaoxx970 || instagram
+  Skypixel: https://www.skypixel.com/users/ljp9878 || fa fa-plane
+  GitHub: https://github.com/xiaoxx970 || fa-brands fa-github
+  YouTube: https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA || fa-brands fa-youtube
+  Instagram: https://instagram.com/xiaoxx970 || fa-brands fa-instagram
 
 sidebar:
   # Sidebar Position.
@@ -69,14 +69,16 @@ safari_rainbow: true
 
 codeblock:
   # Code Highlight theme
-  # Available values: normal | night | night eighties | night blue | night bright
-  # See: https://github.com/chriskempson/tomorrow-theme
-  highlight_theme: normal
+  # All available themes: https://theme-next.js.org/highlight/
+  theme:
+    light: arduino-light
+    dark: stackoverflow-dark
+  prism:
+    light: prism
+    dark: prism-dark
   # Add copy button on codeblock
   copy_button:
     enable: true
-    # Show text copy result.
-    show_result: true
     # Available values: default | flat | mac
     style: flat
 
@@ -175,8 +177,8 @@ lazyload: true
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  6dfkzq2bEmmUFKbVAf9NizER-MdYXbMMI
-  appkey: lvgmHxyoXsxCtP0b1u7vD0EY
+  appid:  gTFj1qYlpOzqO2qWDTAJ1VGU-gzGzoHsz
+  appkey: jOIytwTxNYHn3bhu78uoNCqM
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: 来呀~放纵啊 (o゜▽゜)o☆[留下邮箱可以收到回复通知哦] # comment box placeholder
@@ -194,10 +196,27 @@ baidu_analytics: b19b43c7b7d7ffaedd9e4fbb7307498f
 local_search:
   enable: true
 
+# Post meta display settings
+post_meta:
+  item_text: true
+  created_at: true
+  updated_at:
+    enable: true
+    another_day: true
+  categories: true
+
 # ---------------------------------------------------------------
 # Tags Settings
 # See: https://theme-next.org/docs/tag-plugins/
 # ---------------------------------------------------------------
+
+# TagCloud settings for tags page.
+tagcloud:
+  min: 12 # Minimum font size in px
+  max: 30 # Maximum font size in px
+  amount: 200 # Total amount of tags
+  orderby: name # Order of tags
+  order: 1 # Sort order
 
 # Note tag (bs-callout)
 note:
@@ -211,6 +230,20 @@ note:
   # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
   # Offset also applied to label tag variables. This option can work with disabled note tag.
   light_bg_offset: 0
+
+# Use Animate.css to animate everything.
+# For more information: https://animate.style
+motion:
+  enable: true
+  async: false
+  transition:
+    # All available transition variants: https://theme-next.js.org/animate/
+    post_block: fadeIn
+    post_header: fadeInDown
+    post_body: fadeInDown
+    coll_header: fadeInLeft
+    # Only for Pisces | Gemini.
+    sidebar: fadeInUp
 
 pace:
   enable: true
@@ -236,18 +269,30 @@ canvas_ribbon:
   alpha: 0.6 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon
 
-#CDNs
-vendors:
-  anime: //cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js
-  fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
-  pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
-  jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
-  fancybox: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
-  fancybox_css: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
-  valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js
-  canvas_nest: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js
-  canvas_nest_nomobile: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest-nomobile.min.js
-  canvas_ribbon: /uploads/canvas-ribbon.js
-  pace: //cdn.jsdelivr.net/npm/pace-js@1/pace.min.js
-  pace_css: //cdn.jsdelivr.net/npm/pace-js@1.0.2/themes/white/pace-theme-minimal.css
 
+# ---------------------------------------------------------------
+# CDN Settings
+# See: https://theme-next.js.org/docs/advanced-settings/vendors
+# ---------------------------------------------------------------
+
+vendors:
+  # The CDN provider of NexT internal scripts.
+  # Available values: local | jsdelivr | unpkg | cdnjs | custom
+  # Warning: If you are using the latest master branch of NexT, please set `internal: local`
+  internal: local
+  # The default CDN provider of third-party plugins.
+  # Available values: local | jsdelivr | unpkg | cdnjs | custom
+  # Dependencies for `plugins: local`: https://github.com/next-theme/plugins
+  plugins: cdnjs
+  # Custom CDN URL
+  # For example:
+  # custom_cdn_url: https://cdn.jsdelivr.net/npm/${npm_name}@${version}/${minified}
+  # custom_cdn_url: https://cdnjs.cloudflare.com/ajax/libs/${cdnjs_name}/${version}/${cdnjs_file}
+  custom_cdn_url:
+
+# Assets
+# Accelerate delivery of static files using a CDN
+# The js option is only valid when vendors.internal is local.
+css: css
+js: js
+images: images
