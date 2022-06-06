@@ -10,7 +10,7 @@ tags:
 
 我们都知道使用 [Octo4a](https://github.com/feelfreelinux/octo4a) APP 可以让 Android 手机安装 [Octoprint](https://octoprint.org/)（如果不知道的话去看看 [[YouTube]How to run OctoPrint on your phone!](https://www.youtube.com/watch?v=74xdib_-X38&ab_channel=ThomasSanladerer)），从而使用手机就可以控制你的 3D 打印机。但是要想在手机上操作打印机或者查看打印状态，还是只能通过打开 Octoprint 的管理网页来实现，虽然安装了 Custom UI 后可以优化在手机上的显示排版，但是始终还是需要滚动来看到更多信息，如果 [Octodash](https://unchartedbull.github.io/OctoDash/index.html) 也能运行在手机上的话，那就能好看和方便很多。如今我做到了，所以我和大家分享一下我的步骤，希望能够帮到你。
 
-![IMG_3031](use-octodash-on-your-android-phone/IMG_3031.jpeg)
+![IMG_3031](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/IMG_3031.jpeg)
 
 <!--more-->
 
@@ -71,7 +71,7 @@ proot-distro login debian --termux-home
 
 完成后返回启动页面，等待启动完成后记下端口号，比如我的是 `4713`
 
-![Screenshot_2022-06-03-19-54-14-504_x.org.server](use-octodash-on-your-android-phone/Screenshot_2022-06-03-19-54-14-504_x.org.server.jpg)
+![Screenshot_2022-06-03-19-54-14-504_x.org.server](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/Screenshot_2022-06-03-19-54-14-504_x.org.server.jpg)
 
 ### 测试 Octodash
 
@@ -96,7 +96,7 @@ chmod +x /root/startdash.sh
 
 看到有信息输出且没有报错的话，切回 Xserver XSDL APP 查看此时是否显示了 Octodash 的初始页面
 
-![OctoPi with OctoDash on RPi 4 with HyperPixel 4.0 - Maurice Kevenaar's  Techblog](use-octodash-on-your-android-phone/332-OctoDashSetup-01.png)
+![OctoPi with OctoDash on RPi 4 with HyperPixel 4.0 - Maurice Kevenaar's  Techblog](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/332-OctoDashSetup-01.png)
 
 看到的话先不着急进行设置，测试通过后还需要下一步，把 Octodash 添加到 Termux 的服务中保证后台运行
 
@@ -145,7 +145,7 @@ sv-enable octodash
 
 > 如果打印机地址填写 127.0.0.1:5000 无法成功添加打印机的话，输入手机的内网 IP 进行连接即可成功添加
 
-![Screenshot_2022-06-03-17-06-38-324_x.org.server](use-octodash-on-your-android-phone/Screenshot_2022-06-03-17-06-38-324_x.org.server.jpg)
+![Screenshot_2022-06-03-17-06-38-324_x.org.server](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/Screenshot_2022-06-03-17-06-38-324_x.org.server.jpg)
 
 大功告成，如果你也成功了，欢迎在评论区分享你的成果！
 
