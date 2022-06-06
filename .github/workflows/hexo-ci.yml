@@ -1,6 +1,6 @@
 name: Deploy
 
-on: hexo
+on: [push]
 
 jobs:
   build:
