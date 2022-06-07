@@ -1,7 +1,9 @@
 ---
 title: 通过Nginx转发Minecraft服务器流量达到加速的目的(Nginx转发TCP)
 date: 2018-10-21 16:25:01
-tags: 云服务器
+tags: 
+ - Minecraft
+ - Frp
 ---
 阿里云学生机10块一个月挺便宜了，就是内存2G对于一个Minecraft服务器来说有点小
 而我还有个谷歌云服务器在台湾，配置不错内存也够，问题就是网络延迟太大

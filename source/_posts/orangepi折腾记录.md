@@ -1,7 +1,7 @@
 ---
 title: 装了armbian的Orange pi折腾记录(外接HDMI屏幕分辨率调节及屏幕旋转)
 date: 2018-10-8 23:26:00
-tags: 各种Pi
+tags: Pi
 ---
 
 * ### Armbian orange pi 调节分辨率
@@ -20,7 +20,7 @@ tags: 各种Pi
     echo "1" > start
     ```
     把parm部分的0改成4就是打开HDMI输出，第二个数字10代表输出分辨率为1080p60，换成5则代表720p60。
-<!--more-->
+    <!--more-->
     全部模式列表：
     ```bash
     0 480i

@@ -10,6 +10,8 @@ favicon:
   android_manifest: /images/favicon/site.webmanifest
   ms_browserconfig: /images/favicon/browserconfig.xml
 
+# Show multilingual switcher in footer.
+language_switcher: false
 
 footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
@@ -36,6 +38,9 @@ menu:
   about: /about/ || fa fa-user
 
 scheme: Pisces
+
+# Dark Mode
+darkmode: true
 
 social:
   Skypixel: https://www.skypixel.com/users/ljp9878 || fa fa-plane
@@ -172,29 +177,37 @@ fancybox: true
 # For more information: https://github.com/ApoorvSaxena/lozad.js
 lazyload: true
 
-# Valine
-# You can get your appid and appkey from https://leancloud.cn
-# For more information: https://valine.js.org, https://github.com/xCss/Valine
-valine:
-  enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  gTFj1qYlpOzqO2qWDTAJ1VGU-gzGzoHsz
-  appkey: jOIytwTxNYHn3bhu78uoNCqM
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
-  placeholder: 来呀~放纵啊 (o゜▽゜)o☆[留下邮箱可以收到回复通知哦] # comment box placeholder
-  avatar: mm # gravatar style
-  guest_info: nick,mail,link # custom comment header
-  pageSize: 10 # pagination size
-  language: zh-cn # language, available values: en, zh-cn
-  visitor: true # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
-  comment_count: true # if false, comment count will only be displayed in post page, not in home page
-  recordIP: false # Whether to record the commenter IP
-  serverURLs: #api.lean.mcyo.pw
+# Quicklink Support
+# For more information: https://getquick.link
+# Front-matter variable (nonsupport home archive).
+quicklink:
+  enable: true
+
+  # Home page and archive page can be controlled through home and archive options below.
+  # This configuration item is independent of `enable`.
+  home: true
+  archive: true
+
+  # Default (true) will initialize quicklink after the load event fires.
+  delay: true
+  # Custom a time in milliseconds by which the browser must execute prefetching.
+  timeout: 3000
+  # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
+  priority: true
+
+disqus:
+  enable: true
+  shortname: xiaoxx
+  count: true
+
 
 baidu_analytics: b19b43c7b7d7ffaedd9e4fbb7307498f
 
 local_search:
   enable: true
+
+# Automatically excerpt description in homepage as preamble text.
+excerpt_description: true
 
 # Post meta display settings
 post_meta:

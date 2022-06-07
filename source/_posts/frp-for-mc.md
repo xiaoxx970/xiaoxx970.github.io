@@ -2,8 +2,8 @@
 title: Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速）
 date: 2018-11-30 15:51:42
 tags: 
-    - 云服务
-    - systemctl
+ - Minecraft
+ - Systemctl
 ---
 >前情提要：之前用Nginx反向代理的功能来加速Minecraft，真的是太不稳定！了！
 经常出现玩着玩着掉线了，去看Minecraft服务器没有任何毛病，看用来加速的阿里云服务器，也没有任何异常，但是直连Minecraft服务器是可以的，所以问题绝壁出在加速服务器上
@@ -18,7 +18,7 @@ tags:
 - 下载并解压frp
   
     可以去[release页面](
-https://github.com/fatedier/frp/releases/latest)找到最新版的下载链接然后替换下面的链接
+    https://github.com/fatedier/frp/releases/latest)找到最新版的下载链接然后替换下面的链接
 
     ```bash
     cd ~
@@ -41,13 +41,13 @@ https://github.com/fatedier/frp/releases/latest)找到最新版的下载链接�
     server_port = 7000
     login_fail_exit	= false  #0.11新功能：登录远程服务器失败不退出，30s自动重试
     #protocol = kcp
-
+    
     [mc]
     type = tcp
     local_ip = 127.0.0.1
     local_port = 25565
     remote_port = 25565
-
+    
     [mc-udp]
     type = udp
     local_ip = 127.0.0.1
@@ -63,12 +63,12 @@ https://github.com/fatedier/frp/releases/latest)找到最新版的下载链接�
     [Unit]
     Description=frpc
     After=network.target
-
+    
     [Service]
     TimeoutStartSec=30
     ExecStart=/usr/local/bin/frpc -c /etc/frp/frpc.ini
     ExecStop=/bin/kill $MAINPID
-
+    
     [Install]
     WantedBy=multi-user.target
     ```
@@ -114,12 +114,12 @@ https://github.com/fatedier/frp/releases/latest)找到最新版的下载链接�
     [Unit]
     Description=frps
     After=network.target
-
+    
     [Service]
     TimeoutStartSec=30
     ExecStart=/usr/local/bin/frps -c /etc/frp/frps.ini
     ExecStop=/bin/kill $MAINPID
-
+    
     [Install]
     WantedBy=multi-user.target
     ```
@@ -131,7 +131,7 @@ https://github.com/fatedier/frp/releases/latest)找到最新版的下载链接�
     systemctl status frps
     ```
     现在可以[回去](#back)启动客户端了
-<br />
+    <br />
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成了~最后一句话是显示服务运行状态的,当里面显示绿色的`active`就表示程序正常运行了
 客户端那边也是，如果出问题了显示红色的`dead`，那么认真看看系统日志,是不是配置文件不对什么的，然后再`systemctl restart frpc`(s),看`status`，多错几次还是就OK了。

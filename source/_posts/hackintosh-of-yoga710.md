@@ -1,7 +1,9 @@
 ---
 title: MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]
 date: 2019-03-02 21:09:51
-tags: note
+tags: 
+ - Hackintosh
+ - English Article
 ---
 I've been attempt making my laptop work with mojave for like one month, and bought a DW1820 wireless card to fix network problem.  Also there was a lot of problem like brightness, bluetooth, app store, etc. It's all work now.
 <!--more-->

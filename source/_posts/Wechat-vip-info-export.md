@@ -1,6 +1,7 @@
 ---
 title: 用JS脚本实现微信公众号后台会员卡信息导出
 date: 2019-07-06 11:36:41
+updated_at: 2019-07-06 11:36:41
 tags: Javascript
 ---
 使用教程：[如何导出微信公众号的会员信息](/wechat-vip-how-to)

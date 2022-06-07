@@ -1,7 +1,6 @@
 title: 使用caddy实现v2ray流量伪装
 tags:
-  - systemctl
-  - note
+ - Systemctl
 date: 2019-10-09 16:45:23
 ---
 {% note info no-icon %}

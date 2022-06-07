@@ -1,7 +1,6 @@
 title: 小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密
 tags:
-
-  - MIUI
+ - MIUI
 date: 2018-12-18 16:03:00
 ---
 {% note info no-icon %}

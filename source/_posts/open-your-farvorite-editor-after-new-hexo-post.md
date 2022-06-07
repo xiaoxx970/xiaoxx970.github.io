@@ -1,7 +1,7 @@
 ---
 title: hexo new后自动打开你喜爱的编辑器
 date: 2019-09-02 15:16:44
-tags: hexo_tricks
+tags: Hexo tricks
 ---
 
 > 作为一个用hexo写博客的blogger，每次写文章都是件麻烦事：对我来说，要先用Code打开Hexo工作区，然后```Ctrl+` ```打开终端先pull一下，再开始`hexo new post something`，接下来去目录找到_posts，点进去打开刚创建的md，然后，才开始写文章。

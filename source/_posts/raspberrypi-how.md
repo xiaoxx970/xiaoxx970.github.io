@@ -2,8 +2,8 @@
 title: 树莓派：samba文件共享、frp内网穿透、lighttpd、aria2c下载器（AriaNg前端）安装教程
 date: 2018-3-12 1:08:00
 tags: 
-  - 各种Pi
-  - systemctl
+  - Pi
+  - Systemctl
 ---
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近拿到了一个树莓派3B，想要做成NAS以及下载机，我这个人平时喜欢看美剧，每次下载都要先开电脑打开浏览器找资源迅雷下载，有时候用手机找到资源了还是得开电脑，毕竟手机不适合用来下BT，于是有了这个想法，一开始还装了[Nextcloud的树莓派版](https://ownyourbits.com/nextcloudpi/)(需要的童鞋可以进去看（需翻墙）)（2018-12-20更新：现在看官网把这个部分已经做的很完善了，占用可能也不高了），网盘下载前端倒是什么都有了，就是觉着太臃肿，web服务器用的居然还是apache，占用可想而知，到后来每次链接ssh都要接近半分钟，运行一个python脚本更是要到一分钟，那就是几行的脚本啊。后来想nextcloud其实没什么用，我只要能下载和共享文件就可以了。  
 <!--more-->
@@ -368,7 +368,7 @@ type = http
 local_port = 80
 local_ip = 127.0.0.1
 custom_domains = 自定义域.nat.ee
-```  
+```
 
 Ctrl+O保存，Ctrl+X退出  
 测试一下是否运行正常:  
