@@ -8,9 +8,12 @@ tags:
 
 {% note info no-icon%}
 
-## 前言
-我们都知道使用 [Octo4a](https://github.com/feelfreelinux/octo4a) APP 可以让 Android 手机安装 [Octoprint](https://octoprint.org/)（如果不知道的话去看看 [[YouTube]How to run OctoPrint on your phone!](https://www.youtube.com/watch?v=74xdib_-X38&ab_channel=ThomasSanladerer)），从而使用手机就可以控制你的 3D 打印机。但是要想在手机上操作打印机或者查看打印状态，还是只能通过打开 Octoprint 的管理网页来实现，虽然安装了 Custom UI 后可以优化在手机上的显示排版，但是始终还是需要滚动来看到更多信息，如果 [Octodash](https://unchartedbull.github.io/OctoDash/index.html) 也能运行在手机上的话，那就能好看和方便很多。如今我做到了，所以我和大家分享一下我的步骤，希望能够帮到你。
+[Octodash](https://unchartedbull.github.io/OctoDash/index.html) 使用 [Electron](https://zh.m.wikipedia.org/zh/Electron) 来展示界面，只能在 Windows、Linux 和 macOS 上运行。显然不能在 Android 上运行，但是如果你想的话，你可以在你的 Android 手机上运行 Linux，这样你也就可以运行 Electron 了！
+
 {% endnote %}
+
+## 前言
+我们都知道使用 [Octo4a](https://github.com/feelfreelinux/octo4a) APP 可以让 Android 手机安装 [Octoprint](https://octoprint.org/)（如果不知道的话去看看 [[YouTube]How to run OctoPrint on your phone!](https://www.youtube.com/watch?v=74xdib_-X38&ab_channel=ThomasSanladerer)），从而使用手机就可以控制你的 3D 打印机。但是要想在手机上操作打印机或者查看打印状态，还是只能通过打开 Octoprint 的管理网页来实现，虽然安装了 Custom UI 后可以优化在手机上的显示排版，但是始终还是需要滚动来看到更多信息，如果 Octodash 也能运行在手机上的话，那就能好看和方便很多。如今我做到了，所以我和大家分享一下我的步骤，希望能够帮到你。
 
 ![IMG_3031](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/IMG_3031.jpeg)
 

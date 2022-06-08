@@ -9,10 +9,13 @@ tags:
 
 {% note info no-icon%}
 
+[Octodash](https://unchartedbull.github.io/OctoDash/index.html) uses [Electron](https://en.wikipedia.org/wiki/Electron_(software_framework)) to present the interface and only runs on Windows, Linux and macOS. Obviously doesn't run on Android, but you can run Linux on your Android phone if you want, so that you can run Electron!
+
+{% endnote %}
+
 ## Introduction
 
-We all know that using the [Octo4a](https://github.com/feelfreelinux/octo4a) APP allows you to install [Octoprint](https://octoprint.org/) on your Android phone (If you don't know, take a look at [[YouTube]How to run OctoPrint on your phone!](https://www.youtube.com/watch?v=74xdib_-X38&ab_channel=ThomasSanladerer)), so you can use your phone as a controller to control your 3D printer. But if you want to check the state of your printer or do some  manipulation, you can only do it by opening the management page of Octoprint through the browser. Although the display layout on the mobile phone can be optimized after installing the Custom UI plugin, you still need to scroll to see more Information. It would be so much nicer if [Octodash](https://unchartedbull.github.io/OctoDash/index.html) can run on your phone. Now I did it, I’m sharing the steps with you, hope that it will help you achieve this.
-{% endnote %}
+We all know that using the [Octo4a](https://github.com/feelfreelinux/octo4a) APP allows you to install [Octoprint](https://octoprint.org/) on your Android phone (If you don't know, take a look at [[YouTube]How to run OctoPrint on your phone!](https://www.youtube.com/watch?v=74xdib_-X38&ab_channel=ThomasSanladerer)), so you can use your phone as a controller to control your 3D printer. But if you want to check the state of your printer or do some  manipulation, you can only do it by opening the management page of Octoprint through the browser. Although the display layout on the mobile phone can be optimized after installing the Custom UI plugin, you still need to scroll to see more Information. It would be so much nicer if Octodash can run on your phone. Now I did it, I’m sharing the steps with you, hope that it will help you achieve this.
 
 ![IMG_3031](https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/IMG_3031.jpeg)
 
