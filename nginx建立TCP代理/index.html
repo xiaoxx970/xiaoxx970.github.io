@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CZCOOL+KuaiLe:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xiaoxx.cc","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#3090e44d","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="阿里云学生机10块一个月挺便宜了，就是内存2G对于一个Minecraft服务器来说有点小而我还有个谷歌云服务器在台湾，配置不错内存也够，问题就是网络延迟太大把Minecraft服务器运行在那里实际玩下来发现延迟不能忍受从我的电脑Ping台湾服务器有250ms，Ping阿里云20ms，阿里云Ping台湾服务器，50ms用小学老师教我的加法一算发现，50+20小于250啊于是就有了标题这个想法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过Nginx转发Minecraft服务器流量达到加速的目的(Nginx转发TCP)">
+<meta property="og:url" content="https://xiaoxx.cc/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/index.html">
+<meta property="og:site_name" content="XiaoXX的博客">
+<meta property="og:description" content="阿里云学生机10块一个月挺便宜了，就是内存2G对于一个Minecraft服务器来说有点小而我还有个谷歌云服务器在台湾，配置不错内存也够，问题就是网络延迟太大把Minecraft服务器运行在那里实际玩下来发现延迟不能忍受从我的电脑Ping台湾服务器有250ms，Ping阿里云20ms，阿里云Ping台湾服务器，50ms用小学老师教我的加法一算发现，50+20小于250啊于是就有了标题这个想法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-21T08:25:01.000Z">
+<meta property="article:modified_time" content="2022-06-08T02:18:42.986Z">
+<meta property="article:author" content="Xiaoxx">
+<meta property="article:tag" content="Minecraft">
+<meta property="article:tag" content="Frp">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://xiaoxx.cc/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xiaoxx.cc/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/","path":"nginx建立TCP代理/","title":"通过Nginx转发Minecraft服务器流量达到加速的目的(Nginx转发TCP)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>通过Nginx转发Minecraft服务器流量达到加速的目的(Nginx转发TCP) | XiaoXX的博客</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?b19b43c7b7d7ffaedd9e4fbb7307498f"></script>
+
+
+
+<script>
+
+</script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">XiaoXX的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%96%B9%E6%B3%95%E5%9C%A8%E8%BF%99%E9%87%8C"><span class="nav-number">1.</span> <span class="nav-text">正确的方法在这里</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiaoxx"
+      src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xiaoxx</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://www.skypixel.com/users/ljp9878" title="Skypixel → https:&#x2F;&#x2F;www.skypixel.com&#x2F;users&#x2F;ljp9878" rel="noopener" target="_blank"><i class="fa fa-plane fa-fw"></i>Skypixel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaoxx970" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaoxx970" rel="noopener" target="_blank"><i class="fa-brands fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCIy5I69DecNPG15iREGU-uA" rel="noopener" target="_blank"><i class="fa-brands fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoxx970" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoxx970" rel="noopener" target="_blank"><i class="fa-brands fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaoxx.cc/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+      <meta itemprop="name" content="Xiaoxx">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XiaoXX的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="通过Nginx转发Minecraft服务器流量达到加速的目的(Nginx转发TCP) | XiaoXX的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          通过Nginx转发Minecraft服务器流量达到加速的目的(Nginx转发TCP)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-21 16:25:01" itemprop="dateCreated datePublished" datetime="2018-10-21T16:25:01+08:00">2018-10-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-08 10:18:42" itemprop="dateModified" datetime="2022-06-08T10:18:42+08:00">2022-06-08</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="nginx建立TCP代理/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>阿里云学生机10块一个月挺便宜了，就是内存2G对于一个Minecraft服务器来说有点小<br>而我还有个谷歌云服务器在台湾，配置不错内存也够，问题就是网络延迟太大<br>把Minecraft服务器运行在那里实际玩下来发现延迟不能忍受<br>从我的电脑Ping台湾服务器有250ms，Ping阿里云20ms，阿里云Ping台湾服务器，50ms<br>用小学老师教我的加法一算发现，50+20小于250啊<br>于是就有了标题这个想法</p>
+<span id="more"></span>
+<p>对于流量转发除了SS和Frp其他我还真不知道（<strong>去看我的<a href="/frp-for-mc/">frp教程</a>吧，真的，Nginx反向代理太难用了</strong>）</p>
+<p>网上查了可以用firewalld做端口转发，我试了把tcp和udp的25565端口都转发到台湾服务器<br>没用，可能是原理不对</p>
+<p>再一查看到Nginx反向代理可以做这种事情<br>大概就是编辑站点配置文件，在server{}里面加上</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">listen</span> <span class="number">25565</span>;</span><br><span class="line"><span class="section">location</span> / &#123;</span><br><span class="line">  <span class="comment"># 代理的地址</span></span><br><span class="line">  <span class="attribute">proxy_pass</span> http://35.xx.xx.23:25565;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我确实这样做了因为前面不加<code>http://</code>配置文件不让过，结果一试当然没有用</p>
+<h1 id="正确的方法在这里"><a href="#正确的方法在这里" class="headerlink" title="正确的方法在这里"></a>正确的方法在这里</h1><p>后来找到了Nginx转发tcp的文章，总算是找对方向了<br>我的Nginx版本1.14，默认是支持TCP流量转发的，只需要在<strong>Nginx的</strong>配置文件(Nginx.conf)里面加如下面几行就可以：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">stream</span> &#123;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">25565</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> <span class="number">35</span>.xx.xx.<span class="number">23</span>:<span class="number">25565</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加在events后面</p>
+<p>是的，就是这么简单，这篇文章能教你的已经结束了</p>
+<p>而我自己的折腾还在后面，因为我没有把前面listen 25565的站点删掉，没删掉！！<br>导致我不管怎么改Nginx的配置都是说连不上<br>折腾了一晚上+一小个下午共计两个小时，的人生<br>终于在今天也就是写这篇文章前发现了，把那个站点删掉，终于是能连上了<br>感动得我<br>掀了桌子<br>昔日的卡顿<br>完全没了影子<br>那么以后<br>终于能和小伙伴愉快的玩mc了<br>开心</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Xiaoxx
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xiaoxx.cc/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/" title="通过Nginx转发Minecraft服务器流量达到加速的目的(Nginx转发TCP)">https://xiaoxx.cc/nginx建立TCP代理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Minecraft/" rel="tag"># Minecraft</a>
+              <a href="/tags/Frp/" rel="tag"># Frp</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%85%B3%E4%BA%8Ecoding%E5%92%8Cgit%E7%9A%84%E6%8A%98%E8%85%BE/" rel="prev" title="Coding绑定ssh并部署hexo">
+                  <i class="fa fa-chevron-left"></i> Coding绑定ssh并部署hexo
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/frp-for-mc/" rel="next" title="Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速）">
+                  Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaoxx</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="200" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xiaoxx.cc/nginx%E5%BB%BA%E7%AB%8BTCP%E4%BB%A3%E7%90%86/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"xiaoxx","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

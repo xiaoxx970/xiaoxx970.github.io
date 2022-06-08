@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CZCOOL+KuaiLe:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xiaoxx.cc","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#3090e44d","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Octodash 使用 Electron 来展示界面，只能在 Windows、Linux 和 macOS 上运行。显然不能在 Android 上运行，但是如果你想的话，你可以在你的 Android 手机上运行 Linux，这样你也就可以运行 Electron 了！   前言我们都知道使用 Octo4a APP 可以让 Android 手机安装 Octoprint（如果不知道的话去看看 [YouTu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Octo4a 更进一步：在 Android 手机上运行 Octodash">
+<meta property="og:url" content="https://xiaoxx.cc/use-octodash-on-your-android-phone/index.html">
+<meta property="og:site_name" content="XiaoXX的博客">
+<meta property="og:description" content="Octodash 使用 Electron 来展示界面，只能在 Windows、Linux 和 macOS 上运行。显然不能在 Android 上运行，但是如果你想的话，你可以在你的 Android 手机上运行 Linux，这样你也就可以运行 Electron 了！   前言我们都知道使用 Octo4a APP 可以让 Android 手机安装 Octoprint（如果不知道的话去看看 [YouTu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/IMG_3031.jpeg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/Screenshot_2022-06-03-19-54-14-504_x.org.server.jpg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/332-OctoDashSetup-01.png">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/Screenshot_2022-06-03-17-06-38-324_x.org.server.jpg">
+<meta property="article:published_time" content="2022-06-04T13:53:43.000Z">
+<meta property="article:modified_time" content="2022-06-08T02:18:42.990Z">
+<meta property="article:author" content="Xiaoxx">
+<meta property="article:tag" content="3D">
+<meta property="article:tag" content="Octoprint">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/IMG_3031.jpeg">
+
+
+<link rel="canonical" href="https://xiaoxx.cc/use-octodash-on-your-android-phone/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xiaoxx.cc/use-octodash-on-your-android-phone/","path":"use-octodash-on-your-android-phone/","title":"Octo4a 更进一步：在 Android 手机上运行 Octodash"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Octo4a 更进一步：在 Android 手机上运行 Octodash | XiaoXX的博客</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?b19b43c7b7d7ffaedd9e4fbb7307498f"></script>
+
+
+
+<script>
+
+</script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">XiaoXX的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Termux"><span class="nav-number">3.1.</span> <span class="nav-text">安装 Termux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%B9%B6%E8%BF%9B%E5%85%A5-Debain-%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.2.</span> <span class="nav-text">安装并进入 Debain 系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Octodash"><span class="nav-number">3.3.</span> <span class="nav-text">安装 Octodash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Xserver-XSDL"><span class="nav-number">3.4.</span> <span class="nav-text">安装 Xserver XSDL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-Octodash"><span class="nav-number">3.5.</span> <span class="nav-text">测试 Octodash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-Octodash-%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.6.</span> <span class="nav-text">配置 Octodash 服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%88%90"><span class="nav-number">3.7.</span> <span class="nav-text">完成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-number">4.</span> <span class="nav-text">Notes</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiaoxx"
+      src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xiaoxx</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://www.skypixel.com/users/ljp9878" title="Skypixel → https:&#x2F;&#x2F;www.skypixel.com&#x2F;users&#x2F;ljp9878" rel="noopener" target="_blank"><i class="fa fa-plane fa-fw"></i>Skypixel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaoxx970" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaoxx970" rel="noopener" target="_blank"><i class="fa-brands fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCIy5I69DecNPG15iREGU-uA" rel="noopener" target="_blank"><i class="fa-brands fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoxx970" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoxx970" rel="noopener" target="_blank"><i class="fa-brands fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaoxx.cc/use-octodash-on-your-android-phone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+      <meta itemprop="name" content="Xiaoxx">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XiaoXX的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Octo4a 更进一步：在 Android 手机上运行 Octodash | XiaoXX的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Octo4a 更进一步：在 Android 手机上运行 Octodash
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-04 21:53:43" itemprop="dateCreated datePublished" datetime="2022-06-04T21:53:43+08:00">2022-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-08 10:18:42" itemprop="dateModified" datetime="2022-06-08T10:18:42+08:00">2022-06-08</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/use-octodash-on-your-android-phone/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="use-octodash-on-your-android-phone/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="note info no-icon"><p><a target="_blank" rel="noopener" href="https://unchartedbull.github.io/OctoDash/index.html">Octodash</a> 使用 <a target="_blank" rel="noopener" href="https://zh.m.wikipedia.org/zh/Electron">Electron</a> 来展示界面，只能在 Windows、Linux 和 macOS 上运行。显然不能在 Android 上运行，但是如果你想的话，你可以在你的 Android 手机上运行 Linux，这样你也就可以运行 Electron 了！</p>
+</div>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们都知道使用 <a target="_blank" rel="noopener" href="https://github.com/feelfreelinux/octo4a">Octo4a</a> APP 可以让 Android 手机安装 <a target="_blank" rel="noopener" href="https://octoprint.org/">Octoprint</a>（如果不知道的话去看看 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=74xdib_-X38&ab_channel=ThomasSanladerer">[YouTube]How to run OctoPrint on your phone!</a>），从而使用手机就可以控制你的 3D 打印机。但是要想在手机上操作打印机或者查看打印状态，还是只能通过打开 Octoprint 的管理网页来实现，虽然安装了 Custom UI 后可以优化在手机上的显示排版，但是始终还是需要滚动来看到更多信息，如果 Octodash 也能运行在手机上的话，那就能好看和方便很多。如今我做到了，所以我和大家分享一下我的步骤，希望能够帮到你。</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/IMG_3031.jpeg" alt="IMG_3031"></p>
+<span id="more"></span>
+
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ol>
+<li>你需要一个已经安装且配置完成的 Octoprint 在你的 Android 手机上</li>
+<li>在手机上安装 <a target="_blank" rel="noopener" href="https://termux.com/">Termux</a></li>
+<li>在 Termux 中安装 Debain 系统的 <a target="_blank" rel="noopener" href="https://wiki.termux.com/wiki/PRoot">PRoot</a> 版本</li>
+<li>在 Debain 系统中安装 Octodash</li>
+<li>在手机上安装 Xserver XSDL</li>
+<li>测试在 Termux 中运行 Debain 下的 Octodash</li>
+<li>在 Termux 中添加 Octodash 为服务，并开启自动启动</li>
+<li>完成，在 Xserver XSDL 中使用 Octodash</li>
+</ol>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="安装-Termux"><a href="#安装-Termux" class="headerlink" title="安装 Termux"></a>安装 Termux</h3><p>从  <a target="_blank" rel="noopener" href="https://github.com/termux/termux-app/releases"><code>Github Releases</code></a> 下载安装最新版 Termux，有能力的话可以开启 <code>SSH</code> 服务器，方便从电脑上进行接下来的操作。</p>
+<h3 id="安装并进入-Debain-系统"><a href="#安装并进入-Debain-系统" class="headerlink" title="安装并进入 Debain 系统"></a>安装并进入 Debain 系统</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pkg install proot-distro</span><br><span class="line">proot-distro install debian</span><br><span class="line">proot-distro login debian --termux-home</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-Octodash"><a href="#安装-Octodash" class="headerlink" title="安装 Octodash"></a>安装 Octodash</h3><ul>
+<li><p>安装依赖</p>
+<p>  对<a target="_blank" rel="noopener" href="https://github.com/UnchartedBull/OctoDash/wiki/Installation#manual-installation">安装指导</a>的命令作了一些修改以适应当前系统</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt update -y</span><br><span class="line">apt install -y libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 xdg-utils libatspi2.0-0 libuuid1 libsecret-1-0 libasound2 libgirepository-1.0-1 gir1.2-glib-2.0 libayatana-appindicator3-1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载并安装最新版的 Octodash（替换下载链接为 <a target="_blank" rel="noopener" href="https://github.com/UnchartedBull/OctoDash/releases"><code>Github Releases</code></a> 页面上最新版本的链接）</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O octodash.deb https://github.com/UnchartedBull/OctoDash/releases/download/v2.3.1/octodash_2.3.1_arm64.deb</span><br><span class="line">dpkg -i octodash.deb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 Xserver</p>
+  <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install -y xserver-xorg x11-xserver-utils xinit libgtk-3-0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="安装-Xserver-XSDL"><a href="#安装-Xserver-XSDL" class="headerlink" title="安装 Xserver XSDL"></a>安装 Xserver XSDL</h3><p>从  <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=x.org.server"><code>Google Play Store</code></a> 安装最新版 Xserver XSDL</p>
+<p>安装好后打开 APP，在初始化页面上点击 <code>更改设备配置</code> -&gt; <code>鼠标模拟</code> -&gt; <code>鼠标仿真模式</code> ，选择 <code>桌面版，无仿真</code>。</p>
+<p>完成后返回启动页面，等待启动完成后记下端口号，比如我的是 <code>4713</code></p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/Screenshot_2022-06-03-19-54-14-504_x.org.server.jpg" alt="Screenshot_2022-06-03-19-54-14-504_x.org.server"></p>
+<h3 id="测试-Octodash"><a href="#测试-Octodash" class="headerlink" title="测试 Octodash"></a>测试 Octodash</h3><p>回到 Termux 下的 Debian 系统中，创建脚本文件（如果不一样，替换端口号为你的端口号）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">EOF &gt; /root/startdash.sh</span></span><br><span class="line"><span class="string">#!/bin/bash</span></span><br><span class="line"><span class="string">export DISPLAY=127.0.0.1:0</span></span><br><span class="line"><span class="string">export PLUSE_SERVER=tcp:127.0.0.1:4713</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">octodash --no-sandbox 2&gt;&amp;1</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"><span class="built_in">chmod</span> +x /root/startdash.sh</span><br></pre></td></tr></table></figure>
+
+<p> 运行脚本文件以测试 Octodash 是否正常运行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/root/startdash.sh</span><br></pre></td></tr></table></figure>
+
+<p>看到有信息输出且没有报错的话，切回 Xserver XSDL APP 查看此时是否显示了 Octodash 的初始页面</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/332-OctoDashSetup-01.png" alt="OctoPi with OctoDash on RPi 4 with HyperPixel 4.0 - Maurice Kevenaar&#39;s  Techblog"></p>
+<p>看到的话先不着急进行设置，测试通过后还需要下一步，把 Octodash 添加到 Termux 的服务中保证后台运行</p>
+<h3 id="配置-Octodash-服务"><a href="#配置-Octodash-服务" class="headerlink" title="配置 Octodash 服务"></a>配置 Octodash 服务</h3><p>先 <code>Ctrl+C</code> 退出当前脚本，然后 <code>Ctrl+D</code> 退出当前终端，回到 Termux 终端后，继续后面的操作</p>
+<p>确保已经回到 Termux 系统后，安装 termux-services 包，使 Termux 支持服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg install termux-services</span><br></pre></td></tr></table></figure>
+
+<p>为 Octodash 创建服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$PREFIX</span>/var/service/octodash/log</span><br><span class="line"><span class="built_in">ln</span> -sf <span class="variable">$PREFIX</span>/share/termux-services/svlogger <span class="variable">$PREFIX</span>/var/service/octodash/log/run</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt; <span class="string">EOF &gt; $PREFIX/var/service/octodash/run</span></span><br><span class="line"><span class="string">#!/data/data/com.termux/files/usr/bin/sh</span></span><br><span class="line"><span class="string">exec proot-distro login debian --termux-home -- /root/startdash.sh</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"><span class="built_in">chmod</span> +x <span class="variable">$PREFIX</span>/var/service/octodash/run</span><br></pre></td></tr></table></figure>
+
+<p>启动 Octodash 服务，并设置为自动启动</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sv up octodash</span><br><span class="line">sv-enable octodash</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>日志文件位于 <code>$PREFIX/var/log/sv/octodash/current</code> </p>
+<p><code>sv</code> 可以进行的操作</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sv</span> up octodash <span class="comment">#启动服务</span></span><br><span class="line"><span class="built_in">sv</span> down octodash <span class="comment">#停止服务</span></span><br><span class="line"><span class="built_in">sv</span><span class="literal">-disable</span> octodash <span class="comment">#关闭服务自动启动</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h3><p>现在可以回到 Xserver XSDL APP，继续 Octodash 的初始化，配置完成后就可以看到这样的界面</p>
+<blockquote>
+<p>如果打印机地址填写 127.0.0.1:5000 无法成功添加打印机的话，输入手机的内网 IP 进行连接即可成功添加</p>
+</blockquote>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/use-octodash-on-your-android-phone/Screenshot_2022-06-03-17-06-38-324_x.org.server.jpg" alt="Screenshot_2022-06-03-17-06-38-324_x.org.server"></p>
+<p>大功告成，如果你也成功了，欢迎在评论区分享你的成果！</p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>在配置的过程中总结了一些问题的经验和提示：</p>
+<ul>
+<li><p>如果你的手机没有电池保护功能，会一直保持充电100%的话，过不久你的电池就会鼓包。建议下载 <a target="_blank" rel="noopener" href="https://github.com/helloklf/vtools">Scene 4</a> 手机管理工具，在工具中可以调整电池的充电策略，充电至90%后就停止充电，直道降至70%再继续充电，达到保护电池的目的。下载链接: <a target="_blank" rel="noopener" href="https://github.com/helloklf/vtools/releases">https://github.com/helloklf/vtools/releases</a></p>
+</li>
+<li><p>Octo4a自带的 Webcam 服务器使用起来有以下问题（MI6 遇到的）：</p>
+<ul>
+<li>无法设置分辨率，快照分辨率极低，导致生成的延时视频也是分辨率极低</li>
+<li>可以设置视频时开启闪光灯，却不能设置快照时开启</li>
+<li>每次触发快照都会发出相机的卡擦声，静音也无法关闭</li>
+</ul>
+<p>综上我最后使用了单独的 Webcam 软件: <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.pas.webcam">IP Webcam</a>，解决了以上的问题，它还可以在网页上修改配置，非常方便</p>
+<blockquote>
+<p>如果你也更换了视频源，记得同时更新 Octodash 中的系统设置和延时插件的设置</p>
+</blockquote>
+</li>
+<li><p>这篇文章提到的每一个 APP 都要设置后台锁定，且在关闭这几个 APP 的省电策略，以保持一直后台运行。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Xiaoxx
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xiaoxx.cc/use-octodash-on-your-android-phone/" title="Octo4a 更进一步：在 Android 手机上运行 Octodash">https://xiaoxx.cc/use-octodash-on-your-android-phone/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/3D/" rel="tag"># 3D</a>
+              <a href="/tags/Octoprint/" rel="tag"># Octoprint</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/wechat-vip-how-to/" rel="prev" title="如何导出微信公众号卡券的会员信息">
+                  <i class="fa fa-chevron-left"></i> 如何导出微信公众号卡券的会员信息
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/use-octodash-on-your-android-phone-en/" rel="next" title="Octodash works with octo4a? Yes!">
+                  Octodash works with octo4a? Yes! <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaoxx</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="200" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xiaoxx.cc/use-octodash-on-your-android-phone/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"xiaoxx","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

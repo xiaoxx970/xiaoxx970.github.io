@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CZCOOL+KuaiLe:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xiaoxx.cc","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#3090e44d","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净   我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。  miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密">
+<meta property="og:url" content="https://xiaoxx.cc/miui-eu/index.html">
+<meta property="og:site_name" content="XiaoXX的博客">
+<meta property="og:description" content="miui.eu，一个真正没有广告的系统，比国际版还要纯净   我一开始照着知乎这个教程刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了这个答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。  miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/git-clone.jpg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/bat-run.jpg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/mipay-extract.jpg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen1.jpg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen.png">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen1.jpg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/git-clone.jpg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/bat-run.jpg">
+<meta property="og:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/mipay-extract.jpg">
+<meta property="article:published_time" content="2018-12-18T08:03:00.000Z">
+<meta property="article:modified_time" content="2022-06-08T02:18:42.986Z">
+<meta property="article:author" content="Xiaoxx">
+<meta property="article:tag" content="MIUI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/git-clone.jpg">
+
+
+<link rel="canonical" href="https://xiaoxx.cc/miui-eu/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xiaoxx.cc/miui-eu/","path":"miui-eu/","title":"小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密 | XiaoXX的博客</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?b19b43c7b7d7ffaedd9e4fbb7307498f"></script>
+
+
+
+<script>
+
+</script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">XiaoXX的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B7%E9%80%89%E6%8B%A9%E4%BD%A0%E7%9A%84%E9%80%89%E6%8B%A9%E2%86%93"><span class="nav-number">1.</span> <span class="nav-text">请选择你的选择↓</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%94%81bootloader"><span class="nav-number">2.</span> <span class="nav-text">解锁bootloader</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B7%E5%85%A5%E5%9B%BD%E9%99%85%E7%89%88ROM"><span class="nav-number">3.</span> <span class="nav-text">刷入国际版ROM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E7%94%A8%E5%BC%80%E6%9C%BA%EF%BC%8C%E7%BB%A7%E7%BB%AD%E5%88%B7%E5%85%A5twrp"><span class="nav-number">4.</span> <span class="nav-text">不用开机，继续刷入twrp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5twrp%EF%BC%8C%E5%88%B7eu%E5%9B%BA%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">进入twrp，刷eu固件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E5%8F%96%E5%8A%A0%E5%AF%86%E5%8C%85%E4%BB%A5%E5%8F%8Amipay"><span class="nav-number">6.</span> <span class="nav-text">提取加密包以及mipay</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E6%88%90-%E5%BC%80%E6%9C%BA"><span class="nav-number">7.</span> <span class="nav-text">完成, 开机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%94%81bootloader"><span class="nav-number">8.</span> <span class="nav-text">解锁bootloader</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B7%E5%85%A5%E5%9B%BD%E9%99%85%E7%89%88ROM"><span class="nav-number">9.</span> <span class="nav-text">刷入国际版ROM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E7%94%A8%E5%BC%80%E6%9C%BA%EF%BC%8C%E7%BB%A7%E7%BB%AD%E5%88%B7%E5%85%A5twrp"><span class="nav-number">10.</span> <span class="nav-text">不用开机，继续刷入twrp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5twrp%EF%BC%8C%E5%88%B7eu%E5%9B%BA%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">进入twrp，刷eu固件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E5%8F%96Mipay%E5%AE%89%E8%A3%85%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%9C%AC%E5%9C%9F%E5%8C%96%E4%BF%AE%E5%A4%8D%E5%8C%85"><span class="nav-number">12.</span> <span class="nav-text">提取Mipay安装包以及本土化修复包</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiaoxx"
+      src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xiaoxx</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://www.skypixel.com/users/ljp9878" title="Skypixel → https:&#x2F;&#x2F;www.skypixel.com&#x2F;users&#x2F;ljp9878" rel="noopener" target="_blank"><i class="fa fa-plane fa-fw"></i>Skypixel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaoxx970" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaoxx970" rel="noopener" target="_blank"><i class="fa-brands fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCIy5I69DecNPG15iREGU-uA" rel="noopener" target="_blank"><i class="fa-brands fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoxx970" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoxx970" rel="noopener" target="_blank"><i class="fa-brands fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaoxx.cc/miui-eu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+      <meta itemprop="name" content="Xiaoxx">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XiaoXX的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密 | XiaoXX的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-12-18 16:03:00" itemprop="dateCreated datePublished" datetime="2018-12-18T16:03:00+08:00">2018-12-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-08 10:18:42" itemprop="dateModified" datetime="2022-06-08T10:18:42+08:00">2022-06-08</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/miui-eu/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="miui-eu/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="note info no-icon"><p><a target="_blank" rel="noopener" href="https://xiaomi.eu/community/forums/miui-rom-releases.103/">miui.eu</a>，一个真正没有广告的系统，比国际版还要纯净</p>
+</div>
+
+<p>我一开始照着知乎<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/50231539">这个教程</a>刷的，刷了后死活开不了机，也就是卡在了MI界面，后来在miui欧洲论坛找到了<a target="_blank" rel="noopener" href="https://xiaomi.eu/community/threads/bootloop-problem-while-flashing-eu-stable.46593/">这个</a>答案，完全符合我的情况，不能直接从国内版刷成欧洲版，要先刷个国际版，在国际版的基础上才能刷欧洲版。</p>
+<blockquote>
+<p>miui欧洲版自带人脸解锁，抬起亮屏，还有谷歌的Smart Lock，挺有意思。</p>
+</blockquote>
+<span id="more"></span>
+
+<hr>
+<blockquote>
+<p>2020-02-20 更新:</p>
+<p>不再跟随官方miui的链接, 因为官方已经不再更新开发板的链接, 找了一个第三方列表: <a target="_blank" rel="noopener" href="https://miuiver.com/sagit_developer_recovery/">小米6 MIUI开发版下载索引 (卡刷包)</a>. 现在还是每周自动生成一次, 发布在这里👉<a target="_blank" rel="noopener" href="https://github.com/xiaoxx970/mipay-extract/releases">releases 页面</a>, 要注意自从9.8.15后面的版本我都没有自己测试过, 出了问题开机卡米什么的一般清data可以解决.</p>
+</blockquote>
+<blockquote>
+<p>2019-08-18 更新：</p>
+<p>现在已经半夜1点，我的小米6正在通过线刷刷国内版miui，起因是这次更新miui9.8.15版本后出了一点问题怎么也开不了机，具体的问题应该就是换行符的问题，我刚通过脚本自动获取链接的方式做到持续集成，可以全自动生成刷机包而不用每次改两个链接以及git commit,tag,push等，现在只要在持续集成那边开个定时，就可以每周自动出炉修复刷机包并且上传到GitHub的release页面，可惜我再也用不到了（大概），还需要的朋友记得在评论区告诉我，我会考虑加上其他机型或者出个持续集成的教程。</p>
+<p>链接在这里：<a target="_blank" rel="noopener" href="https://github.com/xiaoxx970/mipay-extract/releases">https://github.com/xiaoxx970/mipay-extract/releases</a></p>
+<p>现在已经开启了每周更新，不用我动就会保持最新版本的，用着miui欧洲版的同学每次更新前去这个页面下载一下就可以刷机了。 </p>
+</blockquote>
+<p>首先要说的是，要折腾，先备份。<br>如果你用了谷歌验证器，可以象我一样换成Authy，通过手机登录，不用担心换手机找不回来<br>微信可以通过Windows端备份聊天记录<br>相册短信便签什么的就交给小米云，差不多就这些</p>
+<p>其次要说的是，等下用到的所有提取出来的刷机包，在每一次更新系统后都会失效，你可以选择再次刷入。<br>特别地，关于支付安全，eu固件默认关闭了全盘强制加密（FBE）功能，这跟国内固件不一样，最直接的影响就是进入恢复模式不用解密，数据暴露在捡到你手机的人面前，所以我是选择刷入了开启加密的补丁包，同样的每一次更新系统就必须在更新后重新刷入<code>force-fbe</code>包，否则无法开机。</p>
+<h1 id="请选择你的选择↓"><a href="#请选择你的选择↓" class="headerlink" title="请选择你的选择↓"></a>请选择你的选择↓</h1><div class="tabs" id="fbe"><ul class="nav-tabs"><li class="tab active"><a href="#fbe-1">开启全盘加密</a></li><li class="tab"><a href="#fbe-2">不开启全盘加密</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fbe-1"><p>下面从第一步，你还是个国内miui系统开始</p>
+<h1 id="解锁bootloader"><a href="#解锁bootloader" class="headerlink" title="解锁bootloader"></a>解锁bootloader</h1><p>看这里👉 <a target="_blank" rel="noopener" href="http://www.miui.com/unlock/index.html">http://www.miui.com/unlock/index.html</a></p>
+<h1 id="刷入国际版ROM"><a href="#刷入国际版ROM" class="headerlink" title="刷入国际版ROM"></a>刷入国际版ROM</h1><div class="note info"><p>根据评论，可以直接刷欧洲版，只要刷完欧洲版，清理一下缓存就行了，所以这步可跳过试试</p>
+</div>
+
+<p>欧洲版和国内版系统分区不一样（我猜的），直接卡刷欧洲版我试过没法开机（可能还是因为FBE的缘故？），反正为了保证成功就先刷国际版ROM，顺便把系统和数据也清了</p>
+<ul>
+<li>去下载线刷包：<a target="_blank" rel="noopener" href="http://en.miui.com/download.html">线刷包地址</a></li>
+<li>手机音量下+电源键开机，进入Fastboot模式</li>
+<li>下载小米的<a target="_blank" rel="noopener" href="http://bigota.d.miui.com/tools/MiFlash2018-5-28-0.zip">通用刷机工具</a></li>
+<li>按照教程一步一步往下做</li>
+<li><strong>注意</strong>软件打开右下角不要选<code>全部删除并lock</code>，选择<code>全部删除</code>就可以了</li>
+<li>线刷具体教程：<a target="_blank" rel="noopener" href="http://www.miui.com/shuaji-393.html">http://www.miui.com/shuaji-393.html</a></li>
+</ul>
+<h1 id="不用开机，继续刷入twrp"><a href="#不用开机，继续刷入twrp" class="headerlink" title="不用开机，继续刷入twrp"></a>不用开机，继续刷入twrp</h1><p>怎么做到的呢，就是线刷软件提示刷入成功，手机重启的时候，还是按住音量下+电源键开机，进入Fastboot模式，通过ADB(刚才下载的通用刷机工具里有)终端命令来刷入。<br>如果还是不小心开机了没关系，等下刷系统的时候在twrp里面双清一下就可以了。</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://twrp.me/Devices/">twrp官方下载</a></p>
+<p> 选择你的机型对应下载下来</p>
+</li>
+<li><p>打开adb终端</p>
+<p> adb终端的位置在<code>\MiFlash2018-5-28-0\Source\ThirdParty\Google\Android</code>里面，进入到<code>Android</code>文件夹，鼠标在空白的地方按住Shift以后右键，选择在此处打开cmd&#x2F;power shell窗口，就可以使用adb了。</p>
+</li>
+<li><p>终端输入命令</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash recovery twrp.img</span><br><span class="line">fastboot boot twrp.img</span><br></pre></td></tr></table></figure>
+<p> <code>twrp.img</code> 是替换成你的twrp包的路径和名称。</p>
+<blockquote>
+<p>第二条命令执行完后手机就会自己重启到twrp界面，可以设置成中文。</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="进入twrp，刷eu固件"><a href="#进入twrp，刷eu固件" class="headerlink" title="进入twrp，刷eu固件"></a>进入twrp，刷eu固件</h1><ol>
+<li><p>去下载miui欧洲版：<a target="_blank" rel="noopener" href="https://xiaomi.eu/community/link-forums/roms-download.73/">miui欧洲版发布页面</a></p>
+</li>
+<li><p>格式化data分区</p>
+</li>
+<li><p>连接电脑，把eu固件拷入sdcard目录</p>
+<p>手机在twrp界面，电脑上应该能看到手机，不能的话在手机点挂载，然后点开启MTP</p>
+</li>
+<li><p>选择eu包刷机</p>
+<div class="note primary"><p>因为你选了要开启全盘加密</p></li>
+</ol>
+<p>   刷到这里的时候手机先放一边, 刷完不要开机, 下面操作电脑弄出修复包一起刷了以后再开机</p>
+</div>
+
+<h1 id="提取加密包以及mipay"><a href="#提取加密包以及mipay" class="headerlink" title="提取加密包以及mipay"></a>提取加密包以及mipay</h1><blockquote>
+<p>要从中国版固件的system.img里面提取软件包，还要通过Root权限把软件包写入System分区，这里有一个教程：<a target="_blank" rel="noopener" href="https://www.yipkwong.com/2018/06/06/167/">MIUI国际版mi pay解决方案</a>，里面叙述了详细经过，但是我没用这个方法，虽然尝试过但是卡在了挂载镜像那一步。</p>
+</blockquote>
+<p>使用：<a target="_blank" rel="noopener" href="https://github.com/linusyang92/mipay-extract">Mi Pay Extractor</a>，是一个提取脚本，可以自动提取出卡刷包中的MiPay软件和日历、天气等。</p>
+<ol>
+<li><p>下载zip包: <a target="_blank" rel="noopener" href="https://github.com/linusyang92/mipay-extract/archive/master.zip">repo的下载链接</a></p>
+<p>linux用户可以clone</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/linusyang92/mipay-extract.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载国内的miui最新卡刷包，放入同一目录</p>
+</li>
+<li><p>miui欧洲版卡刷包，也放在同一目录</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/git-clone.jpg" alt="目录截图"></p>
+</li>
+<li><p>运行<code>extract.bat</code>(双击)</p>
+<p>会生成一个卡刷包<code>mipay-MIxxx.zip</code></p>
+<div class="note default"><p>如果出现下面这样的错误：</p></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">extract.sh: line 2: $<span class="string">&#x27;\r&#x27;</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 3: <span class="built_in">cd</span>: $<span class="string">&#x27;.\r&#x27;</span>: No such file or directory</span><br><span class="line">extract.sh: line 4: $<span class="string">&#x27;\r&#x27;</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 6: $<span class="string">&#x27;\r&#x27;</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 18: $<span class="string">&#x27;\r&#x27;</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 19: syntax error near unexpected token `$<span class="string">&#x27;&#123;\r&#x27;</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#x27;</span>xtract.sh: line 19: `<span class="function"><span class="title">exists</span></span>() &#123;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
+
+<p>那就是因为<code>extract.sh</code>文件用的换行符不对，把原来的换行符<code>CRLF</code>改成<code>LF</code>后保存就可以正常运行了</p>
+</div>
+
+<p>   Windows下双击<code>extract.bat</code>就可以开始提取，会要几分钟时间。<br>   <img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/bat-run.jpg" alt="bat-run">这样就说明提取成功，现在目录下会有<code>mipay-MIxxx.zip</code>,这就是一个卡刷包，通过twrp可以直接刷入</p>
+<ol start="5">
+<li><p>运行<code>cleaner-fix.bat</code>(双击)</p>
+ <div class="note primary"><p>这里就是生成开启默认加密的刷机包 <code>force-fbe</code></p></li>
+</ol>
+</div>
+
+<pre><code>还可以生成修复日历和天气的刷机包，具体说就是让日历显示农历，天气app换回国内的。
+</code></pre>
+<ol start="6">
+<li>对于想在负一屏还能用微信支付宝扫码快捷键的，以及查快递，在cmd运行<code>extract.bat --appvault</code>可以生成这样的修复包，也就是替换成跟国内一样的信息助手</li>
+</ol>
+<p>Finally，我们有了四个准备卡刷的包：<br><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/mipay-extract.jpg" alt="目录截图2">全部还是通过MTP放进手机，一个一个刷就是了</p>
+<div class="note warning"><p>如果刷机的时候遇到255错误</p>
+<p>简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的<code>CRLF</code>，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹<code>META-INF</code>一路点进去，最后看到了一个叫做<code>update-binary</code>的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了<code>CRLF</code>换行符导致错误的。用VScode打开转换成<code>LF</code>后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。</p>
+</div>
+
+<h1 id="完成-开机"><a href="#完成-开机" class="headerlink" title="完成, 开机"></a>完成, 开机</h1><p>刷好后就可以开机</p>
+<p>选择语言，连WiFi，登账号<br><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen1.jpg"></p>
+<p>这时候如果进设置就会看到手机已加密</p>
+<blockquote>
+<p>是用来看的, 要是看到没加密不能在这里选开启加密, 不然会出问题</p>
+<p>(如果有人试了不刷加密包来到这里可以开启加密记得告诉我)</p>
+</blockquote>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen.png"></p>
+<p>好了这样就完事了, 可以继续看下面, 下个国产的应用商店</p></div><div class="tab-pane" id="fbe-2"><p>下面从第一步，你还是个国内miui系统开始</p>
+<h1 id="解锁bootloader"><a href="#解锁bootloader" class="headerlink" title="解锁bootloader"></a>解锁bootloader</h1><p>看这里👉 <a target="_blank" rel="noopener" href="http://www.miui.com/unlock/index.html">http://www.miui.com/unlock/index.html</a></p>
+<h1 id="刷入国际版ROM"><a href="#刷入国际版ROM" class="headerlink" title="刷入国际版ROM"></a>刷入国际版ROM</h1><div class="note info"><p>根据评论，可以直接刷欧洲版，只要刷完欧洲版，清理一下缓存就行了，所以这步可跳过试试</p>
+</div>
+
+<p>欧洲版和国内版系统分区不一样（我猜的），直接卡刷欧洲版我试过没法开机（可能还是因为FBE的缘故？），反正为了保证成功就先刷国际版ROM，顺便把系统和数据也清了</p>
+<ul>
+<li>去下载线刷包：<a target="_blank" rel="noopener" href="http://en.miui.com/download.html">线刷包地址</a></li>
+<li>手机音量下+电源键开机，进入Fastboot模式</li>
+<li>下载小米的<a target="_blank" rel="noopener" href="http://bigota.d.miui.com/tools/MiFlash2018-5-28-0.zip">通用刷机工具</a></li>
+<li>按照教程一步一步往下做</li>
+<li><strong>注意</strong>软件打开右下角不要选<code>全部删除并lock</code>，选择<code>全部删除</code>就可以了</li>
+<li>线刷具体教程：<a target="_blank" rel="noopener" href="http://www.miui.com/shuaji-393.html">http://www.miui.com/shuaji-393.html</a></li>
+</ul>
+<h1 id="不用开机，继续刷入twrp"><a href="#不用开机，继续刷入twrp" class="headerlink" title="不用开机，继续刷入twrp"></a>不用开机，继续刷入twrp</h1><p>怎么做到的呢，就是线刷软件提示刷入成功，手机重启的时候，还是按住音量下+电源键开机，进入Fastboot模式，通过ADB(刚才下载的通用刷机工具里有)终端命令来刷入。<br>如果还是不小心开机了没关系，等下刷系统的时候在twrp里面双清一下就可以了。</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://twrp.me/Devices/">twrp官方下载</a></p>
+<p> 选择你的机型对应下载下来</p>
+</li>
+<li><p>打开adb终端</p>
+<p> adb终端的位置在<code>\MiFlash2018-5-28-0\Source\ThirdParty\Google\Android</code>里面，进入到<code>Android</code>文件夹，鼠标在空白的地方按住Shift以后右键，选择在此处打开cmd&#x2F;power shell窗口，就可以使用adb了。</p>
+</li>
+<li><p>终端输入命令</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash recovery twrp.img</span><br><span class="line">fastboot boot twrp.img</span><br></pre></td></tr></table></figure>
+<p> <code>twrp.img</code> 是替换成你的twrp包的路径和名称。</p>
+<blockquote>
+<p>第二条命令执行完后手机就会自己重启到twrp界面，可以设置成中文。</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="进入twrp，刷eu固件"><a href="#进入twrp，刷eu固件" class="headerlink" title="进入twrp，刷eu固件"></a>进入twrp，刷eu固件</h1><ol>
+<li><p>去下载miui欧洲版：<a target="_blank" rel="noopener" href="https://xiaomi.eu/community/link-forums/roms-download.73/">miui欧洲版发布页面</a></p>
+</li>
+<li><p>连接电脑，把eu固件拷入sdcard目录<br>手机在twrp界面，电脑上应该能看到手机，不能的话在手机点挂载，然后点开启MTP</p>
+</li>
+<li><p>从手机上点刷机，选择刷机包，完成，开机。</p>
+</li>
+</ol>
+<p>到这里已经完成miui欧洲版刷机了，选择语言，连WiFi，登账号<br><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/screen1.jpg">这是开机后的桌面<br>miui欧洲版阉割了很多比如小米钱包，里面的卡模拟的功能我用得到，包括公交卡什么的，所以接下来折腾如何装回这个应用</p>
+<h1 id="提取Mipay安装包以及本土化修复包"><a href="#提取Mipay安装包以及本土化修复包" class="headerlink" title="提取Mipay安装包以及本土化修复包"></a>提取Mipay安装包以及本土化修复包</h1><blockquote>
+<p>要从中国版固件的system.img里面提取软件包，还要通过Root权限把软件包写入System分区，这里有一个教程：<a target="_blank" rel="noopener" href="https://www.yipkwong.com/2018/06/06/167/">MIUI国际版mi pay解决方案</a>，里面叙述了详细经过，但是我没用这个方法，虽然尝试过但是卡在了挂载镜像那一步。</p>
+</blockquote>
+<p>使用：<a target="_blank" rel="noopener" href="https://github.com/linusyang92/mipay-extract">Mi Pay Extractor</a>，是一个提取脚本，可以自动提取出卡刷包中的MiPay软件和日历、天气等。</p>
+<ol>
+<li><p>下载zip包: <a target="_blank" rel="noopener" href="https://github.com/linusyang92/mipay-extract/archive/master.zip">repo的下载链接</a></p>
+<p>linux用户可以clone</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/linusyang92/mipay-extract.git</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>下载国内的miui最新卡刷包，放入同一目录</p>
+</li>
+<li><p>miui欧洲版卡刷包，也放在同一目录</p>
+<p><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/git-clone.jpg" alt="目录截图"></p>
+</li>
+<li><p>运行<code>extract.bat</code>(双击)</p>
+<p>可以生成加密包和一个修复包</p>
+<div class="note default"><p>如果出现下面这样的错误：</p></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">extract.sh: line 2: $<span class="string">&#x27;\r&#x27;</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 3: <span class="built_in">cd</span>: $<span class="string">&#x27;.\r&#x27;</span>: No such file or directory</span><br><span class="line">extract.sh: line 4: $<span class="string">&#x27;\r&#x27;</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 6: $<span class="string">&#x27;\r&#x27;</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 18: $<span class="string">&#x27;\r&#x27;</span>: <span class="built_in">command</span> not found</span><br><span class="line">extract.sh: line 19: syntax error near unexpected token `$<span class="string">&#x27;&#123;\r&#x27;</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string">&#x27;</span>xtract.sh: line 19: `<span class="function"><span class="title">exists</span></span>() &#123;</span><br><span class="line">请按任意键继续. . .</span><br></pre></td></tr></table></figure>
+
+<p>那就是因为<code>extract.sh</code>文件用的换行符不对，把原来的换行符<code>CRLF</code>改成<code>LF</code>后保存就可以正常运行了</p>
+</div>   
+
+<p>   <img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/bat-run.jpg" alt="bat-run"></p>
+<p>   这样就说明提取成功，现在目录下会有<code>mipay-MIxxx.zip</code>,这就是一个卡刷包，通过twrp可以直接刷入</p>
+<ol start="5">
+<li><p>运行<code>cleaner-fix.bat</code><br>生成修复日历和天气的刷机包，具体说就是让日历显示农历，天气app换回国内的。这个命令同时还会生成开启默认加密的刷机包。</p>
+</li>
+<li><p>对于想在负一屏还能用微信支付宝扫码快捷键的，以及查快递，<code>extract.bat --appvault</code>可以生成这样的修复包，也就是替换成跟国内一样的信息助手</p>
+</li>
+</ol>
+<p>Finally，我们有了四个准备卡刷的包：<br><img data-src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/miui-eu/mipay-extract.jpg" alt="目录截图2">全扔进手机，一个一个刷就是了</p>
+<div class="note warning"><p>如果刷机的时候遇到255错误</p>
+<p>简单来说就是以上这四个包，没一个能刷成功的，网上搜255错误，原因很多，没有一个能解决我的问题的，于是我慢慢想起了前面提到的<code>CRLF</code>，说不定又是这个东西在捣鬼。打开zip包，第一个文件夹<code>META-INF</code>一路点进去，最后看到了一个叫做<code>update-binary</code>的文件，这个文件类似于脚本，在刷机的时候执行的，和其他能刷成功的一对比发现确实是因为用了<code>CRLF</code>换行符导致错误的。用VScode打开转换成<code>LF</code>后保存，更新压缩包，这次就没有任何毛病了,在twrp下开启MTP把刷机包存到手机，可以全部成功刷入。</p>
+</div></div></div></div>
+
+<p>下面是安装小米应用商店，装了就可以用它来更新小米钱包，而不用每次想更新都去下载线刷包。</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://xiaomi-market.cn.uptodown.com/android">https://xiaomi-market.cn.uptodown.com/android</a></p>
+<p>不知道为什么这个网站是被墙了的，开全局去下</p>
+<p>然后就可以安装了，一切都非常完美，可以一键装应用和更新</p>
+<p>最后，终于写完了这个教程，自我感觉是很详细了，希望可以帮到跟我一样在折腾miui的人。我刷这个系统的初衷是国内版变得越来越难用，最主要的表现是经常熄屏自己莫名震动，还经常自己亮屏，打开了看也没有什么通知，后来上网一搜发现我不是一个人，这是小米系统本身的问题，那些震动是真的有通知不过之前被我从通知栏禁止了，可能禁止的层面不对，等通知到达了震动了系统才把通知删掉，这不是折磨人么。我就找能不能刷类似CM的原版安卓，然后就在知乎上看到了miui欧洲版，感觉对安卓的底层不会改太多，就折腾用欧洲版来了。现在用了两个星期，确实好用，字体不好看还换了个字体，外观上和国内版差别也不大。就是每次升级系统不是很方便就是了，之后会想办法用持续集成完成自动的提取。</p>
+<blockquote>
+<p>2019-4-23更新：总结一下用miui-eu时更新系统步骤</p>
+<ol>
+<li><p>下载eu包：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xiaomi.eu/MIUI-WEEKLY-RELEASES/">https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/files/xiaomi.eu/MIUI-WEEKLY-RELEASES/</a></p>
+</li>
+<li><p>下载国内相同版本包：<a target="_blank" rel="noopener" href="http://www.miui.com/download.html">http://www.miui.com/download.html</a></p>
+</li>
+<li><p>在<code>mipay-extract</code>文件夹中执行以下命令</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">./cleaner-fix.bat</span></span><br><span class="line"><span class="string">./extract.bat</span> <span class="params">--appvault</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成的4个包加上下载下来的eu包拷贝进手机，重启进入twrp选择刷机包刷机</p>
+<p>可以批量选择刷机包，顺序是eu包在最前面，其他的在后面刷。</p>
+<blockquote>
+<p>我的<a target="_blank" rel="noopener" href="https://github.com/xiaoxx970/mipay-extract/releases">Release页面</a> ，如果你也是小米6就可以直接下载下来用</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Xiaoxx
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xiaoxx.cc/miui-eu/" title="小米6刷入miui欧洲版以及安装小米钱包、应用商店APP,开启全盘加密">https://xiaoxx.cc/miui-eu/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MIUI/" rel="tag"># MIUI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/frp-for-mc/" rel="prev" title="Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速）">
+                  <i class="fa fa-chevron-left"></i> Minecraft海外服务器加速后续：用frp更高效地转发流量（也适用于其他游戏的加速）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/hackintosh-of-yoga710/" rel="next" title="MacOS Mojave Hackintosh for Lenovo Yoga710 [clover]">
+                  MacOS Mojave Hackintosh for Lenovo Yoga710 [clover] <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaoxx</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="200" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xiaoxx.cc/miui-eu/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"xiaoxx","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>

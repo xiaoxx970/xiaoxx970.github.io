@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/favicon/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic%7CZCOOL+KuaiLe:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"xiaoxx.cc","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#3090e44d","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近拿到了一个树莓派3B，想要做成NAS以及下载机，我这个人平时喜欢看美剧，每次下载都要先开电脑打开浏览器找资源迅雷下载，有时候用手机找到资源了还是得开电脑，毕竟手机不适合用来下BT，于是有了这个想法，一开始还装了Nextcloud的树莓派版(需要的童鞋可以进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派：samba文件共享、frp内网穿透、lighttpd、aria2c下载器（AriaNg前端）安装教程">
+<meta property="og:url" content="https://xiaoxx.cc/raspberrypi-how/index.html">
+<meta property="og:site_name" content="XiaoXX的博客">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近拿到了一个树莓派3B，想要做成NAS以及下载机，我这个人平时喜欢看美剧，每次下载都要先开电脑打开浏览器找资源迅雷下载，有时候用手机找到资源了还是得开电脑，毕竟手机不适合用来下BT，于是有了这个想法，一开始还装了Nextcloud的树莓派版(需要的童鞋可以进">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-11T17:08:00.000Z">
+<meta property="article:modified_time" content="2022-06-08T02:18:42.986Z">
+<meta property="article:author" content="Xiaoxx">
+<meta property="article:tag" content="Systemctl">
+<meta property="article:tag" content="Pi">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://xiaoxx.cc/raspberrypi-how/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://xiaoxx.cc/raspberrypi-how/","path":"raspberrypi-how/","title":"树莓派：samba文件共享、frp内网穿透、lighttpd、aria2c下载器（AriaNg前端）安装教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>树莓派：samba文件共享、frp内网穿透、lighttpd、aria2c下载器（AriaNg前端）安装教程 | XiaoXX的博客</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?b19b43c7b7d7ffaedd9e4fbb7307498f"></script>
+
+
+
+<script>
+
+</script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">XiaoXX的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9Asamba%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB"><span class="nav-number">1.</span> <span class="nav-text">第一部分：samba文件共享</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E7%A1%AC%E7%9B%98"><span class="nav-number">1.1.</span> <span class="nav-text">挂载硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%BA%90%E5%88%B0%E5%9B%BD%E5%86%85"><span class="nav-number">1.2.</span> <span class="nav-text">更换软件安装源到国内</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#samba%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">samba安装及配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9Aaria2%E4%B8%8B%E8%BD%BD%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">第二部分：aria2下载器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#aria2%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">aria2配置及安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E9%A1%B5%E5%89%8D%E7%AB%AF%EF%BC%88lighttpd%E5%92%8CariaNg%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">网页前端（lighttpd和ariaNg）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86%EF%BC%9A%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8Ffrp"><span class="nav-number">3.</span> <span class="nav-text">第三部分：内网穿透frp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frp%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">frp客户端安装</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiaoxx"
+      src="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Xiaoxx</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://www.skypixel.com/users/ljp9878" title="Skypixel → https:&#x2F;&#x2F;www.skypixel.com&#x2F;users&#x2F;ljp9878" rel="noopener" target="_blank"><i class="fa fa-plane fa-fw"></i>Skypixel</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaoxx970" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xiaoxx970" rel="noopener" target="_blank"><i class="fa-brands fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCIy5I69DecNPG15iREGU-uA" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCIy5I69DecNPG15iREGU-uA" rel="noopener" target="_blank"><i class="fa-brands fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/xiaoxx970" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;xiaoxx970" rel="noopener" target="_blank"><i class="fa-brands fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaoxx.cc/raspberrypi-how/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://xiaoxx.oss-cn-beijing.aliyuncs.com/blog-img/avatar.jpg">
+      <meta itemprop="name" content="Xiaoxx">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XiaoXX的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="树莓派：samba文件共享、frp内网穿透、lighttpd、aria2c下载器（AriaNg前端）安装教程 | XiaoXX的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树莓派：samba文件共享、frp内网穿透、lighttpd、aria2c下载器（AriaNg前端）安装教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-12 01:08:00" itemprop="dateCreated datePublished" datetime="2018-03-12T01:08:00+08:00">2018-03-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-08 10:18:42" itemprop="dateModified" datetime="2022-06-08T10:18:42+08:00">2022-06-08</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/raspberrypi-how/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="raspberrypi-how/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;最近拿到了一个树莓派3B，想要做成NAS以及下载机，我这个人平时喜欢看美剧，每次下载都要先开电脑打开浏览器找资源迅雷下载，有时候用手机找到资源了还是得开电脑，毕竟手机不适合用来下BT，于是有了这个想法，一开始还装了<a target="_blank" rel="noopener" href="https://ownyourbits.com/nextcloudpi/">Nextcloud的树莓派版</a>(需要的童鞋可以进去看（需翻墙）)（2018-12-20更新：现在看官网把这个部分已经做的很完善了，占用可能也不高了），网盘下载前端倒是什么都有了，就是觉着太臃肿，web服务器用的居然还是apache，占用可想而知，到后来每次链接ssh都要接近半分钟，运行一个python脚本更是要到一分钟，那就是几行的脚本啊。后来想nextcloud其实没什么用，我只要能下载和共享文件就可以了。  </p>
+<span id="more"></span>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;于是就有了这个教程，我打算用lighttpd作web服务器，上面放hexo博客（毕竟有了frp）和<a target="_blank" rel="noopener" href="http://ariang.mayswind.net/zh_Hans/">aria2c前端</a>，通过frp连接到我的阿里云主机，那里有公网IP，这样一来我可以在任何地方访问我的树莓派叫它下美剧，真是很幸福的一件事。  </p>
+<p>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;废话不多说，下面开始教程，我用的系统是raspbian-stretch-lite，最少占用嘛，桌面也是不需要的。  </p>
+<h1 id="第一部分：samba文件共享"><a href="#第一部分：samba文件共享" class="headerlink" title="第一部分：samba文件共享"></a><strong>第一部分：samba文件共享</strong></h1><ul>
+<li><h2 id="挂载硬盘"><a href="#挂载硬盘" class="headerlink" title="挂载硬盘"></a>挂载硬盘</h2></li>
+</ul>
+<p>查看设备列表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
+
+<p>这时候会列出所有挂载的设备（告诉我你已经插上硬盘了）然后找到硬盘的标识，一般是&#x2F;dev&#x2F;sda1，然后记下来<br>挂载硬盘：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount /dev/sda1 /media</span><br></pre></td></tr></table></figure>
+
+<p>查看现有磁盘信息，看是否挂载成功:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> -T</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h2 id="更换软件安装源到国内"><a href="#更换软件安装源到国内" class="headerlink" title="更换软件安装源到国内"></a>更换软件安装源到国内</h2></li>
+</ul>
+<p>少数情况后面的安装会出现apt-get install安装失败，这个时候就需要把安装源替换成国内源，速度也会更快  </p>
+<p>备份原列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /etc/apt/sources.list /etc/apt/sources.list.bak</span><br><span class="line">sudo <span class="built_in">cp</span> /etc/apt/sources.list.d/raspi.list /etc/apt/sources.list.d/raspi.list.bak</span><br></pre></td></tr></table></figure>
+
+<p>编辑文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo sed -i <span class="string">&#x27;s#://raspbian.raspberrypi.org#s://mirrors.tuna.tsinghua.edu.cn/raspbian#g&#x27;</span> /etc/apt/sources.list</span><br><span class="line">sudo sed -i <span class="string">&#x27;s#://archive.raspberrypi.org/debian#s://mirrors.tuna.tsinghua.edu.cn/raspberrypi#g&#x27;</span> /etc/apt/sources.list.d/raspi.list</span><br></pre></td></tr></table></figure>
+
+<p>然后执行更新让更改生效:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h2 id="samba安装及配置"><a href="#samba安装及配置" class="headerlink" title="samba安装及配置"></a>samba安装及配置</h2></li>
+</ul>
+<p>根据需要修改下面配置文件<br>[MyNAS]是电脑上可以看到的名称<br>共享路径是挂载硬盘的路径所以我用的是&#x2F;media<br>其他可以不用管<br>全部复制到终端即可：<br>（我用了echo命令来写配置文件，当然用nano、vim、vi都是可以的，看各位喜欢）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install samba -y <span class="comment">#安装samba</span></span><br><span class="line">sudo <span class="built_in">echo</span> <span class="string">&quot;</span></span><br><span class="line"><span class="string">    # 分享名称</span></span><br><span class="line"><span class="string">    [MyNAS]</span></span><br><span class="line"><span class="string">    # 说明信息</span></span><br><span class="line"><span class="string">    comment = NAS Storage</span></span><br><span class="line"><span class="string">    # 可以访问的用户</span></span><br><span class="line"><span class="string">    valid users = pi,root</span></span><br><span class="line"><span class="string">    # 共享文件的路径。</span></span><br><span class="line"><span class="string">    path = /media</span></span><br><span class="line"><span class="string">    # 可被其他人看到资源名称（非内容）</span></span><br><span class="line"><span class="string">    browseable = yes</span></span><br><span class="line"><span class="string">    # 可写</span></span><br><span class="line"><span class="string">    writable = yes</span></span><br><span class="line"><span class="string">    # 新建文件的权限为 664</span></span><br><span class="line"><span class="string">    create mask = 0664</span></span><br><span class="line"><span class="string">    # 新建目录的权限为 775</span></span><br><span class="line"><span class="string">    directory mask = 0775</span></span><br><span class="line"><span class="string">&quot;</span>  &gt;&gt; /etc/samba/smb.conf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>测试配置文件是否有错误，根据提示做相应修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testparm</span><br></pre></td></tr></table></figure>
+<p>添加登陆账户并创建密码，必须是 linux 已存在的用户，密码不一定要和系统一样，只是登录samba用的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo smbpasswd -a pi</span><br></pre></td></tr></table></figure>
+
+<p>输入两次密码  </p>
+<p>重载 samba 服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service samba reload</span><br></pre></td></tr></table></figure>
+
+<p>让samba开机启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-rc.d samba defaults</span><br></pre></td></tr></table></figure>
+
+<h1 id="第二部分：aria2下载器"><a href="#第二部分：aria2下载器" class="headerlink" title="第二部分：aria2下载器"></a><strong>第二部分：aria2下载器</strong></h1><ul>
+<li><h2 id="aria2配置及安装"><a href="#aria2配置及安装" class="headerlink" title="aria2配置及安装"></a>aria2配置及安装</h2></li>
+</ul>
+<p>安装aria2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install aria2 -y</span><br></pre></td></tr></table></figure>
+
+<p>创建 session 和配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/.aria2</span><br><span class="line"><span class="built_in">touch</span> ~/.aria2/aria2.session</span><br><span class="line"><span class="built_in">touch</span> ~/.aria2/aria2.conf</span><br></pre></td></tr></table></figure>
+
+<p>写入配置文件aria2.conf,注意如果用户名不是pi的话需要改下面的对应文件路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 文件保存相关 ##</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 文件保存目录</span></span><br><span class="line"><span class="string">dir=/media/Download</span></span><br><span class="line"><span class="string"># 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M</span></span><br><span class="line"><span class="string">disk-cache=32M</span></span><br><span class="line"><span class="string"># 断点续传</span></span><br><span class="line"><span class="string">continue=true</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc</span></span><br><span class="line"><span class="string"># 预分配所需时间: none &lt; falloc ? trunc &lt; prealloc</span></span><br><span class="line"><span class="string"># falloc和trunc则需要文件系统和内核支持</span></span><br><span class="line"><span class="string"># NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项</span></span><br><span class="line"><span class="string">#file-allocation=falloc</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 下载连接相关 ##</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 最大同时下载任务数, 运行时可修改, 默认:5</span></span><br><span class="line"><span class="string">#max-concurrent-downloads=5</span></span><br><span class="line"><span class="string"># 同一服务器连接数, 添加时可指定, 默认:1</span></span><br><span class="line"><span class="string">max-connection-per-server=15</span></span><br><span class="line"><span class="string"># 整体下载速度限制, 运行时可修改, 默认:0（不限制）</span></span><br><span class="line"><span class="string">#max-overall-download-limit=0</span></span><br><span class="line"><span class="string"># 单个任务下载速度限制, 默认:0（不限制）</span></span><br><span class="line"><span class="string">#max-download-limit=0</span></span><br><span class="line"><span class="string"># 整体上传速度限制, 运行时可修改, 默认:0（不限制）</span></span><br><span class="line"><span class="string">#max-overall-upload-limit=0</span></span><br><span class="line"><span class="string"># 单个任务上传速度限制, 默认:0（不限制）</span></span><br><span class="line"><span class="string">#max-upload-limit=0</span></span><br><span class="line"><span class="string"># 禁用IPv6, 默认:false</span></span><br><span class="line"><span class="string">disable-ipv6=true</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M</span></span><br><span class="line"><span class="string"># 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载</span></span><br><span class="line"><span class="string">min-split-size=10M</span></span><br><span class="line"><span class="string"># 单个任务最大线程数, 添加时可指定, 默认:5</span></span><br><span class="line"><span class="string">split=10</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## 进度保存相关 ##</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 从会话文件中读取下载任务</span></span><br><span class="line"><span class="string">input-file=/home/pi/.aria2/aria2.session</span></span><br><span class="line"><span class="string"># 在Aria2退出时保存错误的、未完成的下载任务到会话文件</span></span><br><span class="line"><span class="string">save-session=/home/pi/.aria2/aria2.session</span></span><br><span class="line"><span class="string"># 定时保存会话, 0为退出时才保存, 需1.16.1以上版本, 默认:0</span></span><br><span class="line"><span class="string">save-session-interval=60</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## RPC相关设置 ##</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 启用RPC, 默认:false</span></span><br><span class="line"><span class="string">enable-rpc=true</span></span><br><span class="line"><span class="string"># 允许所有来源, 默认:false</span></span><br><span class="line"><span class="string">rpc-allow-origin-all=true</span></span><br><span class="line"><span class="string"># 允许外部访问, 默认:false</span></span><br><span class="line"><span class="string">rpc-listen-all=true</span></span><br><span class="line"><span class="string"># RPC端口, 仅当默认端口被占用时修改</span></span><br><span class="line"><span class="string"># rpc-listen-port=6800</span></span><br><span class="line"><span class="string"># 设置的RPC授权令牌, v1.18.4新增功能, 取代 --rpc-user 和 --rpc-passwd 选项</span></span><br><span class="line"><span class="string">#rpc-secret=&lt;TOKEN&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## BT/PT下载相关 ##</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true</span></span><br><span class="line"><span class="string">#follow-torrent=true</span></span><br><span class="line"><span class="string"># 客户端伪装, PT需要</span></span><br><span class="line"><span class="string">peer-id-prefix=-TR2770-</span></span><br><span class="line"><span class="string">user-agent=Transmission/2.77</span></span><br><span class="line"><span class="string"># 强制保存会话, 即使任务已经完成, 默认:false</span></span><br><span class="line"><span class="string"># 较新的版本开启后会在任务完成后依然保留.aria2文件</span></span><br><span class="line"><span class="string">#force-save=false</span></span><br><span class="line"><span class="string"># 继续之前的BT任务时, 无需再次校验, 默认:false</span></span><br><span class="line"><span class="string">bt-seed-unverified=true</span></span><br><span class="line"><span class="string"># 保存磁力链接元数据为种子文件(.torrent文件), 默认:false</span></span><br><span class="line"><span class="string">bt-save-metadata=true</span></span><br><span class="line"><span class="string">&quot;</span> &gt;&gt; ~/.aria2/aria2.conf</span><br></pre></td></tr></table></figure>
+
+<p>然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aria2c --conf-path=/home/pi/.aria2/aria2.conf -D</span><br></pre></td></tr></table></figure>
+
+<p>没有任何提示则表示成功，Ctrl+C退出。<br>接下来作为服务添加开机自启，注意路径是否正确：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">tee</span> /etc/init.d/aria2c &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:          aria2</span></span><br><span class="line"><span class="comment"># Required-Start:    $remote_fs $network</span></span><br><span class="line"><span class="comment"># Required-Stop:     $remote_fs $network</span></span><br><span class="line"><span class="comment"># Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:      0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description: Aria2 Downloader</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"><span class="function"><span class="title">do_start</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="built_in">echo</span> -n <span class="string">&quot;Starting aria2c&quot;</span></span><br><span class="line">             su pi -c <span class="string">&quot;aria2c --conf-path=/home/pi/.aria2/aria2.conf &amp;&quot;</span></span><br><span class="line"><span class="comment">#这里的路径只能用绝对路径所以用户名不是pi的记得来这里修改</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">do_stop</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">     <span class="built_in">echo</span> -n <span class="string">&quot;Shutting down aria2c &quot;</span></span><br><span class="line">        pkill -f aria2c</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">do_restart</span></span>() &#123;</span><br><span class="line">    do_stop</span><br><span class="line">    <span class="built_in">sleep</span> 1</span><br><span class="line">    do_start</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">start)</span><br><span class="line">   do_start</span><br><span class="line">   ;;</span><br><span class="line">stop)</span><br><span class="line">   do_stop</span><br><span class="line">   ;;</span><br><span class="line">status)</span><br><span class="line">  <span class="built_in">exit</span> $?</span><br><span class="line">  ;;</span><br><span class="line">restart)</span><br><span class="line">  do_restart</span><br><span class="line">  ;;</span><br><span class="line">*)</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;Usage: service aria2c &#123;start|stop|status|restart&#125;&quot;</span> &gt;&amp;2</span><br><span class="line">   <span class="built_in">exit</span> 1</span><br><span class="line">   ;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">EOF</span><br><span class="line">sudo <span class="built_in">chmod</span> +x /etc/init.d/aria2c</span><br><span class="line">sudo update-rc.d aria2c defaults</span><br><span class="line">sudo service aria2c start</span><br></pre></td></tr></table></figure>
+
+<p>这个时候aria2已经添加到开机启动并已经启动<br>以后想要管理aria2只需要输入对应命令即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动aria2服务</span></span><br><span class="line">sudo service aria2c start </span><br><span class="line"><span class="comment">#停止aria2服务</span></span><br><span class="line">sudo service aria2c stop </span><br><span class="line"><span class="comment">#查看aria2服务状态</span></span><br><span class="line">sudo service aria2c status </span><br></pre></td></tr></table></figure>
+<p>同样的命令把aria2c替换成其他名称用来管理samba和等下要装的frp都是可以的  </p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/03f8022453a5">https://www.jianshu.com/p/03f8022453a5</a></p>
+</blockquote>
+<ul>
+<li><h2 id="网页前端（lighttpd和ariaNg）"><a href="#网页前端（lighttpd和ariaNg）" class="headerlink" title="网页前端（lighttpd和ariaNg）"></a>网页前端（lighttpd和<a target="_blank" rel="noopener" href="http://ariang.mayswind.net/zh_Hans/">ariaNg</a>）</h2></li>
+</ul>
+<p>安装lighttpd并设为默认启动：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install lighttpd -y</span><br><span class="line">sudo update-rc.d lighttpd defaults</span><br></pre></td></tr></table></figure>
+
+<p>安装好lighttpd后默认已经开启网页服务，接下来放aria2前端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html</span><br><span class="line">sudo wget https://github.com/mayswind/AriaNg/releases/download/0.4.0/aria-ng-0.4.0.zip</span><br><span class="line">sudo unzip aria-ng-0.4.0.zip</span><br><span class="line"><span class="comment">#顺便删除压缩包</span></span><br><span class="line"><span class="built_in">rm</span> aria-ng-0.4.0.zip</span><br></pre></td></tr></table></figure>
+
+<p>现在用浏览器打开树莓派IP，你就可以看到一个漂亮的前端,以后就用它管理下载<br>至此，一个内网NAS已经搭建完成，轻量化，超小占用。<br>当然还没完，我们要做的是能从外网访问的下载器。<br></br></p>
+<h1 id="第三部分：内网穿透frp"><a href="#第三部分：内网穿透frp" class="headerlink" title="第三部分：内网穿透frp"></a><strong>第三部分：内网穿透frp</strong></h1><p>关于frp</p>
+<p>英文全称：fast reverse proxy<br>中文全称：快速反向代理<br>简称：frp<br>frp 是一个可用于内网穿透的高性能反向代理应用，支持 tcp, udp, http, https 协议.</p>
+<p>frp 的作用<br>利用处于内网或防火墙后的机器，对外网环境提供 http 或 https 服务。<br>对于 http, https 服务支持基于域名的虚拟主机，支持自定义域名绑定，使多个域名可以共用一个80端口。<br>利用处于内网或防火墙后的机器，对外网环境提供 tcp 和 udp 服务，例如在家里通过 ssh 访问处于公司内网环境内的主机。</p>
+<p>frp为免费且开源项目，需要自己利用一台拥有公网IP机器搭建服务端，以部署内网穿透项目。</p>
+<p>项目链接：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp/">https://github.com/fatedier/frp/</a></p>
+<p>科普完了,没有公网IP服务器的童鞋这里推荐一个免费的公共服务:<a target="_blank" rel="noopener" href="https://www.nat.ee/">https://www.nat.ee/</a></p>
+<ul>
+<li><h2 id="frp客户端安装"><a href="#frp客户端安装" class="headerlink" title="frp客户端安装"></a>frp客户端安装</h2></li>
+</ul>
+<p>可以自己到<a target="_blank" rel="noopener" href="http://github.com/fatedier/frp/releases">releases</a>页面找最新版链接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">wget http://github.com/fatedier/frp/releases/download/v0.16.0/frp_0.16.0_linux_arm.tar.gz</span><br><span class="line">tar -xvf frp_0.16.0_linux_arm.tar.gz</span><br><span class="line">sudo <span class="built_in">mv</span> frp_0.16.0_linux_arm/ /etc/frp</span><br></pre></td></tr></table></figure>
+
+<p>编辑配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/frp/frpc.ini</span><br></pre></td></tr></table></figure>
+
+<p>根据nat.ee提供的配置文件,这里提供一个http的例子<br>把中文都换掉,自定义域太简单可能会因为被占用无法启动,记得换个复杂点的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#http-自定义配置-示例</span></span><br><span class="line">[common]</span><br><span class="line">server_addr = nat.ee</span><br><span class="line">server_port = 7000</span><br><span class="line">privilege_token = www.nat.ee</span><br><span class="line">user = 自定义用户名称</span><br><span class="line"></span><br><span class="line">[自定义服务名称]</span><br><span class="line"><span class="built_in">type</span> = http</span><br><span class="line">local_port = 80</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">custom_domains = 自定义域.nat.ee</span><br></pre></td></tr></table></figure>
+
+<p>Ctrl+O保存，Ctrl+X退出<br>测试一下是否运行正常:  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/frp/frpc -c /etc/frp/frpc.ini</span><br></pre></td></tr></table></figure>
+
+<p>如果输出结果带有”start proxy success”则表示连接成功<br>Ctrl+C关闭<br>添加frp为服务并自动启动:<br>(我在里面加了判断网络是否连接的脚本”net_ts”,终于解决了开机启动时没网络导致启动失败的问题)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">tee</span> /etc/init.d/frp &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:         frp</span></span><br><span class="line"><span class="comment"># Required-Start:    $network $local_fs $remote_fs $named $portmap $syslog</span></span><br><span class="line"><span class="comment"># Required-Stop::    $network $local_fs $remote_fs</span></span><br><span class="line"><span class="comment"># Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:      0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description: Start frp at boot time</span></span><br><span class="line"><span class="comment"># Description:       A porxy clint</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"><span class="function"><span class="title">net_ts</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">#超时时间</span></span><br><span class="line">    <span class="built_in">timeout</span>=5</span><br><span class="line"></span><br><span class="line">    <span class="comment">#目标网站</span></span><br><span class="line">    target=baidu.com</span><br><span class="line"></span><br><span class="line">    <span class="comment">#获取响应状态码</span></span><br><span class="line">    ret_code=`curl -I -s --connect-timeout <span class="variable">$timeout</span> <span class="variable">$target</span> -w %&#123;http_code&#125; | <span class="built_in">tail</span> -n1`</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">&quot;x<span class="variable">$ret_code</span>&quot;</span> = <span class="string">&quot;x200&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> 网络畅通</span><br><span class="line">	netstate=<span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> 网络不畅通</span><br><span class="line">	netstate=<span class="string">&#x27;0&#x27;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">do_start</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;starting frp.&quot;</span></span><br><span class="line">        /etc/frp/frpc -c /etc/frp/frpc.ini &amp;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">do_stop</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">      pkill -f /etc/frp/frpc</span><br><span class="line">      <span class="built_in">echo</span> <span class="string">&quot;stop complete.&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">do_restart</span></span>() &#123;</span><br><span class="line">    do_stop</span><br><span class="line">    <span class="built_in">sleep</span> 1</span><br><span class="line">    do_start</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">start)</span><br><span class="line">  net_ts</span><br><span class="line"><span class="comment">#这里验证网络是否连通，连通了才启动frp</span></span><br><span class="line">  <span class="keyword">while</span> [ <span class="variable">$netstate</span> -lt 0 ];</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> 请检查网络，将在5秒后重试</span><br><span class="line">    <span class="built_in">sleep</span> 5</span><br><span class="line">    net_ts</span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">  do_start</span><br><span class="line">   ;;</span><br><span class="line">stop)</span><br><span class="line">   do_stop</span><br><span class="line">   ;;</span><br><span class="line">status)</span><br><span class="line">  <span class="built_in">exit</span> $?</span><br><span class="line">  ;;</span><br><span class="line">restart)</span><br><span class="line">  do_restart</span><br><span class="line">  ;;</span><br><span class="line">*)</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;Usage:service frp &#123;start|stop|restart|status&#125;&quot;</span> &gt;&amp;2</span><br><span class="line">   <span class="built_in">exit</span> 1</span><br><span class="line">   ;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo <span class="built_in">chmod</span> +x /etc/init.d/frp</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo update-rc.d frp defaults</span><br><span class="line">sudo service frp start</span><br></pre></td></tr></table></figure>
+
+<p>frp服务已经启动<br>现在试试能否从外网访问<br>一切正常的话你就可以从外网看到刚才那个漂亮的前端<br>开始你的下载吧<br>frp还有很多玩法，有兴趣的朋友可以去项目地址看看，有中文说明.  </p>
+<p><strong>第一次写教程,写的不好的地方请多包涵,之后我还会写在树莓派上安装hexo博客的教程,记得来看哦.</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Xiaoxx
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://xiaoxx.cc/raspberrypi-how/" title="树莓派：samba文件共享、frp内网穿透、lighttpd、aria2c下载器（AriaNg前端）安装教程">https://xiaoxx.cc/raspberrypi-how/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Systemctl/" rel="tag"># Systemctl</a>
+              <a href="/tags/Pi/" rel="tag"># Pi</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E4%BD%9C%E6%9C%8B%E5%8F%8B_%E7%AC%94%E8%AE%B0/" rel="next" title="把时间当作朋友_笔记">
+                  把时间当作朋友_笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiaoxx</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="200" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://xiaoxx.cc/raspberrypi-how/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"xiaoxx","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+
+</body>
+</html>
